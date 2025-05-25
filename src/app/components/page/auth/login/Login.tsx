@@ -12,79 +12,65 @@ import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps, userType } from "@/app/components/type/API";
 import API from "@/app/components/util/API";
 import { useHook } from "@/app/components/component/hooks/Kontex";
+import { formLogin } from "@/app/components/type/form";
 
 const LoginComponent: React.FC = () => {
   const { setCurrentUser } = useHook();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [formLogin, setFormLogin] = useState<formLogin>({
+    username: "",
+    password: "",
+  });
   const [modalData, setModalData] = useState<ModalProps | null>(null);
   const router = useRouter();
-  const [showpassword, setShowpassword] = useState<boolean>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [animasi, setAnimasi] = useState<boolean>();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username || !password) {
+    try {
+      if (!formLogin.username || !formLogin.password) {
+        setModalData({
+          title: " Mohon Isi Semu",
+          icon: "warning",
+          deskripsi: "Mohon Cek Kembali Kembali Seluruh Kolom",
+          confirmButtonColor: "#3572EF",
+          confirmButtonText: "Coba Lagi",
+          onClose: () => {
+            setModalData(null);
+          },
+        });
+      }
+      const res = await API.post(`/api/auth/login`, formLogin);
+      console.log("Berhasil Login", res);
       setModalData({
-        title: "Mohon Isi Semua Kolom",
-        icon: "warning",
-        deskripsi: "Kolom Tidak Boleh Kosong!",
+        title: "Behasil Login",
+        deskripsi: "Selamat Datang Di KostHub",
+        icon: "success",
         confirmButtonColor: "#3572EF",
-        confirmButtonText: "try again!",
+        confirmButtonText: "Lanjut",
+        onClose: () => {
+          setModalData(null);
+          router.push(`/home`);
+        },
+      });
+      const userPaylod: userType = {
+        token: res.data.token,
+        user: res.data.user,
+      };
+      setCurrentUser(userPaylod);
+    } catch (error) {
+      console.log("Gagal Login", error);
+      setModalData({
+        title: "Gagal Melakukan Login",
+        deskripsi: "Mohon Cek Kembali",
+        icon: "error",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: "Coba Lagi",
         onClose: () => {
           setModalData(null);
         },
       });
-      return;
     }
-
-    API.post("/api/auth/login", {
-      username,
-      password,
-    })
-      .then((res) => {
-        const data: userType = {
-          token: res.data.token,
-          user: {
-            _id: res.data.user._id,
-            username: res.data.user.username,
-            email: res.data.user.email,
-            fullname: res.data.user.fullname,
-            fotoProfile: res.data.user.fotoProfile,
-            tanggal_lahir: res.data.user.tanggal_lahir,
-            nomor: res.data.user.nomor,
-            gender: res.data.user.gender,
-            alamat: res.data.user.alamat,
-          },
-        };
-        setCurrentUser(data);
-        setUsername("");
-        setPassword("");
-        setModalData({
-          title: "Berhasil Login",
-          icon: "success",
-          deskripsi: "Selamat Datang Di KostHub",
-          confirmButtonText: "lanjut",
-          confirmButtonColor: "#3572EF",
-          onClose: () => {
-            setModalData(null);
-            router.push("/home");
-          },
-        });
-      })
-      .catch((err) => {
-        console.log("Login Kamu Gagal", err);
-        setModalData({
-          title: "Login Gagal",
-          icon: "error",
-          deskripsi: "Username dan kata sandi salah",
-          confirmButtonColor: "#3572EF",
-          confirmButtonText: "try again!",
-          onClose: () => {
-            setModalData(null);
-          },
-        });
-      });
   };
 
   return (
@@ -134,7 +120,7 @@ const LoginComponent: React.FC = () => {
               </p>
             </div>
 
-            <div className="w-full max-w-md space-y-4">
+            <form onSubmit={handleLogin} className="w-full max-w-md space-y-4">
               <div>
                 <label
                   htmlFor="username"
@@ -147,8 +133,13 @@ const LoginComponent: React.FC = () => {
                   type="text"
                   className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
                   placeholder="Masukan username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={formLogin.username}
+                  onChange={(e) =>
+                    setFormLogin((prev) => {
+                      const newObj = { ...prev, username: e.target.value };
+                      return newObj;
+                    })
+                  }
                   required
                   aria-required="true"
                 />
@@ -163,23 +154,26 @@ const LoginComponent: React.FC = () => {
                 <div className="relative">
                   <input
                     id="password"
-                    type={showpassword ? "text" : "password"}
+                    type={isLoading ? "text" : "password"}
                     className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
                     placeholder="Masukan password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formLogin.password}
+                    onChange={(e) =>
+                      setFormLogin((prev) => {
+                        const newObj = { ...prev, password: e.target.value };
+                        return newObj;
+                      })
+                    }
                     required
                     aria-required="true"
                   />
                   <button
                     type="button"
-                    onClick={() => setShowpassword((prev) => !prev)}
+                    onClick={() => setIsLoading((prev) => !prev)}
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
-                    aria-label={
-                      showpassword ? "Hide password" : "Show password"
-                    }
+                    aria-label={isLoading ? "Hide password" : "Show password"}
                   >
-                    {showpassword ? "Hide" : "Show"}
+                    {isLoading ? "Hide" : "Show"}
                   </button>
                 </div>
               </div>
@@ -187,13 +181,11 @@ const LoginComponent: React.FC = () => {
                 <h1 className="">Lupa Password?</h1>
               </div>
               <button
-                type="button"
-                onClick={handleLogin}
-                disabled={loading}
+                type="submit"
                 className="w-full bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700 transition duration-300 shadow-md disabled:bg-blue-400 flex justify-center items-center"
                 aria-label="Masuk"
               >
-                {loading ? (
+                {animasi ? (
                   <div
                     className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
                     aria-hidden="true"
@@ -202,7 +194,7 @@ const LoginComponent: React.FC = () => {
                   "Masuk"
                 )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
         <div

@@ -12,82 +12,74 @@ import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/type/API";
 import API from "@/app/components/util/API";
 import { useHook } from "@/app/components/component/hooks/Kontex";
+import { formRegister } from "@/app/components/type/form";
 
 const RegisterComponent: React.FC = () => {
   const { setCurrentUser } = useHook();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [tanggal_lahir, setTanggal_lahir] = useState<string>("");
-  const [fullname, setFullname] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
-  const [nomor, setNomor] = useState<string>("");
-  const [alamat, setAlamat] = useState<string>("");
+  const [formRegister, setFormRegister] = useState<formRegister>({
+    username: "",
+    email: "",
+    fullname: "",
+    gender: null,
+    nomor: "",
+    password: "",
+    tanggal_lahir: "",
+    alamat: "",
+  });
+
   const [modalData, setModalData] = useState<ModalProps | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      !username ||
-      !password ||
-      !email ||
-      !fullname ||
-      !tanggal_lahir ||
-      !gender ||
-      !nomor ||
-      !alamat
-    ) {
-      setModalData({
-        title: "Registrasi Gagal",
-        icon: "warning",
-        deskripsi: "Semua field harus diisi!",
-        confirmButtonColor: "#3572EF",
-        confirmButtonText: "Coba Lagi",
-        onClose: () => setModalData(null),
-      });
-      return;
-    }
-    API.post("/api/auth/register", {
-      username,
-      password,
-      email,
-      tanggal_lahir,
-      fullname,
-      gender,
-      nomor,
-      alamat,
-    })
-      .then((res) => {
-        setCurrentUser(res.data.user);
+    try {
+      if (
+        !formRegister.username ||
+        !formRegister.email ||
+        !formRegister.fullname ||
+        !formRegister.gender ||
+        !formRegister.nomor ||
+        !formRegister.password ||
+        !formRegister.tanggal_lahir
+      ) {
         setModalData({
-          title: "Berhasil Daftar",
-          icon: "success",
-          deskripsi: "Selamat Datang di KostHub",
-          confirmButtonText: "Lanjut",
+          title: "Mohon Isi Semua Kolom",
+          icon: "warning",
+          deskripsi: "",
           confirmButtonColor: "#3572EF",
+          confirmButtonText: "Try Again!",
           onClose: () => {
             setModalData(null);
-            router.push("/auth/login");
           },
         });
-      })
-      .catch((err) => {
-        console.log("Gagal register akun:", err);
-        setModalData({
-          title: "Gagal Daftar",
-          icon: "error",
-          deskripsi:
-            err.response?.data?.message || "Terjadi kesalahan saat registrasi",
-          confirmButtonColor: "#3572EF",
-          confirmButtonText: "Coba Lagi",
-          onClose: () => setModalData(null),
-        });
+        return;
+      }
+      const res = await API.post(`/api/auth/register`, formRegister);
+      console.log("Berhasil Register", res);
+      setModalData({
+        title: "Selamar Anda Berhasil Melakukan Register Register",
+        deskripsi: "Ayo Mulai Mencari KOSTMU",
+        icon: "success",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: "Lanjut",
+        onClose: () => {
+          setModalData(null);
+          router.push("/");
+        },
       });
-  };
-
-  const handleChange = (value: string) => {
-    setGender((prev) => (prev === value ? "" : value));
+    } catch (error) {
+      console.log("Gagal Melalukan Register", error);
+      setModalData({
+        title: "Gagal Melakukan Register",
+        deskripsi: "Mohon Cek Kelengkapan Anda",
+        icon: "error",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: "Mohon Coba Lagi",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -154,34 +146,56 @@ const RegisterComponent: React.FC = () => {
             Masukkan Data Lengkapmu
           </p>
 
+          {modalData && <Modal {...modalData} />}
+
           <form onSubmit={handleRegister} className="w-full max-w-md space-y-4">
             <input
               type="text"
               className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
               placeholder="Nama Lengkap"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+              value={formRegister.fullname}
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, fullname: e.target.value };
+                  return newObj;
+                })
+              }
             />
             <input
               type="email"
               className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
               placeholder="kostHub@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formRegister.email}
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, email: e.target.value };
+                  return newObj;
+                })
+              }
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
                 placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={formRegister.username}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, username: e.target.value };
+                    return newObj;
+                  })
+                }
               />
               <input
                 type="date"
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                value={tanggal_lahir}
-                onChange={(e) => setTanggal_lahir(e.target.value)}
+                value={formRegister.tanggal_lahir}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, tanggal_lahir: e.target.value };
+                    return newObj;
+                  })
+                }
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -189,23 +203,38 @@ const RegisterComponent: React.FC = () => {
                 type="password"
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formRegister.password}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, password: e.target.value };
+                    return newObj;
+                  })
+                }
               />
               <input
                 type="text"
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
                 placeholder="Nomor Telepon (+62)"
-                value={nomor}
-                onChange={(e) => setNomor(e.target.value)}
+                value={formRegister.nomor}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, nomor: e.target.value };
+                    return newObj;
+                  })
+                }
               />
             </div>
             <input
               type="text"
               className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
               placeholder="Alamat"
-              value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
+              value={formRegister.alamat}
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, alamat: e.target.value };
+                  return newObj;
+                })
+              }
             />
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -217,8 +246,13 @@ const RegisterComponent: React.FC = () => {
                     type="radio"
                     name="gender"
                     value="Laki"
-                    checked={gender === "Laki"}
-                    onChange={() => handleChange("Laki")}
+                    checked={formRegister.gender === "Laki"}
+                    onChange={(e) =>
+                      setFormRegister((prev) => {
+                        const newObj = { ...prev, gender: e.target.value };
+                        return newObj;
+                      })
+                    }
                     className="w-4 h-4"
                   />
                   Laki-Laki
@@ -228,8 +262,13 @@ const RegisterComponent: React.FC = () => {
                     type="radio"
                     name="gender"
                     value="Perempuan"
-                    checked={gender === "Perempuan"}
-                    onChange={() => handleChange("Perempuan")}
+                    checked={formRegister.gender === "Perempuan"}
+                    onChange={(e) =>
+                      setFormRegister((prev) => {
+                        const newObj = { ...prev, gender: e.target.value };
+                        return newObj;
+                      })
+                    }
                     className="w-4 h-4"
                   />
                   Perempuan
@@ -243,8 +282,6 @@ const RegisterComponent: React.FC = () => {
               Daftar
             </button>
           </form>
-
-          {modalData && <Modal {...modalData} />}
         </div>
       </div>
     </div>

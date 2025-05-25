@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import NavbarHome from "@/app/components/component/navbar/NavbarHome";
 import Items from "@/app/components/component/card/Items";
 import FooterLanding from "@/app/components/component/footer/FooterLanding";
-import { Funnel, Home } from "lucide-react";
+import { Funnel } from "lucide-react";
 import API from "@/app/components/util/API";
 import { itemsType } from "@/app/components/type/API";
 import { useHook } from "../../component/hooks/Kontex";
+import { useRouter } from "next/navigation";
 
 const HomeComponent: React.FC = () => {
   const [filter, setFilter] = useState<any>({
@@ -17,7 +18,9 @@ const HomeComponent: React.FC = () => {
     tipeHarga: "",
     harga: "",
   });
+  const router = useRouter();
   const [items, setItems] = useState<itemsType[]>([]);
+  const { currentUser } = useHook();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedField, setSelectedField] = useState<any>();
 
@@ -59,6 +62,10 @@ const HomeComponent: React.FC = () => {
 
   useEffect(() => {
     handleFetch();
+    if (!currentUser?.token) {
+      alert("Kamu Tidak Memiliki Akses, Mohon Terlebih Dahulu");
+      router.push(`/auth/login`);
+    }
   }, []);
 
   return (
