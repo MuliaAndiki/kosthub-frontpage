@@ -13,6 +13,7 @@ import { ModalProps, userType } from "@/app/components/type/API";
 import API from "@/app/components/util/API";
 import { useHook } from "@/app/components/component/hooks/Kontex";
 import { formLogin } from "@/app/components/type/form";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginComponent: React.FC = () => {
   const { setCurrentUser } = useHook();
@@ -37,6 +38,7 @@ const LoginComponent: React.FC = () => {
           confirmButtonText: "Coba Lagi",
           onClose: () => {
             setModalData(null);
+            toast.loading("Mohon Isi Semua Field");
           },
         });
       }
@@ -50,6 +52,8 @@ const LoginComponent: React.FC = () => {
         confirmButtonText: "Lanjut",
         onClose: () => {
           setModalData(null);
+          toast.success("Selamat Datang");
+
           router.push(`/home`);
         },
       });
@@ -60,6 +64,7 @@ const LoginComponent: React.FC = () => {
       setCurrentUser(userPaylod);
     } catch (error) {
       console.log("Gagal Login", error);
+      toast.error("Gagal Login");
       setModalData({
         title: "Gagal Melakukan Login",
         deskripsi: "Mohon Cek Kembali",
@@ -78,6 +83,7 @@ const LoginComponent: React.FC = () => {
       <div className="grid grid-cols-[2fr_1fr] grid-rows-1 gap-4">
         <div className="flex justify-center items-center" id="kiri">
           <div id="side-kiri" className="w-full max-w-lg mx-auto p-6">
+            <Toaster />
             <div className="flex justify-center py-4">
               <h1 className="text-4xl font-bold text-[4rem]">Masuk</h1>
             </div>
