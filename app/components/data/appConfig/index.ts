@@ -1,5 +1,5 @@
-import { appFooterType } from "../../type/components";
-import icon from "../../../../../public/asset/icon.png";
+import { appFooterType } from "@/app/components/types/components/index";
+import icon from "@/public/asset/icon.png";
 
 export const appFooterDatas: appFooterType[] = [
   {

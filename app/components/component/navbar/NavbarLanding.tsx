@@ -1,5 +1,5 @@
 import Link from "next/link";
-import IconHitam from "../../../../../public/asset/IconHitam.png";
+import IconHitam from "@/public/asset/IconHitam.png";
 import { CircleUserRound } from "lucide-react";
 import Image from "next/image";
 

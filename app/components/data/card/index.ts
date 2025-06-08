@@ -2,14 +2,14 @@ import {
   ourServicesType,
   bestPropertyType,
   bestReviewType,
-} from "@/app/components/type/components";
-import HomeSecure from "../../../../../public/asset/Home Secure.png";
-import Secure from "../../../../../public/asset/Secured.png";
-import MoneyDolar from "../../../../../public/asset/Money Dollar.png";
-import TimeTwenty from "../../../../../public/asset/Time Twenty Four.png";
-import Kost1 from "../../../../../public/asset/kost1.png";
-import kost3 from "../../../../../public/asset/kost3.png";
-import account from "../../../../../public/asset/account.png";
+} from "@/app/components/types/components";
+import HomeSecure from "@/public/asset/Home Secure.png";
+import Secure from "@/public/asset/Secured.png";
+import MoneyDolar from "@/public/asset/Money Dollar.png";
+import TimeTwenty from "@/public/asset/Time Twenty Four.png";
+import Kost1 from "@/public/asset/kost1.png";
+import kost3 from "@/public/asset/kost3.png";
+import account from "@/public/asset/account.png";
 
 export const ourServicesData: ourServicesType[] = [
   {

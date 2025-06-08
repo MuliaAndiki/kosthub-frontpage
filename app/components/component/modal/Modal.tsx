@@ -1,4 +1,4 @@
-import { ModalProps } from "@/app/components/type/API";
+import { ModalProps } from "@/app/components/types/API/index";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 

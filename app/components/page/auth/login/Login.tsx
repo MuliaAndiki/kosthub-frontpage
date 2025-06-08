@@ -1,15 +1,15 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Icon from "../../../../../../public/asset/icon.png";
-import GogleIcon from "../../../../../../public/asset/GogleIcon.png";
-import FacebookIcon from "../../../../../../public/asset/Facebook.png";
-import LinkIn from "../../../../../../public/asset/Linkin.png";
-import Github from "../../../../../../public/asset/GitHub.png";
+import Icon from "@/public/asset/icon.png";
+import GogleIcon from "@/public/asset/GogleIcon.png";
+import FacebookIcon from "@/public/asset/Facebook.png";
+import LinkIn from "@/public/asset/Linkin.png";
+import Github from "@/public/asset/GitHub.png";
 import { useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps, userType } from "@/app/components/type/API";
+import { ModalProps, userType } from "@/app/components/types/API/index";
 import API from "@/app/components/util/API";
 import { useHook } from "@/app/components/component/hooks/Kontex";
 

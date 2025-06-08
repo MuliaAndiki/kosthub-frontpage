@@ -1,4 +1,4 @@
-import { popUP } from "../../type/components";
+import { popUP } from "@/app/components/types/components";
 
 const PopUp: React.FC<popUP> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
