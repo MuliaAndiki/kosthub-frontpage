@@ -35,3 +35,8 @@ export interface popUP {
   onClose: () => void;
   children: React.ReactNode;
 }
+
+export interface SelectRole {
+  user: string;
+  owner: string;
+}

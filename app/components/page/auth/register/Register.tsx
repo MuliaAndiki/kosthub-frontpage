@@ -12,31 +12,45 @@ import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/types/API";
 import API from "@/app/components/util/API";
 import { useHook } from "@/app/components/component/hooks/Kontex";
+import { formRegister } from "@/app/components/types/form";
+import Container from "@/app/components/component/ui/Container";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import { SelectRole } from "@/app/components/types/components/index";
+import Button from "@/app/components/component/ui/Button";
 
 const RegisterComponent: React.FC = () => {
   const { setCurrentUser } = useHook();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [tanggal_lahir, setTanggal_lahir] = useState<string>("");
-  const [fullname, setFullname] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
-  const [nomor, setNomor] = useState<string>("");
-  const [alamat, setAlamat] = useState<string>("");
+  const [formRegister, setFormRegister] = useState<formRegister>({
+    username: "",
+    alamat: "",
+    email: "",
+    fullname: "",
+    gender: null,
+    nomor: "",
+    password: "",
+    role: "",
+    tanggal_lahir: "",
+  });
   const [modalData, setModalData] = useState<ModalProps | null>(null);
   const router = useRouter();
+  const [selectRole] = useState<SelectRole>({
+    owner: "",
+    user: "",
+  });
+  const [selectedFieldRole, setSelectedFieldRole] = useState<any>();
+  const [selectedFieldGender, setSelectedFieldGender] = useState<any>();
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleRegister = () => {
     if (
-      !username ||
-      !password ||
-      !email ||
-      !fullname ||
-      !tanggal_lahir ||
-      !gender ||
-      !nomor ||
-      !alamat
+      !formRegister.username ||
+      !formRegister.password ||
+      !formRegister.email ||
+      !formRegister.fullname ||
+      !formRegister.tanggal_lahir ||
+      !formRegister.gender ||
+      !formRegister.nomor ||
+      !formRegister.alamat ||
+      !formRegister.role
     ) {
       setModalData({
         title: "Registrasi Gagal",
@@ -48,16 +62,8 @@ const RegisterComponent: React.FC = () => {
       });
       return;
     }
-    API.post("/api/auth/register", {
-      username,
-      password,
-      email,
-      tanggal_lahir,
-      fullname,
-      gender,
-      nomor,
-      alamat,
-    })
+
+    API.post("/api/auth/register", formRegister)
       .then((res) => {
         setCurrentUser(res.data.user);
         setModalData({
@@ -86,18 +92,14 @@ const RegisterComponent: React.FC = () => {
       });
   };
 
-  const handleChange = (value: string) => {
-    setGender((prev) => (prev === value ? "" : value));
-  };
-
   return (
-    <div className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] w-full h-full">
-        <div className="bg-[#3572EF] flex justify-center items-center rounded-r-[10rem] p-4">
-          <div className="flex flex-col items-center w-full">
-            <div className="flex justify-center mb-4">
+    <Container className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
+      <Container className="grid grid-cols-1 md:grid-cols-[1fr_2fr] w-full h-full">
+        <Container className="bg-[#3572EF] flex justify-center items-center rounded-r-[10rem] p-4">
+          <Container className="flex flex-col items-center w-full">
+            <Container className="flex justify-center mb-4">
               <img className="h-[15vh] w-[8vw]" src={Icon.src} alt="Logo" />
-            </div>
+            </Container>
 
             <h1 className="text-[2rem] md:text-[3rem] font-bold text-white text-center mb-4">
               Selamat Datang Kembali!
@@ -111,15 +113,15 @@ const RegisterComponent: React.FC = () => {
                 Masuk
               </button>
             </Link>
-          </div>
-        </div>
+          </Container>
+        </Container>
 
-        <div className="flex flex-col justify-center items-center bg-white px-6 py-8 md:px-12 md:py-10 overflow-y-auto">
+        <Container className="flex flex-col justify-center items-center bg-white px-6 py-8 md:px-12 md:py-10 overflow-y-auto">
           <h1 className=" md:text-[3rem] font-bold mb-6 text-[4rem]">
             Daftar Akun
           </h1>
 
-          <div className="grid grid-cols-4 gap-4 mb-4">
+          <Container className="grid grid-cols-4 gap-4 mb-4">
             <Image
               src={GogleIcon}
               alt="Google"
@@ -148,106 +150,164 @@ const RegisterComponent: React.FC = () => {
               height={40}
               className="cursor-pointer"
             />
-          </div>
+          </Container>
 
           <p className="text-gray-600 text-sm mb-6 text-center">
             Masukkan Data Lengkapmu
           </p>
 
-          <form onSubmit={handleRegister} className="w-full max-w-md space-y-4">
-            <input
+          <Container className="w-full max-w-md space-y-4">
+            <TextFieldInput
+              label="Fullname"
+              name={formRegister.fullname}
               type="text"
-              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-              placeholder="Nama Lengkap"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600 "
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, fullname: e.target.value };
+                  return newObj;
+                })
+              }
+              value={formRegister.fullname}
             />
-            <input
+            <TextFieldInput
+              label="Email"
               type="email"
-              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-              placeholder="kostHub@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name={formRegister.email}
+              value={formRegister.email}
+              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600 "
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, email: e.target.value };
+                  return newObj;
+                })
+              }
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
+            <Container className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextFieldInput
+                label="Username"
                 type="text"
+                name={formRegister.username}
+                value={formRegister.username}
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, username: e.target.value };
+                    return newObj;
+                  })
+                }
               />
-              <input
+
+              <TextFieldInput
                 type="date"
-                className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                value={tanggal_lahir}
-                onChange={(e) => setTanggal_lahir(e.target.value)}
+                name={formRegister.tanggal_lahir}
+                value={formRegister.tanggal_lahir}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, tanggal_lahir: e.target.value };
+                    return newObj;
+                  })
+                }
               />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
+            </Container>
+
+            <Container className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextFieldInput
+                label="Password"
                 type="password"
+                name={formRegister.password}
+                value={formRegister.password}
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, password: e.target.value };
+                    return newObj;
+                  })
+                }
               />
-              <input
+
+              <TextFieldInput
+                label="NomorHp"
                 type="text"
+                name={formRegister.nomor}
+                value={formRegister.nomor}
                 className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                placeholder="Nomor Telepon (+62)"
-                value={nomor}
-                onChange={(e) => setNomor(e.target.value)}
+                onChange={(e) =>
+                  setFormRegister((prev) => {
+                    const newObj = { ...prev, nomor: e.target.value };
+                    return newObj;
+                  })
+                }
               />
-            </div>
-            <input
+            </Container>
+
+            <TextFieldInput
+              label="Alamat"
               type="text"
+              name={formRegister.alamat}
+              value={formRegister.alamat}
               className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-              placeholder="Alamat"
-              value={alamat}
-              onChange={(e) => setAlamat(e.target.value)}
+              onChange={(e) =>
+                setFormRegister((prev) => {
+                  const newObj = { ...prev, alamat: e.target.value };
+                  return newObj;
+                })
+              }
             />
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Jenis Kelamin
-              </label>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-sm">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Laki"
-                    checked={gender === "Laki"}
-                    onChange={() => handleChange("Laki")}
-                    className="w-4 h-4"
-                  />
-                  Laki-Laki
-                </label>
-                <label className="flex items-center gap-2 text-sm">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Perempuan"
-                    checked={gender === "Perempuan"}
-                    onChange={() => handleChange("Perempuan")}
-                    className="w-4 h-4"
-                  />
-                  Perempuan
-                </label>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700 transition duration-300 shadow-md"
+          </Container>
+          <Container className="my-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <select
+              name="role"
+              value={formRegister.role}
+              className="outline-none w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+              onChange={(e) => {
+                setFormRegister((prev) => ({
+                  ...prev,
+                  role: e.target.value,
+                }));
+              }}
             >
-              Daftar
-            </button>
-          </form>
+              <option value="">Pilih Role Anda</option>
+              {Object.entries(selectRole).map(([key]) => (
+                <option key={key} value={key}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </option>
+              ))}
+            </select>
+
+            <select
+              name="gender"
+              value={
+                formRegister.gender === null
+                  ? ""
+                  : formRegister.gender === true
+                  ? "true"
+                  : "false"
+              }
+              onChange={(e) => {
+                const value = e.target.value;
+                const booleanValue =
+                  value === "true" ? true : value === "false" ? false : null;
+                setFormRegister((prev) => ({
+                  ...prev,
+                  gender: booleanValue,
+                }));
+              }}
+              className="outline-none w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+            >
+              <option value="">Jenis Kelamin</option>
+              <option value="true">Pria</option>
+              <option value="false">Wanita</option>
+            </select>
+          </Container>
+          <Container className="w-[20%]">
+            <Button onClick={() => handleRegister()}>Daftar</Button>
+          </Container>
 
           {modalData && <Modal {...modalData} />}
-        </div>
-      </div>
-    </div>
+        </Container>
+      </Container>
+    </Container>
   );
 };
 
