@@ -1,5 +1,11 @@
 import { appFooterType } from "@/app/components/types/components/index";
 import icon from "@/public/asset/icon.png";
+import GogleIcon from "@/public/asset/GogleIcon.png";
+import FacebookIcon from "@/public/asset/Facebook.png";
+import LinkIn from "@/public/asset/Linkin.png";
+import Github from "@/public/asset/GitHub.png";
+import { MedsosConfig } from "@/app/components/types/components/index";
+import { RouteStatic } from "../../types/appConfig";
 
 export const appFooterDatas: appFooterType[] = [
   {
@@ -55,5 +61,37 @@ export const appFooterDatas: appFooterType[] = [
         href: "/",
       },
     ],
+  },
+];
+
+export const MedsosData: MedsosConfig[] = [
+  {
+    image: FacebookIcon,
+    href: "/",
+  },
+  {
+    image: Github,
+    href: "/",
+  },
+  {
+    image: GogleIcon,
+    href: "/",
+  },
+  {
+    image: LinkIn,
+    href: "/",
+  },
+];
+
+export const RouteStatiData: RouteStatic[] = [
+  {
+    login: {
+      title: "Masuk",
+      href: "/auth/login",
+    },
+    register: {
+      title: "Daftar",
+      href: "/auth/register",
+    },
   },
 ];

@@ -9,3 +9,8 @@ export interface formRegister {
   alamat: string;
   role: string;
 }
+
+export interface formLogin {
+  username: string;
+  password: string;
+}

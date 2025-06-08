@@ -1,6 +1,6 @@
-import iconHItam from "../../../../../public/asset/IconHitam.png";
+import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
-import profil from "../../../../../public/asset/porfil.png";
+import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
 import { useHook } from "../hooks/Kontex";
 

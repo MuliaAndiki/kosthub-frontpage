@@ -1,10 +1,6 @@
 "use client";
 import Link from "next/link";
 import Icon from "@/public/asset/icon.png";
-import GogleIcon from "@/public/asset/GogleIcon.png";
-import FacebookIcon from "@/public/asset/Facebook.png";
-import LinkIn from "@/public/asset/Linkin.png";
-import Github from "@/public/asset/GitHub.png";
 import { useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
@@ -17,6 +13,9 @@ import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import { SelectRole } from "@/app/components/types/components/index";
 import Button from "@/app/components/component/ui/Button";
+import { MedsosData } from "@/app/components/data/appConfig";
+import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
+import { RouteStatiData } from "@/app/components/data/appConfig";
 
 const RegisterComponent: React.FC = () => {
   const { setCurrentUser } = useHook();
@@ -107,12 +106,11 @@ const RegisterComponent: React.FC = () => {
             <p className="text-lg md:text-2xl font-light text-center text-white mb-6 px-4">
               Masukkan Data Personalmu Dengan Lengkap
             </p>
-
-            <Link href="/auth/login">
-              <button className="border-2 rounded-full text-[1rem] text-white hover:bg-sky-800 transition duration-300 w-32 h-10 shadow-lg">
-                Masuk
-              </button>
-            </Link>
+            {RouteStatiData.map((items, key) => (
+              <Link key={key} href={items.login.href}>
+                <ButtonPrimary>{items.login.title}</ButtonPrimary>
+              </Link>
+            ))}
           </Container>
         </Container>
 
@@ -122,34 +120,11 @@ const RegisterComponent: React.FC = () => {
           </h1>
 
           <Container className="grid grid-cols-4 gap-4 mb-4">
-            <Image
-              src={GogleIcon}
-              alt="Google"
-              width={40}
-              height={40}
-              className="cursor-pointer"
-            />
-            <Image
-              src={FacebookIcon}
-              alt="Facebook"
-              width={40}
-              height={40}
-              className="cursor-pointer"
-            />
-            <Image
-              src={LinkIn}
-              alt="LinkedIn"
-              width={40}
-              height={40}
-              className="cursor-pointer"
-            />
-            <Image
-              src={Github}
-              alt="GitHub"
-              width={40}
-              height={40}
-              className="cursor-pointer"
-            />
+            {MedsosData.map((items, key) => (
+              <Link key={key} href={items.href}>
+                <Image src={items.image} alt="Medsos" />
+              </Link>
+            ))}
           </Container>
 
           <p className="text-gray-600 text-sm mb-6 text-center">

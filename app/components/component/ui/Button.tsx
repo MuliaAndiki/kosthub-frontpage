@@ -5,7 +5,7 @@ export default function Button({ children, onClick, ...props }: ButtonType) {
   return (
     <Box sx={{ "& button": { m: 1, fontWeight: "bold" } }}>
       <MuiButton
-        variant="outlined"
+        variant="contained"
         size="medium"
         onClick={onClick}
         sx={{ width: "100%" }}

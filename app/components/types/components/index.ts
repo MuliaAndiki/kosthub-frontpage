@@ -40,3 +40,8 @@ export interface SelectRole {
   user: string;
   owner: string;
 }
+
+export interface MedsosConfig {
+  image: any;
+  href: string;
+}
