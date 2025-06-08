@@ -12,7 +12,7 @@ const Items: React.FC<itemsTypeProps> = ({ data }) => {
       href={`/kost/${data.id_kos}`}
       className="block w-full max-w-sm bg-white shadow-lg rounded-lg p-4 hover:scale-105 transition-transform duration-300 border border-gray-200"
     >
-      <Image
+      {/* <Image
         src={
           data.image.thumbnail
             ? `http://localhost:5000/${data.image.thumbnail}`
@@ -22,7 +22,7 @@ const Items: React.FC<itemsTypeProps> = ({ data }) => {
         width={300}
         height={200}
         className="w-full h-48 object-cover rounded-lg"
-      />
+      /> */}
 
       <div className="flex flex-col sm:flex-row justify-center gap-2 mt-4">
         <div className="bg-blue-100 rounded-md px-3 py-1 text-center">

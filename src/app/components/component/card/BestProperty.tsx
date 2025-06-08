@@ -6,13 +6,13 @@ const BestProperty: React.FC<bestPropertyTypeProps> = ({ data }) => {
   return (
     <main className="w-full">
       <div className="flex justify-between items-center">
-        <Image
+        {/* <Image
           src={`http://localhost:5000/${data.image}`}
           alt="Best Propersties"
           width={600}
           height={200}
           className="w-100 h-80 object-center "
-        />
+        /> */}
       </div>
     </main>
   );

@@ -40,13 +40,13 @@ const Reviews: React.FC<reviewTypeProps> = ({ data }) => {
         <p className="text-gray-600 text-sm sm:text-base">{data.komentar}</p>
         {data.imageUlasan && (
           <div className="mt-4">
-            <Image
+            {/* <Image
               src={`http://localhost:5000/${data.imageUlasan}`}
               alt="Review image"
               width={120}
               height={80}
               className="rounded-md object-cover"
-            />
+            /> */}
           </div>
         )}
       </div>

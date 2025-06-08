@@ -93,7 +93,7 @@ const SelectItemsComponent: React.FC = () => {
               <div className="lg:col-span-2 space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="relative w-full h-[50vh] md:h-[60vh]">
-                    {kostData.image.gallery.slice(0, 1).map((item, key) => (
+                    {/* {kostData.image.gallery.slice(0, 1).map((item, key) => (
                       <Image
                         key={key}
                         src={`http://localhost:5000/${item}`}
@@ -102,10 +102,10 @@ const SelectItemsComponent: React.FC = () => {
                         className="object-cover rounded-lg"
                         priority
                       />
-                    ))}
+                    ))} */}
                   </div>
                   <div className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
-                    {kostData.image.gallery.slice(1, 5).map((item, key) => (
+                    {/* {kostData.image.gallery.slice(1, 5).map((item, key) => (
                       <div key={key} className="relative w-full h-full">
                         <Image
                           src={`http://localhost:5000/${item}`}
@@ -114,7 +114,7 @@ const SelectItemsComponent: React.FC = () => {
                           className="object-cover rounded-lg"
                         />
                       </div>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
 

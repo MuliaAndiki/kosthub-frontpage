@@ -5,15 +5,15 @@ const DataKostUser: React.FC<reservasiTypeProps> = ({ data }) => {
   return (
     <main className="">
       <div className="rounded-md w-full p-2 flex justify-center items-center flex-col">
-        <Image
+        {/* <Image
           src={`http://localhost:5000/${data.id_kos.image.thumbnail}`}
           alt="Kost"
           width={200}
           height={300}
           className="w-full h-100 object-cover rounded-lg "
-        />
+        /> */}
         <div className="flex justify-between mt-2 gap-4">
-          {data.id_kos.image.gallery.map((item, key) => (
+          {/* {data.id_kos.image.gallery.map((item, key) => (
             <Image
               key={key}
               src={`http://localhost:5000/${item}`}
@@ -22,7 +22,7 @@ const DataKostUser: React.FC<reservasiTypeProps> = ({ data }) => {
               height={50}
               className="w-full h-48 object-cover rounded-lg"
             />
-          ))}
+          ))} */}
         </div>
 
         <div className="flex justify-start flex-col w-full mt-2">
