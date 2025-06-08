@@ -1,7 +1,7 @@
 "use client";
 import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { itemsType } from "@/app/components/type/API";
 import Items from "@/app/components/component/card/Items";
 import API from "@/app/components/util/API";

@@ -7,7 +7,7 @@ import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/types/API";
 import API from "@/app/components/util/API";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { formRegister } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";

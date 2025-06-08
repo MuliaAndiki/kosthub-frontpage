@@ -6,7 +6,7 @@ import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import { Funnel, Home } from "lucide-react";
 import API from "@/app/components/util/API";
 import { itemsType } from "@/app/components/types/API/index";
-import { useHook } from "../../component/hooks/Kontex";
+import { useHook } from "../../component/hooks/auth";
 import Container from "../../component/ui/Container";
 
 const HomeComponent: React.FC = () => {

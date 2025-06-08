@@ -2,12 +2,12 @@
 import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import Image from "next/image";
-import profile from "../../../../../../public/asset/prfilhd.png";
+import profile from "@/public/asset/prfilhd.png";
 import { useState } from "react";
 import API from "@/app/components/util/API";
-import { ModalProps } from "@/app/components/type/API";
+import { ModalProps } from "@/app/components/types/API";
 import Modal from "@/app/components/component/modal/Modal";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
 

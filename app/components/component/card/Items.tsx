@@ -51,7 +51,7 @@ const Items: React.FC<itemsTypeProps> = ({ data }) => {
 
       <div className="flex items-center justify-between mt-3">
         <div className="flex flex-wrap gap-2">
-          {data.fasilitas.slice(0, 4).map((item, key) => (
+          {data.fasilitas.slice(0, 4).map((item: any, key: any) => (
             <div
               key={key}
               className="flex items-center bg-gray-100 rounded-md px-2 py-1 text-sm"

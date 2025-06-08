@@ -1,9 +1,9 @@
 "use client";
-import icon from "../../../../../public/asset/icon.png";
-import profile from "../../../../../public/asset/prfilhd.png";
+import icon from "@/public/asset/icon.png";
+import profile from "@/public/asset/prfilhd.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useHook } from "../hooks/Kontex";
+import { useHook } from "../hooks/auth";
 
 const NabvarItem: React.FC = () => {
   const { currentUser } = useHook();

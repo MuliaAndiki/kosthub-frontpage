@@ -1,22 +1,22 @@
 "use client";
 import Image from "next/image";
-import facebook from "../../../../../../public/asset/facebook.svg";
-import twiter from "../../../../../../public/asset/twiter.svg";
-import instagram from "../../../../../../public/asset/instagram.svg";
+import facebook from "@/public/asset/facebook.svg";
+import twiter from "@/public/asset/twiter.svg";
+import instagram from "@/public/asset/instagram.svg";
 import NavbarItem from "@/app/components/component/navbar/NavbarItem";
 import { usePathname } from "next/navigation";
 import Reviews from "@/app/components/component/card/Reviews";
 import { useState, useEffect } from "react";
 import { Hotel, Star, Phone, Mail, Forward, Bookmark } from "lucide-react";
 import API from "@/app/components/util/API";
-import { itemsType } from "@/app/components/type/API";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { itemsType } from "@/app/components/types/API";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { getFasilitas } from "@/app/components/helper/faslitasHelper";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import DataKost from "@/app/(pages)/profile/data-kost/page";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps } from "@/app/components/type/API";
+import { ModalProps } from "@/app/components/types/API";
 
 const SelectItemsComponent: React.FC = () => {
   const { currentUser } = useHook();

@@ -1,4 +1,4 @@
-import profile from "../../../../../public/asset/profile1.svg";
+import profile from "@/public/asset/profile1.svg";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { reviewTypeProps } from "../props";

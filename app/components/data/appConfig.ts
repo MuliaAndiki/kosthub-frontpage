@@ -5,7 +5,7 @@ import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
 import { MedsosConfig } from "@/app/components/types/components/index";
-import { RouteStatic } from "../../types/appConfig";
+import { RouteStatic } from "../types/appConfig";
 
 export const appFooterDatas: appFooterType[] = [
   {

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Star, Phone, Mail } from "lucide-react";
 import API from "@/app/components/util/API";
 import { useParams } from "next/navigation";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { itemsType } from "@/app/components/type/API";
 import { getFasilitas } from "@/app/components/helper/faslitasHelper";
 import PopUp from "@/app/components/component/modal/PopUp";

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { userType } from "../type/API";
 
-import contex from "../component/hooks/Kontex";
+import contex from "../component/hooks/auth";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

@@ -3,7 +3,7 @@ import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Link from "next/link";
 import Profile from "@/public/asset/prfilhd.png";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
-import { useHook } from "@/app/components/component/hooks/Kontex";
+import { useHook } from "@/app/components/component/hooks/auth";
 import { getGenderString } from "@/app/components/helper/helper";
 import { useState, useEffect } from "react";
 import Image from "next/image";
