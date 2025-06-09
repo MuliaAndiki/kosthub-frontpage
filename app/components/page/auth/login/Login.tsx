@@ -1,0 +1,195 @@
+"use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Icon from "@/public/asset/icon.png";
+import { RouteStatiData } from "@/app/components/data/appConfig";
+import { useState } from "react";
+import Image from "next/image";
+import Modal from "@/app/components/component/modal/Modal";
+import { ModalProps, userType } from "@/app/components/types/API/index";
+import API from "@/app/components/util/API";
+import { useHook } from "@/app/components/component/hooks/auth";
+import { formLogin } from "@/app/components/types/form";
+import Container from "@/app/components/component/ui/Container";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import Button from "@/app/components/component/ui/Button";
+import { MedsosData } from "@/app/components/data/appConfig";
+import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
+
+const LoginChildren: React.FC = () => {
+  const { setCurrentUser } = useHook();
+  const [formLogin, setFormLogin] = useState<formLogin>({
+    username: "",
+    password: "",
+  });
+
+  const [modalData, setModalData] = useState<ModalProps | null>(null);
+  const router = useRouter();
+  const [showpassword, setShowpassword] = useState<boolean>();
+  const [isLoading, setIsloading] = useState<boolean>(true);
+
+  const handleLogin = async () => {
+    try {
+      if (!formLogin.username || !formLogin.password) {
+        setModalData({
+          icon: "warning",
+          deskripsi: "Mohon Isi Semua Kolom",
+          title: "Mohon Isi Semua Kolom",
+          confirmButtonColor: "#3572EF",
+          confirmButtonText: "Mohon Coba Lagi",
+          onClose: () => {
+            setModalData(null);
+          },
+        });
+        return;
+      }
+
+      const res = await API.post("/api/auth/login", formLogin);
+      const userPayload: userType = {
+        token: res.data.token,
+        user: res.data.user,
+      };
+      setCurrentUser(userPayload);
+      setModalData({
+        icon: "success",
+        title: "Selamat Datang DiKostHub",
+        deskripsi: "Cari KOST Teryamanmu Disini",
+        confirmButtonText: "Lanjut",
+        confirmButtonColor: "#3572EF",
+        onClose: () => {
+          setModalData(null);
+          router.push("/home");
+        },
+      });
+    } catch (err) {
+      console.log(`Gagal Melakukan Login : ${err}`);
+      setModalData({
+        icon: "error",
+        deskripsi: "Username Dan Kata Sandi Anda Salah",
+        title: "Gagal Login",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: " Coba Lagi",
+        onClose: () => {
+          setModalData(null);
+        },
+      });
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return (
+    <Container className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
+      <Container className="grid grid-cols-[2fr_1fr] grid-rows-1 gap-4">
+        <Container className="flex justify-center items-center">
+          <Container className="w-full max-w-lg mx-auto p-6">
+            <Container className="flex justify-center py-4">
+              <h1 className="text-4xl font-bold text-[4rem]">Masuk</h1>
+            </Container>
+
+            <Container className="grid grid-cols-4 gap-4 py-4">
+              {MedsosData.map((items, key) => (
+                <Link key={key} href={items.href}>
+                  <Image alt="" src={items.image} />
+                </Link>
+              ))}
+            </Container>
+
+            <Container className="text-center py-2">
+              <p className="text-gray-600">
+                Masukkan Username dan Password Untuk Masuk
+              </p>
+            </Container>
+
+            <Container className="w-full max-w-md space-y-4">
+              <Container>
+                <TextFieldInput
+                  label="Username"
+                  name={formLogin.username}
+                  type="text"
+                  className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+                  value={formLogin.username}
+                  onChange={(e) =>
+                    setFormLogin((prev) => {
+                      const newObj = { ...prev, username: e.target.value };
+                      return newObj;
+                    })
+                  }
+                  required
+                  aria-required="true"
+                />
+              </Container>
+              <Container>
+                <Container className="relative">
+                  <TextFieldInput
+                    label="Password"
+                    name={formLogin.password}
+                    type={showpassword ? "text" : "password"}
+                    className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+                    value={formLogin.password}
+                    onChange={(e) =>
+                      setFormLogin((prev) => {
+                        const newObj = { ...prev, password: e.target.value };
+                        return newObj;
+                      })
+                    }
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowpassword((prev) => !prev)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
+                    aria-label={
+                      showpassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {showpassword ? "Hide" : "Show"}
+                  </button>
+                </Container>
+              </Container>
+              <Container className="text-center">
+                <h1 className="">Lupa Password?</h1>
+              </Container>
+              <Button onClick={() => handleLogin()}>Masuk</Button>
+            </Container>
+          </Container>
+        </Container>
+        <Container className="bg-[#3572EF] flex justify-center items-center rounded-l-[10rem] h-[100vh] p-2">
+          <Container className="">
+            <Container className="flex justify-center">
+              <Image
+                className="h-[15vh] w-[8vw]"
+                src={Icon}
+                alt="Logo"
+                height="10"
+                width="100"
+              />
+            </Container>
+
+            <Container className="flex justify-center pt-[2rem]">
+              <h1 className="text-[3rem] font-extrabold text-white">
+                Halo, Teman!
+              </h1>
+            </Container>
+
+            <Container className="flex justify-center py-[2rem]">
+              <p className="text-[2rem] font-light text-white text-center">
+                Daftarkan Dirimu Untuk Menikmati Layanan Kami
+              </p>
+            </Container>
+
+            <Container className="flex justify-center">
+              {RouteStatiData.map((items, key) => (
+                <Link href={items.register.href} key={key}>
+                  <ButtonPrimary>{items.register.title}</ButtonPrimary>
+                </Link>
+              ))}
+            </Container>
+            {modalData && <Modal {...modalData} />}
+          </Container>
+        </Container>
+      </Container>
+    </Container>
+  );
+};
+
+export default LoginChildren;
