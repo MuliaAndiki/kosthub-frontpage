@@ -7,14 +7,14 @@ import { Star, Phone, Mail } from "lucide-react";
 import API from "@/app/components/util/API";
 import { useParams } from "next/navigation";
 import { useHook } from "@/app/components/component/hooks/auth";
-import { itemsType } from "@/app/components/type/API";
+import { itemsType } from "@/app/components/types/API";
 import { getFasilitas } from "@/app/components/helper/faslitasHelper";
 import PopUp from "@/app/components/component/modal/PopUp";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps } from "@/app/components/type/API";
+import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
 
-const ReservaseComponent: React.FC = () => {
+const ReservaseChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedField, setSelectedField] = useState<any>();
   const [kostData, setKostData] = useState<itemsType | null>(null);
@@ -409,4 +409,4 @@ const ReservaseComponent: React.FC = () => {
   );
 };
 
-export default ReservaseComponent;
+export default ReservaseChildren;

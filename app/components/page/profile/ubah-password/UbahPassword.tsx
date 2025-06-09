@@ -11,7 +11,7 @@ import { useHook } from "@/app/components/component/hooks/auth";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
 
-const UbahPasswordComponent: React.FC = () => {
+const UbahPasswordChildren: React.FC = () => {
   const { currentUser } = useHook();
   const [oldPassword, setOldPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
@@ -151,4 +151,4 @@ const UbahPasswordComponent: React.FC = () => {
     </>
   );
 };
-export default UbahPasswordComponent;
+export default UbahPasswordChildren;

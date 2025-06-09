@@ -1,7 +1,5 @@
-import LoginComponent from "@/app/components/page/auth/login/Login";
+import LoginChildren from "@/app/components/page/auth/login/Login";
 
-const Login = () => {
-  return <LoginComponent />;
-};
-
-export default Login;
+export default function Login() {
+  return <LoginChildren />;
+}

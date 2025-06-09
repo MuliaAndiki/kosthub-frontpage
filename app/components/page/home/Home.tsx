@@ -9,7 +9,7 @@ import { itemsType } from "@/app/components/types/API/index";
 import { useHook } from "../../component/hooks/auth";
 import Container from "../../component/ui/Container";
 
-const HomeComponent: React.FC = () => {
+const HomeChildren: React.FC = () => {
   const [filter, setFilter] = useState<any>({
     fasilitas: [],
     minHarga: "",
@@ -164,4 +164,4 @@ const HomeComponent: React.FC = () => {
   );
 };
 
-export default HomeComponent;
+export default HomeChildren;

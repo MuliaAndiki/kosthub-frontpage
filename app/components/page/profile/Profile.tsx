@@ -8,7 +8,7 @@ import { getGenderString } from "@/app/components/helper/helper";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const ProfilComponent: React.FC = () => {
+const ProfilChildren: React.FC = () => {
   const { currentUser } = useHook();
 
   return (
@@ -115,4 +115,4 @@ const ProfilComponent: React.FC = () => {
   );
 };
 
-export default ProfilComponent;
+export default ProfilChildren;

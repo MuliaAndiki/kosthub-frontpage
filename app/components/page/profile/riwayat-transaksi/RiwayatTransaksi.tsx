@@ -3,11 +3,12 @@ import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import { Target, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-import { reservasiType } from "@/app/components/type/API";
+import { reservasiType } from "@/app/components/types/API";
 import API from "@/app/components/util/API";
 import { getStatusString } from "@/app/components/helper/helper";
 import { useHook } from "@/app/components/component/hooks/auth";
-const RiwayatTransaksiComponent: React.FC = () => {
+
+const RiwayatTransaksiChildren: React.FC = () => {
   const [month, setMonth] = useState<string>();
   const { currentUser } = useHook();
   const [dataReservase, setDataReservase] = useState<reservasiType>();
@@ -114,4 +115,4 @@ const RiwayatTransaksiComponent: React.FC = () => {
   );
 };
 
-export default RiwayatTransaksiComponent;
+export default RiwayatTransaksiChildren;

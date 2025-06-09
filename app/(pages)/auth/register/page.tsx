@@ -1,7 +1,5 @@
-import RegisterComponent from "@/app/components/page/auth/register/Register";
+import RegisterChildren from "@/app/components/page/auth/register/Register";
 
-const Register = () => {
-  return <RegisterComponent />;
-};
-
-export default Register;
+export default function Register() {
+  return <RegisterChildren />;
+}

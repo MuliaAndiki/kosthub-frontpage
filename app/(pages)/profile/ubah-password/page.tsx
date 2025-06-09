@@ -1,7 +1,5 @@
-import UbahPasswordComponent from "@/app/components/page/profile/ubah-password/UbahPassword";
+import UbahPasswordChildren from "@/app/components/page/profile/ubah-password/UbahPassword";
 
-const UbahPassword = () => {
-  return <UbahPasswordComponent />;
-};
-
-export default UbahPassword;
+export default function UbahPassword() {
+  return <UbahPasswordChildren />;
+}

@@ -1,7 +1,5 @@
-import SelectItemsComponent from "@/app/components/page/kost/[id]/SelectItems";
+import SelectItemsChildren from "@/app/components/page/kost/[id]/SelectItems";
 
-const SelectItems = () => {
-  return <SelectItemsComponent />;
-};
-
-export default SelectItems;
+export default function SelectItems() {
+  return <SelectItemsChildren />;
+}

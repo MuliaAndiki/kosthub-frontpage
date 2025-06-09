@@ -1,7 +1,5 @@
-import DataKostComponent from "@/app/components/page/profile/data-kost/DataKost";
+import DataKostChildren from "@/app/components/page/profile/data-kost/DataKost";
 
-const DataKost = () => {
-  return <DataKostComponent />;
-};
-
-export default DataKost;
+export default function DataKost() {
+  return <DataKostChildren />;
+}

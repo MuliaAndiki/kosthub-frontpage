@@ -17,7 +17,7 @@ import { MedsosData } from "@/app/components/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { RouteStatiData } from "@/app/components/data/appConfig";
 
-const RegisterComponent: React.FC = () => {
+const RegisterChildren: React.FC = () => {
   const { setCurrentUser } = useHook();
   const [formRegister, setFormRegister] = useState<formRegister>({
     username: "",
@@ -284,4 +284,4 @@ const RegisterComponent: React.FC = () => {
   );
 };
 
-export default RegisterComponent;
+export default RegisterChildren;

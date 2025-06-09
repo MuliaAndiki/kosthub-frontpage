@@ -16,7 +16,7 @@ import Button from "@/app/components/component/ui/Button";
 import { MedsosData } from "@/app/components/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 
-const LoginComponent: React.FC = () => {
+const LoginChildren: React.FC = () => {
   const { setCurrentUser } = useHook();
   const [formLogin, setFormLogin] = useState<formLogin>({
     username: "",
@@ -192,4 +192,4 @@ const LoginComponent: React.FC = () => {
   );
 };
 
-export default LoginComponent;
+export default LoginChildren;

@@ -2,12 +2,12 @@
 import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import { useHook } from "@/app/components/component/hooks/auth";
-import { itemsType } from "@/app/components/type/API";
+import { itemsType } from "@/app/components/types/API";
 import Items from "@/app/components/component/card/Items";
 import API from "@/app/components/util/API";
 import { useEffect, useState } from "react";
 
-const SimpanKostComponent: React.FC = () => {
+const SimpanKostChildren: React.FC = () => {
   const { currentUser } = useHook();
   const [dataKost, setDataKost] = useState<itemsType[]>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -62,4 +62,4 @@ const SimpanKostComponent: React.FC = () => {
   );
 };
 
-export default SimpanKostComponent;
+export default SimpanKostChildren;

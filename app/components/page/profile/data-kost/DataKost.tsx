@@ -4,7 +4,7 @@ import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import API from "@/app/components/util/API";
 import { useEffect, useState } from "react";
-import { reservasiType } from "@/app/components/type/API";
+import { reservasiType } from "@/app/components/types/API";
 import DescriptionPartical from "@/app/components/component/particial/Description";
 import FasilitasParticial from "@/app/components/component/particial/Fasilitas";
 import DataKostUser from "@/app/components/component/card/DataKosComponents";
@@ -12,10 +12,10 @@ import ProfileParticial from "@/app/components/component/particial/Profile";
 import PopUp from "@/app/components/component/modal/PopUp";
 import { Star } from "lucide-react";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps } from "@/app/components/type/API";
+import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
 
-const DataKostComponent: React.FC = () => {
+const DataKostChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { currentUser } = useHook();
   const [dataReservase, setDataReservase] = useState<reservasiType[]>();
@@ -336,4 +336,4 @@ const DataKostComponent: React.FC = () => {
   );
 };
 
-export default DataKostComponent;
+export default DataKostChildren;

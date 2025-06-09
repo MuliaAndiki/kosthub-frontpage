@@ -1,7 +1,5 @@
-import RiwayatTransaksiComponent from "@/app/components/page/profile/riwayat-transaksi/RiwayatTransaksi";
+import RiwayatTransaksiChildren from "@/app/components/page/profile/riwayat-transaksi/RiwayatTransaksi";
 
-const RiwayatTransaksi = () => {
-  return <RiwayatTransaksiComponent />;
-};
-
-export default RiwayatTransaksi;
+export default function RiwayatTransaksi() {
+  return <RiwayatTransaksiChildren />;
+}

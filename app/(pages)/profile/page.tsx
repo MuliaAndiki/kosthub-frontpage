@@ -1,7 +1,5 @@
-import ProfilComponent from "@/app/components/page/profile/Profile";
+import ProfilChildren from "@/app/components/page/profile/Profile";
 
-const Profile = () => {
-  return <ProfilComponent />;
-};
-
-export default Profile;
+export default function Profile() {
+  return <ProfilChildren />;
+}

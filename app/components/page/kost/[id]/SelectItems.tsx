@@ -18,7 +18,7 @@ import DataKost from "@/app/(pages)/profile/data-kost/page";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
 
-const SelectItemsComponent: React.FC = () => {
+const SelectItemsChildren: React.FC = () => {
   const { currentUser } = useHook();
   const [kostId, setKostId] = useState<string>("");
   const [kostData, setKostData] = useState<itemsType | null>(null);
@@ -270,4 +270,4 @@ const SelectItemsComponent: React.FC = () => {
   );
 };
 
-export default SelectItemsComponent;
+export default SelectItemsChildren;

@@ -12,7 +12,7 @@ import BestProperty from "@/app/components/component/card/BestProperty";
 import BestRewiew from "@/app/components/component/card/BestReview";
 import Marquee from "react-fast-marquee";
 
-const LandingPageComponent: React.FC = () => {
+const LandingPageChildren: React.FC = () => {
   return (
     <>
       <div className="sticky top-0 z-50 bg-white p-2">
@@ -128,4 +128,4 @@ const LandingPageComponent: React.FC = () => {
   );
 };
 
-export default LandingPageComponent;
+export default LandingPageChildren;

@@ -1,7 +1,5 @@
-import ReservaseComponent from "@/app/components/page/kost/reservase/[id]/Reservase";
+import ReservaseChildren from "@/app/components/page/kost/reservase/[id]/Reservase";
 
-const Reservase = () => {
-  return <ReservaseComponent />;
-};
-
-export default Reservase;
+export default function Reservase() {
+  return <ReservaseChildren />;
+}

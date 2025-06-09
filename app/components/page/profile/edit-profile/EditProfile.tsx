@@ -11,7 +11,7 @@ import { useHook } from "@/app/components/component/hooks/auth";
 import API from "@/app/components/util/API";
 import PopUp from "@/app/components/component/modal/PopUp";
 
-const EditProfileComponent: React.FC = () => {
+const EditProfileChildren: React.FC = () => {
   const { setCurrentUser, currentUser } = useHook();
   const [fullname, setFullName] = useState<string>("");
   const [tanggal_lahir, setTanggal_Lahir] = useState<string>("");
@@ -258,4 +258,4 @@ const EditProfileComponent: React.FC = () => {
   );
 };
 
-export default EditProfileComponent;
+export default EditProfileChildren;
