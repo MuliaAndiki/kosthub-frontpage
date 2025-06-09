@@ -16,6 +16,10 @@ import Button from "@/app/components/component/ui/Button";
 import { MedsosData } from "@/app/components/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { RouteStatiData } from "@/app/components/data/appConfig";
+import Select from "@/app/components/component/ui/Select";
+import { MenuItem, SelectChangeEvent } from "@mui/material";
+import { Provensi } from "@/app/components/data/constants/Provensi";
+import Items from "@/app/components/component/card/Items";
 
 const RegisterChildren: React.FC = () => {
   const { setCurrentUser } = useHook();
@@ -44,7 +48,7 @@ const RegisterChildren: React.FC = () => {
       !formRegister.email ||
       !formRegister.fullname ||
       !formRegister.tanggal_lahir ||
-      !formRegister.gender ||
+      !formRegister.gender === null ||
       !formRegister.nomor ||
       !formRegister.alamat ||
       !formRegister.role
@@ -89,6 +93,31 @@ const RegisterChildren: React.FC = () => {
       });
   };
 
+  const handleRoleChange = (e: SelectChangeEvent) => {
+    setFormRegister((prev) => ({
+      ...prev,
+      role: e.target.value,
+    }));
+  };
+
+  const handleAlamatChange = (e: SelectChangeEvent) => {
+    setFormRegister((prev) => ({
+      ...prev,
+      alamat: e.target.value,
+    }));
+  };
+
+  const handleGenderChange = (e: SelectChangeEvent) => {
+    const value = e.target.value;
+    const booleanValue =
+      value === "true" ? true : value === "false" ? false : null;
+
+    setFormRegister((prev) => ({
+      ...prev,
+      gender: booleanValue,
+    }));
+  };
+
   return (
     <Container className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
       <Container className="grid grid-cols-1 md:grid-cols-[1fr_2fr] w-full h-full">
@@ -129,15 +158,16 @@ const RegisterChildren: React.FC = () => {
             Masukkan Data Lengkapmu
           </p>
 
-          <Container className="w-full max-w-md space-y-4">
+          <Container className="flex w-150 flex-col gap-4">
             <TextFieldInput
               label="Fullname"
               name={formRegister.fullname}
               type="text"
-              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600 "
+              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600 my-2 "
               onChange={(e) =>
                 setFormRegister((prev) => {
                   const newObj = { ...prev, fullname: e.target.value };
+
                   return newObj;
                 })
               }
@@ -152,6 +182,7 @@ const RegisterChildren: React.FC = () => {
               onChange={(e) =>
                 setFormRegister((prev) => {
                   const newObj = { ...prev, email: e.target.value };
+
                   return newObj;
                 })
               }
@@ -166,6 +197,7 @@ const RegisterChildren: React.FC = () => {
                 onChange={(e) =>
                   setFormRegister((prev) => {
                     const newObj = { ...prev, username: e.target.value };
+
                     return newObj;
                   })
                 }
@@ -178,6 +210,7 @@ const RegisterChildren: React.FC = () => {
                 onChange={(e) =>
                   setFormRegister((prev) => {
                     const newObj = { ...prev, tanggal_lahir: e.target.value };
+
                     return newObj;
                   })
                 }
@@ -194,6 +227,7 @@ const RegisterChildren: React.FC = () => {
                 onChange={(e) =>
                   setFormRegister((prev) => {
                     const newObj = { ...prev, password: e.target.value };
+
                     return newObj;
                   })
                 }
@@ -208,48 +242,40 @@ const RegisterChildren: React.FC = () => {
                 onChange={(e) =>
                   setFormRegister((prev) => {
                     const newObj = { ...prev, nomor: e.target.value };
+
                     return newObj;
                   })
                 }
               />
             </Container>
-
-            <TextFieldInput
-              label="Alamat"
-              type="text"
-              name={formRegister.alamat}
+            <Select
+              name="Alamat"
               value={formRegister.alamat}
-              className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-              onChange={(e) =>
-                setFormRegister((prev) => {
-                  const newObj = { ...prev, alamat: e.target.value };
-                  return newObj;
-                })
-              }
-            />
-          </Container>
-          <Container className="my-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <select
-              name="role"
-              value={formRegister.role}
-              className="outline-none w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-              onChange={(e) => {
-                setFormRegister((prev) => ({
-                  ...prev,
-                  role: e.target.value,
-                }));
-              }}
+              onChange={(e) => handleAlamatChange(e)}
             >
-              <option value="">Pilih Role Anda</option>
-              {Object.entries(selectRole).map(([key]) => (
-                <option key={key} value={key}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </option>
+              {Provensi.map((key) => (
+                <MenuItem key={key} value={key}>
+                  {key}
+                </MenuItem>
               ))}
-            </select>
+            </Select>
+          </Container>
 
-            <select
-              name="gender"
+          <Container className="my-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-[40%]">
+            <Select
+              name="Pilih Role Anda"
+              value={formRegister.role}
+              onChange={(e) => handleRoleChange(e)}
+            >
+              {Object.entries(selectRole).map(([key]) => (
+                <MenuItem key={key} value={key}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </MenuItem>
+              ))}
+            </Select>
+
+            <Select
+              name="Jenis Kelamin "
               value={
                 formRegister.gender === null
                   ? ""
@@ -257,21 +283,11 @@ const RegisterChildren: React.FC = () => {
                   ? "true"
                   : "false"
               }
-              onChange={(e) => {
-                const value = e.target.value;
-                const booleanValue =
-                  value === "true" ? true : value === "false" ? false : null;
-                setFormRegister((prev) => ({
-                  ...prev,
-                  gender: booleanValue,
-                }));
-              }}
-              className="outline-none w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+              onChange={(e) => handleGenderChange(e)}
             >
-              <option value="">Jenis Kelamin</option>
-              <option value="true">Pria</option>
-              <option value="false">Wanita</option>
-            </select>
+              <MenuItem value="true">Pria</MenuItem>
+              <MenuItem value="false">Wanita</MenuItem>
+            </Select>
           </Container>
           <Container className="w-[20%]">
             <Button onClick={() => handleRegister()}>Daftar</Button>

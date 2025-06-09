@@ -10,28 +10,29 @@ import Modal from "@/app/components/component/modal/Modal";
 import { useHook } from "@/app/components/component/hooks/auth";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
+import { formUbahPassword } from "@/app/components/types/form";
+import Container from "@/app/components/component/ui/Container";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import Button from "@/app/components/component/ui/Button";
+import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 
 const UbahPasswordChildren: React.FC = () => {
   const { currentUser } = useHook();
-  const [oldPassword, setOldPassword] = useState<string>("");
-  const [newPassword, setNewPassword] = useState<string>("");
+  const [formUbahPassword, setFormUbahPassword] = useState<formUbahPassword>({
+    oldPassword: "",
+    newPassword: "",
+  });
+
   const [modalData, setModalData] = useState<ModalProps | null>(null);
   const [openPopUp, setOpenPopUp] = useState<"NewPassword" | null>(null);
   const router = useRouter();
 
   const handlePassword = () => {
-    API.put(
-      "/api/auth/change-password",
-      {
-        oldPassword,
-        newPassword,
+    API.put("/api/auth/change-password", formUbahPassword, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.token}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${currentUser?.token}`,
-        },
-      }
-    )
+    })
       .then((res) => {
         console.log("Berhasil", res);
       })
@@ -49,106 +50,104 @@ const UbahPasswordChildren: React.FC = () => {
         });
       });
   };
+
   return (
-    <>
-      <div className="h-screen w-screen">
-        <div className=" inset-x-0 top-0 h-16">
-          <NavbarProfil />
-        </div>
+    <Container as="main" className="h-screen w-screen overflow-hidden">
+      <Container className="inset-x-0 top-0 h-16">
+        <NavbarProfil />
+      </Container>
 
-        <div className="grid grid-cols-[0.4fr_2fr] grid-rows-1 gap-1 pt-[3vh]  h-[93vh]">
-          <Sidebar />
-          <div className="flex justify-center items-center">
-            <div className="flex justify-around items-center w-full">
-              <div className=" rounded-md flex justify-center  items-center ">
-                <div className="">
-                  <Image
-                    src={profile}
-                    alt="profil"
-                    width={300}
-                    height={100}
-                    className=""
-                  />
-                </div>
-              </div>
-              <div className=" rounded-md h-full flex justify-center items-center">
-                <div className="">
-                  <div className="flex-col">
-                    <div>
-                      <label htmlFor="">Password Lama :</label>
-                      <br />
-                      <input
-                        type="password"
-                        value={oldPassword}
-                        className="border-2 w-[30vw] rounded-md p-2"
-                        onChange={(e) => setOldPassword(e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="">Password Baru:</label>
-                      <br />
-                      <input
-                        type="password"
-                        className="border-2 w-[30vw] rounded-md p-2"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                      />
-                    </div>
+      <Container className="flex flex-col md:grid md:grid-cols-[0.4fr_2fr] md:grid-rows-1 gap-1 pt-[3vh] h-[93vh]">
+        <Sidebar />
+        <Container className="flex justify-center items-center overflow-y-auto p-4">
+          <Container className="flex flex-col md:flex-row justify-around items-center w-full gap-6">
+            <Container className="flex justify-center items-center">
+              <Image
+                src={profile}
+                alt="profil"
+                width={300}
+                height={100}
+                className="w-40 h-40 md:w-72 md:h-72 object-cover rounded-full"
+              />
+            </Container>
 
-                    <button
-                      className="border-2 w-[30vw] rounded-md p-2 bg-sky-600 mt-4 cursor-pointer"
-                      onClick={() => setOpenPopUp("NewPassword")}
-                    >
-                      Ubah
-                    </button>
-                  </div>
-                  <PopUp
-                    isOpen={openPopUp === "NewPassword"}
-                    onClose={() => setOpenPopUp(null)}
+            <Container className="w-full max-w-md">
+              <Container className="rounded-md flex flex-col justify-center items-center gap-4">
+                <TextFieldInput
+                  name={formUbahPassword.oldPassword}
+                  value={formUbahPassword.oldPassword}
+                  label="Kata Sandi Lama"
+                  className="w-full"
+                  onChange={(e) =>
+                    setFormUbahPassword((prev) => ({
+                      ...prev,
+                      oldPassword: e.target.value,
+                    }))
+                  }
+                />
+                <TextFieldInput
+                  name={formUbahPassword.newPassword}
+                  value={formUbahPassword.newPassword}
+                  label="Kata Sandi Baru"
+                  className="w-full"
+                  onChange={(e) =>
+                    setFormUbahPassword((prev) => ({
+                      ...prev,
+                      newPassword: e.target.value,
+                    }))
+                  }
+                />
+                <Button onClick={() => setOpenPopUp("NewPassword")}>
+                  Ubah
+                </Button>
+              </Container>
+            </Container>
+
+            <PopUp
+              isOpen={openPopUp === "NewPassword"}
+              onClose={() => setOpenPopUp(null)}
+            >
+              <Container className="flex justify-center items-center flex-col">
+                <h1 className="text-[1.3rem] font-bold w-60 text-center mb-4">
+                  Apakah Anda Yakin Ingin Merubah Password
+                </h1>
+                <Container className="flex justify-center items-center gap-4">
+                  <ButtonPopUp
+                    message="error"
+                    onClick={() => setOpenPopUp(null)}
                   >
-                    <div className="flex justify-center items-center flex-col">
-                      <h1 className="text-[1.3rem] font-bold w-60 text-center">
-                        Apakah Anda Yakin Ingin Merubah Password
-                      </h1>
-                      <div className="flex justify-center items-center gap-4 ">
-                        <button
-                          className="p-2 bg-red-600 rounded-md text-white font-bold cursor-pointer"
-                          onClick={() => setOpenPopUp(null)}
-                        >
-                          Tidak
-                        </button>
-                        <button
-                          className="p-2 bg-[#58CC41] rounded-md text-white font-bold cursor-pointer"
-                          onClick={() => {
-                            handlePassword();
-                            setModalData({
-                              title: "Berhasil ganti password",
-                              deskripsi: "Selamat Password Anda Berubah",
-                              icon: "success",
-                              confirmButtonColor: "#3572EF",
-                              confirmButtonText: "lanjut",
-                              onClose: () => {
-                                setModalData(null);
-                                setOpenPopUp(null);
-                                router.push("/profile");
-                              },
-                            });
-                          }}
-                        >
-                          Yakin
-                        </button>
-                      </div>
-                    </div>
-                  </PopUp>
+                    Tidak
+                  </ButtonPopUp>
+                  <ButtonPopUp
+                    message="success"
+                    onClick={() => {
+                      handlePassword();
+                      setModalData({
+                        title: "Berhasil ganti password",
+                        deskripsi: "Selamat Password Anda Berubah",
+                        icon: "success",
+                        confirmButtonColor: "#3572EF",
+                        confirmButtonText: "lanjut",
+                        onClose: () => {
+                          setModalData(null);
+                          setOpenPopUp(null);
+                          router.push("/profile");
+                        },
+                      });
+                    }}
+                  >
+                    Yakin
+                  </ButtonPopUp>
+                </Container>
+              </Container>
+            </PopUp>
 
-                  {modalData && <Modal {...modalData} />}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+            {modalData && <Modal {...modalData} />}
+          </Container>
+        </Container>
+      </Container>
+    </Container>
   );
 };
+
 export default UbahPasswordChildren;

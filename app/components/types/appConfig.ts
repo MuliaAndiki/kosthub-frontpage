@@ -8,3 +8,5 @@ export interface RouteStatic {
     href: string;
   };
 }
+
+export type ProvinceName = string;

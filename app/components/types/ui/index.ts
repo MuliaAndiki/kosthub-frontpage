@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { JSX } from "react";
 
@@ -19,5 +20,18 @@ export interface ButtonType {
 }
 
 export interface ButtonPrimayType {
+  children: React.ReactNode;
+}
+
+export interface ButtonPopUpType {
+  children: React.ReactNode;
+  message: "secondary" | "success" | "error";
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface SelectType {
+  name: string;
+  value: string;
+  onChange: (e: SelectChangeEvent) => void;
   children: React.ReactNode;
 }

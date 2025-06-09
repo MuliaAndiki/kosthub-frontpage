@@ -14,3 +14,8 @@ export interface formLogin {
   username: string;
   password: string;
 }
+
+export interface formUbahPassword {
+  oldPassword: string;
+  newPassword: string;
+}
