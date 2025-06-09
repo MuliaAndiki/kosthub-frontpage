@@ -155,7 +155,7 @@ const RegisterChildren: React.FC = () => {
           </Container>
 
           <p className="text-gray-600 text-sm mb-6 text-center">
-            Masukkan Data Lengkapmu
+            Masukkan Data Lengkapmu-
           </p>
 
           <Container className="flex w-150 flex-col gap-4">
