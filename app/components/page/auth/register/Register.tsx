@@ -19,7 +19,6 @@ import { RouteStatiData } from "@/app/components/data/appConfig";
 import Select from "@/app/components/component/ui/Select";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
 import { Provensi } from "@/app/components/data/constants/Provensi";
-import Items from "@/app/components/component/card/Items";
 
 const RegisterChildren: React.FC = () => {
   const { setCurrentUser } = useHook();
