@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { reservasiTypeProps } from "../props";
+import { reservasiTypeProps } from "../../types/props";
 import ProfileDumy from "@/public/asset/prfilhd.png";
 import { Phone } from "lucide-react";
 const ProfileParticial: React.FC<reservasiTypeProps> = ({ data }) => {

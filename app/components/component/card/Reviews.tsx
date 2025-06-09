@@ -1,7 +1,7 @@
 import profile from "@/public/asset/profile1.svg";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { reviewTypeProps } from "../props";
+import { reviewTypeProps } from "../../types/props";
 import { useState } from "react";
 
 const Reviews: React.FC<reviewTypeProps> = ({ data }) => {

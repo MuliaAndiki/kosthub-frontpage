@@ -11,6 +11,7 @@ export interface userType {
     gender?: any;
     alamat?: string;
     bio?: string;
+    role?: string;
     savedKos?: string[];
   };
 }

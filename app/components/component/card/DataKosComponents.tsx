@@ -1,6 +1,6 @@
 import KostDumy from "../../../../../public/kost2.png";
 import Image from "next/image";
-import { reservasiTypeProps } from "../props";
+import { reservasiTypeProps } from "../../types/props";
 const DataKostUser: React.FC<reservasiTypeProps> = ({ data }) => {
   return (
     <main className="">

@@ -19,6 +19,7 @@ const HomeComponent: React.FC = () => {
     harga: "",
   });
   const [items, setItems] = useState<itemsType[]>([]);
+  const { currentUser } = useHook();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedField, setSelectedField] = useState<any>();
 
@@ -151,14 +152,6 @@ const HomeComponent: React.FC = () => {
               </Container>
               <Container className="w-full justify-center gap-8 flex p-[1rem]">
                 {items.slice(0, 4).map((item, index) => (
-                  <Items key={index} data={item} />
-                ))}
-              </Container>
-              <Container className="flex justify-center items-center my-10">
-                <h1 className="font-bold text-[3rem]">Rekomendasi Lainnya</h1>
-              </Container>
-              <Container className="w-full justify-center flex flex-wrap overflow-x-hidden gap-8 p-[1rem] mb-[8vh]">
-                {items.slice(4, 40).map((item, index) => (
                   <Items key={index} data={item} />
                 ))}
               </Container>

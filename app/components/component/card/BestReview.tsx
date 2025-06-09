@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { useState } from "react";
-import { bestReviewTypeProps } from "../props";
+import { bestReviewTypeProps } from "../../types/props";
 
 const BestRewiew: React.FC<bestReviewTypeProps> = ({ data }) => {
   const [ratingStar] = useState<number>(0);

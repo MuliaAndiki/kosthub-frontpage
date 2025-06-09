@@ -36,8 +36,6 @@ const RegisterComponent: React.FC = () => {
     owner: "",
     user: "",
   });
-  const [selectedFieldRole, setSelectedFieldRole] = useState<any>();
-  const [selectedFieldGender, setSelectedFieldGender] = useState<any>();
 
   const handleRegister = () => {
     if (

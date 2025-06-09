@@ -1,4 +1,4 @@
-import { reservasiTypeProps } from "../props";
+import { reservasiTypeProps } from "../../types/props";
 const DescriptionPartical: React.FC<reservasiTypeProps> = ({ data }) => {
   return (
     <div className="bg-[#3572EF] w-[25vw] px-6 py-4 rounded-lg">

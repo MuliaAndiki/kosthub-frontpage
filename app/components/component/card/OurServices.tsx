@@ -1,4 +1,4 @@
-import { ourServicesTypeProps } from "../props";
+import { ourServicesTypeProps } from "../../types/props";
 import Image from "next/image";
 
 const OurServices: React.FC<ourServicesTypeProps> = ({ data }) => {

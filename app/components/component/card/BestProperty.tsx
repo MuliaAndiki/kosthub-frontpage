@@ -1,10 +1,11 @@
 import Image from "next/image";
-
-import { bestPropertyTypeProps } from "../props";
+import Container from "@/app/components/component/ui/Container";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import { bestPropertyTypeProps } from "../../types/props";
 
 const BestProperty: React.FC<bestPropertyTypeProps> = ({ data }) => {
   return (
-    <main className="w-full">
+    <Container as="main" className="w-full">
       <div className="flex justify-between items-center">
         {/* <Image
           src={`http://localhost:5000/${data.image}`}
@@ -14,7 +15,7 @@ const BestProperty: React.FC<bestPropertyTypeProps> = ({ data }) => {
           className="w-100 h-80 object-center "
         /> */}
       </div>
-    </main>
+    </Container>
   );
 };
 
