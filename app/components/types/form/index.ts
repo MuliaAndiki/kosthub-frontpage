@@ -21,7 +21,6 @@ export interface formUbahPassword {
 }
 
 export interface formEditProfile {
-  username: string;
   email: string;
   tanggal_lahir: string;
   fullname: string;

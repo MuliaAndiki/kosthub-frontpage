@@ -22,7 +22,6 @@ import TextArea from "@/app/components/component/ui/TextArea";
 const EditProfileChildren: React.FC = () => {
   const { setCurrentUser, currentUser } = useHook();
   const [formEditProfile, setFormEditProfile] = useState<formEditProfile>({
-    username: "",
     alamat: "",
     bio: "",
     email: "",
@@ -109,14 +108,14 @@ const EditProfileChildren: React.FC = () => {
               <Container className="flex items-center">
                 <Container className="mx-2 w-[55%]">
                   <TextFieldInput
-                    name={formEditProfile.username}
+                    name={formEditProfile.fullname}
                     type="text"
                     className=" rounded-md w-full py-2 px-4"
                     value={formEditProfile.fullname}
                     label="Fullname"
                     onChange={(e) =>
                       setFormEditProfile((prev) => {
-                        const newObj = { ...prev, username: e.target.value };
+                        const newObj = { ...prev, fullname: e.target.value };
                         return newObj;
                       })
                     }
