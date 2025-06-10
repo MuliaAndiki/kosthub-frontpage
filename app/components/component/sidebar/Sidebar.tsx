@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import PopUp from "../modal/PopUp";
 import Modal from "../modal/Modal";
-import { ModalProps } from "../../type/API";
+import { ModalProps } from "../../types/API";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
