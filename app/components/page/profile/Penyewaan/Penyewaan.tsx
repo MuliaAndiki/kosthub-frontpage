@@ -49,7 +49,7 @@ const PenyewaanChildren: React.FC = () => {
   }, []);
 
   return (
-    <Container className="h-full w-screen">
+    <Container className="h-full w-full">
       <Container className="grid grid-cols-[0.4fr_2fr] grid-rows-1 gap-1 pt-[3vh]  h-[93vh]">
         <div></div>
         <Container className=" p-4 mt-18">

@@ -11,7 +11,7 @@ const ProfilChildren: React.FC = () => {
   const { currentUser } = useHook();
 
   return (
-    <Container className="h-screen w-screen">
+    <Container className="h-full w-full">
       <Container className="flex w-full justify-center items-center h-full gap-4">
         <Container className="flex-col flex justify-center items-center">
           <Image

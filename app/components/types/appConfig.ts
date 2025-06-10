@@ -10,3 +10,9 @@ export interface RouteStatic {
 }
 
 export type ProvinceName = string;
+
+export interface RouteStaticProfile {
+  href: string;
+  icon: any;
+  label: string;
+}

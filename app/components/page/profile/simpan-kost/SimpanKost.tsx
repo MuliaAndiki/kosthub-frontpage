@@ -42,8 +42,8 @@ const SimpanKostChildren: React.FC = () => {
           </Container>
         </Container>
       ) : (
-        <Container className="h-screen w-full">
-          <Container className="w-full justify-center flex flex-wrap overflow-x-hidden gap-8 ">
+        <Container className="h-full w-full">
+          <Container className="w-full h-full justify-center items-center ">
             {dataKost?.map((item, key) => (
               <Items key={key} data={item} />
             ))}
