@@ -1,11 +1,10 @@
 "use client";
-import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
-import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import { useHook } from "@/app/components/component/hooks/auth";
 import { itemsType } from "@/app/components/types/API";
 import Items from "@/app/components/component/card/Items";
 import API from "@/app/components/util/API";
 import { useEffect, useState } from "react";
+import Container from "@/app/components/component/ui/Container";
 
 const SimpanKostChildren: React.FC = () => {
   const { currentUser } = useHook();
@@ -32,33 +31,26 @@ const SimpanKostChildren: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       {isLoading ? (
-        <div className="flex-col">
-          <div className="flex justify-center items-center h-screen w-screen gap-2">
-            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></div>
+        <Container className="flex-col">
+          <Container className="flex justify-center items-center h-screen w-screen gap-2">
+            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
+              -
+            </Container>
             <p className="text-[2rem] font-light">Loading...</p>
-          </div>
-        </div>
+          </Container>
+        </Container>
       ) : (
-        <div className="h-full w-screen">
-          <div className="inset-x-0 top-0 h-16">
-            <NavbarProfil />
-          </div>
-
-          <div className="grid grid-cols-[0.4fr_2fr] grid-rows-1 gap-1 pt-[3vh] h-[93vh]">
-            <Sidebar />
-            <div className="">
-              <div className="w-full justify-center flex flex-wrap overflow-x-hidden gap-8 ">
-                {dataKost?.map((item, key) => (
-                  <Items key={key} data={item} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Container className="h-screen w-full">
+          <Container className="w-full justify-center flex flex-wrap overflow-x-hidden gap-8 ">
+            {dataKost?.map((item, key) => (
+              <Items key={key} data={item} />
+            ))}
+          </Container>
+        </Container>
       )}
-    </div>
+    </Container>
   );
 };
 

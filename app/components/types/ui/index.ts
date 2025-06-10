@@ -35,3 +35,16 @@ export interface SelectType {
   onChange: (e: SelectChangeEvent) => void;
   children: React.ReactNode;
 }
+
+export interface ButtonUploadsType {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  multiple?: boolean;
+  accept?: string;
+  children: React.ReactNode;
+}
+
+export type TextareaType = TextFieldProps & {
+  label: string;
+  placeholder: string;
+  value: string;
+};
