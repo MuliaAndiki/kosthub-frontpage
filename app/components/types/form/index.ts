@@ -19,3 +19,15 @@ export interface formUbahPassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface formEditProfile {
+  username: string;
+  email: string;
+  tanggal_lahir: string;
+  fullname: string;
+  gender: boolean | null;
+  nomor: string;
+  alamat: string;
+  bio: string;
+  fotoProfil: File | null;
+}

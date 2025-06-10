@@ -1,6 +1,6 @@
 "use client";
 import { useHook } from "@/app/components/component/hooks/auth";
-import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
+
 import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import API from "@/app/components/util/API";
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import { Star } from "lucide-react";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
+import Container from "@/app/components/component/ui/Container";
 
 const DataKostChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -105,97 +106,96 @@ const DataKostChildren: React.FC = () => {
   // }, [currentUser]);
   return (
     <>
-      <div>
+      <Container>
         {isLoading ? (
-          <div className="flex-col">
-            <div className="flex justify-center items-center h-screen w-screen gap-2">
-              <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></div>
+          <Container className="flex-col">
+            <Container className="flex justify-center items-center h-screen w-screen gap-2">
+              <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
+                -
+              </Container>
 
               <p className="text-[2rem] font-light">Loading...</p>
-            </div>
-          </div>
+            </Container>
+          </Container>
         ) : (
-          <div className="h-screen w-screen">
-            <div className=" inset-x-0 top-0 h-16">
-              <NavbarProfil />
-            </div>
-            <div className="grid grid-cols-[0.4fr_2fr] grid-rows-1 gap-1 pt-[3vh]  h-[93vh]">
+          <Container className="h-screen w-screen">
+            <Container className="grid grid-cols-[0.4fr_2fr] grid-rows-1 gap-1 pt-[3vh]  h-[93vh]">
               <Sidebar />
-              <div className="flex justify-center items-center">
+              <Container className="flex justify-center items-center">
                 {modal && <Modal {...modal} />}
-                <div className="grid grid-cols-[1fr_0.7fr] grid-rows-1 gap-4">
+                <Container className="grid grid-cols-[1fr_0.7fr] grid-rows-1 gap-4">
                   {dataReservase?.map((item, key) => (
                     <DataKostUser key={key} data={item} />
                   ))}
 
-                  <div className="flex justify-center">
-                    <div className="grid grid-cols-1 grid-rows-3 gap-4">
+                  <Container className="flex justify-center">
+                    <Container className="grid grid-cols-1 grid-rows-3 gap-4">
                       {dataReservase?.map((item, key) => (
                         <DescriptionPartical key={key} data={item} />
                       ))}
-                      <div>
+                      <Container>
                         {dataReservase?.map((item, key) => (
                           <FasilitasParticial key={key} data={item} />
                         ))}
-                      </div>
-                      <div className="flex items-center  ">
-                        <div className="flex justify-center items-center gap-2 w-full flex-col">
+                      </Container>
+                      <Container className="flex items-center  ">
+                        <Container className="flex justify-center items-center gap-2 w-full flex-col">
                           {dataReservase?.map((item, key) => (
                             <ProfileParticial key={key} data={item} />
                           ))}
 
-                          <div className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s] mt-8">
+                          <Container className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s] mt-8">
                             <button
                               onClick={() => setOpenPopUp("Pengaduan")}
                               className="text-white font-bold"
                             >
                               Pengaduan
                             </button>
-                          </div>
+                          </Container>
 
-                          <div className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s]">
+                          <Container className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s]">
                             <button
                               onClick={() => setOpenPopUp("Review")}
                               className="text-white font-bold"
                             >
                               Review
                             </button>
-                          </div>
+                          </Container>
 
                           <PopUp
                             isOpen={openPopUp === "Hapus"}
                             onClose={() => setOpenPopUp(null)}
                           >
-                            <div className="flex justify-center items-center">
+                            <Container className="flex justify-center items-center">
                               <h1>
                                 Apakah anda yakin ingin Menghapus Reservasi Ini
                                 ?
                               </h1>
-                            </div>
+                            </Container>
                           </PopUp>
 
                           <PopUp
                             isOpen={openPopUp === "Review"}
                             onClose={() => setOpenPopUp(null)}
                           >
-                            <div className="flex justify-center w-full flex-col ">
-                              <div className="border-b-2 p-2" title="header">
-                                <div className="flex justify-center ">
+                            <Container className="flex justify-center w-full flex-col ">
+                              <Container className="border-b-2 p-2">
+                                <Container className="flex justify-center ">
                                   <h1 className=" text-[1.3rem] font-bold">
                                     Ulasan & Review
                                   </h1>
-                                </div>
+                                </Container>
 
                                 <p className="font-light">
                                   Jika kamu memiliki ulasan atau pengalaman
                                   selama masa sewa, silakan dibagikan di halaman
                                   ini.
                                 </p>
-                              </div>
+                              </Container>
 
-                              <div className="mt-2">
+                              <Container className="mt-2">
                                 <h1 className="text-[1.3rem]">Rating</h1>
-                                <div className="flex space-x-1">
+                                <Container className="flex space-x-1">
                                   {[1, 2, 3, 4, 5].map((key) => (
                                     <div
                                       key={key}
@@ -219,9 +219,9 @@ const DataKostChildren: React.FC = () => {
                                       />
                                     </div>
                                   ))}
-                                </div>
+                                </Container>
 
-                                <div className="mt-2 ">
+                                <Container className="mt-2 ">
                                   <h1 className="text-[1.3rem]">Review</h1>
                                   <input
                                     type="text"
@@ -230,11 +230,11 @@ const DataKostChildren: React.FC = () => {
                                       setKomentar(e.target.value)
                                     }
                                   />
-                                  <div className="flex gap-2 mt-2">
+                                  <Container className="flex gap-2 mt-2">
                                     <input type="checkbox" />
                                     <h1>Submit as anonymous</h1>
-                                  </div>
-                                  <div className="mt-2">
+                                  </Container>
+                                  <Container className="mt-2">
                                     <h1 className="text-[1.3rem]">
                                       Foto Pendukung
                                     </h1>
@@ -251,8 +251,8 @@ const DataKostChildren: React.FC = () => {
                                         }
                                       }}
                                     />
-                                  </div>
-                                  <div className="mt-4 ">
+                                  </Container>
+                                  <Container className="mt-4 ">
                                     <button
                                       onClick={() => {
                                         handleAddReview();
@@ -270,22 +270,22 @@ const DataKostChildren: React.FC = () => {
                                     >
                                       Submit Review
                                     </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                                  </Container>
+                                </Container>
+                              </Container>
+                            </Container>
                           </PopUp>
 
                           <PopUp
                             isOpen={openPopUp === "Hapus"}
                             onClose={() => setOpenPopUp(null)}
                           >
-                            <div className="flex justify-center items-center flex-col">
+                            <Container className="flex justify-center items-center flex-col">
                               <h1 className="font-bold w-60 text-center text-[1.2rem]">
                                 Apakah anda yakin ingin Menghapus Reservasi Ini
                                 ?
                               </h1>
-                              <div className="flex justify-center items-center gap-4">
+                              <Container className="flex justify-center items-center gap-4">
                                 <button
                                   className="p-2 bg-red-600 rounded-md font-bold text-white"
                                   onClick={() => setOpenPopUp(null)}
@@ -310,28 +310,28 @@ const DataKostChildren: React.FC = () => {
                                 >
                                   Yakin
                                 </button>
-                              </div>
-                            </div>
+                              </Container>
+                            </Container>
                           </PopUp>
 
-                          <div className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s]">
+                          <Container className="border-2 bg-[#3572EF] rounded-lg p-2 w-full flex justify-center hover:scale-103 duration-[0.3s]">
                             <button
                               onClick={() => setOpenPopUp("Hapus")}
                               className="text-white font-bold"
                             >
                               Hapus Reservasi
                             </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                          </Container>
+                        </Container>
+                      </Container>
+                    </Container>
+                  </Container>
+                </Container>
+              </Container>
+            </Container>
+          </Container>
         )}
-      </div>
+      </Container>
     </>
   );
 };

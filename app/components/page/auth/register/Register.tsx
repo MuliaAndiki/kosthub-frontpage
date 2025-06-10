@@ -260,7 +260,7 @@ const RegisterChildren: React.FC = () => {
             </Select>
           </Container>
 
-          <Container className="my-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-[40%]">
+          <Container className="my-2 grid grid-cols-1 sm:grid-cols-2 gap-10  w-[40%]">
             <Select
               name="Pilih Role Anda"
               value={formRegister.role}
