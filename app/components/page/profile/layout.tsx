@@ -1,23 +1,24 @@
 import NavbarProfil from "../../component/navbar/NavbarProfil";
 import Container from "../../component/ui/Container";
 import Sidebar from "../../component/sidebar/Sidebar";
+
 export default function ProfileChildrenLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <Container className="relative h-full w-full ">
-      <Container className="absolute inset-x-0 top-0">
+    <Container className="flex flex-col min-h-screen w-full relative">
+      <Container className="absolute top-0 z-50 w-full">
         <NavbarProfil />
       </Container>
-      <Container className="flex w-full h-full">
-        <Container className="flex-[1] h-full">
-          <Container className="absolute inset-y-20 left-0">
-            <Sidebar />
-          </Container>
+
+      <Container className="flex flex-1 pt-[6rem] w-full">
+        <Container className="hidden md:block w-64 border-r min-h-[90%]">
+          <Sidebar />
         </Container>
-        <div className="flex-[2]"> {children}</div>
+
+        <Container className="flex-1 p-4">{children}</Container>
       </Container>
     </Container>
   );

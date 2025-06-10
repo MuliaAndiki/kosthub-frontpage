@@ -88,7 +88,7 @@ const EditProfileChildren: React.FC = () => {
       });
   };
   return (
-    <Container className="h-screen w-screen">
+    <Container className="h-full w-full">
       <Container className="flex w-full justify-center items-center h-full gap-4">
         <Container className="flex flex-col justify-center items-center gap-8">
           <Image

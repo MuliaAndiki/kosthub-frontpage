@@ -5,7 +5,8 @@ import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
 import { MedsosConfig } from "@/app/components/types/components/index";
-import { RouteStatic } from "../types/appConfig";
+import { RouteStatic, RouteStaticProfile } from "../types/appConfig";
+import { User, File, HandCoins, Bookmark, KeyRound } from "lucide-react";
 
 export const appFooterDatas: appFooterType[] = [
   {
@@ -93,5 +94,33 @@ export const RouteStatiData: RouteStatic[] = [
       title: "Daftar",
       href: "/auth/register",
     },
+  },
+];
+
+export const RouteStaticProfileData: RouteStaticProfile[] = [
+  {
+    href: "/profile",
+    icon: User,
+    label: "Profile",
+  },
+  {
+    href: "/profile/data-kost",
+    icon: File,
+    label: "Data Kost",
+  },
+  {
+    href: "/profile/simpan-kost",
+    icon: Bookmark,
+    label: "Simpan Kost",
+  },
+  {
+    href: "/profile/penyewaan",
+    icon: HandCoins,
+    label: "Penyewaan",
+  },
+  {
+    href: "/profile/ubah-password",
+    icon: KeyRound,
+    label: "Ubah Password",
   },
 ];
