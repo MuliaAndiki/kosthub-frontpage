@@ -2,7 +2,7 @@ export interface userType {
   token: string;
   user: {
     _id: string;
-    fotoProfile: any;
+    fotoProfil: any;
     username: string;
     email: string;
     fullname?: string;
@@ -80,7 +80,7 @@ export interface ReviewType {
 }
 
 export interface ProfileType {
-  fotoProfile: any;
+  fotoProfil: any;
   username: string;
   email: string;
   fullname?: string;

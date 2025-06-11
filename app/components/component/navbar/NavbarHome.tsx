@@ -25,11 +25,7 @@ const NavbarHome: React.FC = () => {
     <div className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
       <Link href="#">
         <div className="flex">
-          <Image
-            src={iconHItam}
-            alt="iconHitam"
-            className="w-[3vw] h-[5vh]"
-          ></Image>
+          <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
         </div>
       </Link>
@@ -45,10 +41,16 @@ const NavbarHome: React.FC = () => {
       <Link href="/profile">
         <div className="flex gap-2 items-center">
           <Image
-            src={profil}
+            src={
+              currentUser?.user.fotoProfil
+                ? currentUser?.user.fotoProfil
+                : profil
+            }
             alt="profil"
-            className="w-[2vw] h-[3.8vh]"
-          ></Image>
+            className="rounded-full"
+            width={40}
+            height={35}
+          />
           <h1 className="font-bold">{currentUser?.user.username}</h1>
         </div>
       </Link>

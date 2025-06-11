@@ -22,7 +22,17 @@ const NabvarItem: React.FC = () => {
           </Link>
           <Link href="/profile">
             <div className="">
-              <Image src={profile} alt="Profile" width={36} height={36} />
+              <Image
+                src={
+                  currentUser?.user.fotoProfil
+                    ? currentUser?.user.fotoProfil
+                    : profile
+                }
+                alt="profil"
+                className="rounded-full"
+                width={40}
+                height={35}
+              />
             </div>
           </Link>
           <div className="text-white font-bold">
