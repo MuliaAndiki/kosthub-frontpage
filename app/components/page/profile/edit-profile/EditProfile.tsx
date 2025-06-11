@@ -49,14 +49,17 @@ const EditProfileChildren: React.FC = () => {
   };
 
   const handleFotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Triger");
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
+      console.log("file:", file);
       setFormEditProfile((prev) => ({
         ...prev,
-        file,
+        fotoProfil: file,
       }));
     }
   };
+
   const handleGenderChange = (e: SelectChangeEvent) => {
     const value = e.target.value;
     const booleanValue =
@@ -67,24 +70,30 @@ const EditProfileChildren: React.FC = () => {
       gender: booleanValue,
     }));
   };
+
   const handleEditProfile = () => {
-    API.put(
-      "/api/auth/update-profile",
-      {
-        username: currentUser?.user.username,
-        ...filter,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${currentUser?.token}`,
-        },
+    const formData = new FormData();
+
+    formData.append("username", currentUser?.user.username || "");
+
+    Object.entries(formEditProfile).forEach(([key, value]) => {
+      if (key === "fotoProfil" && value instanceof File) {
+        formData.append("fotoProfil", value);
+      } else if (value !== null && value !== undefined && value !== "") {
+        formData.append(key, String(value));
       }
-    )
+    });
+
+    API.put("/api/auth/update-profile", formData, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.token}`,
+      },
+    })
       .then((res) => {
-        console.log("Behasil Update", res);
+        console.log("Berhasil Update", res);
       })
       .catch((err) => {
-        console.log("gagal Update", err);
+        console.log("Gagal Update", err.response?.data || err.message);
       });
   };
   return (
@@ -98,7 +107,11 @@ const EditProfileChildren: React.FC = () => {
             height={300}
             className=""
           />
-          <ButtonUploads onChange={(e) => handleFotoChange(e)}>
+          <ButtonUploads
+            onChange={(e) => handleFotoChange(e)}
+            multiple={false}
+            accept="image/*"
+          >
             Uploads Foto
           </ButtonUploads>
         </Container>

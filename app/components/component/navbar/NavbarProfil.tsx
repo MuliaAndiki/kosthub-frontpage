@@ -23,7 +23,17 @@ const NavbarProfil: React.FC = () => {
             <h1 className="font-bold">Beranda</h1>
           </Container>
           <Container className="flex justify-center items-center gap-4">
-            <Image src={profil} alt="profil" className="w-[2vw] h-[3.8vh]" />
+            <Image
+              src={
+                currentUser?.user.fotoProfil
+                  ? currentUser?.user.fotoProfil
+                  : profil
+              }
+              alt="profil"
+              className="rounded-full"
+              width={40}
+              height={35}
+            />
             <h1 className="font-bold">{currentUser?.user.username}</h1>
           </Container>
         </Container>

@@ -14,9 +14,9 @@ import { useHook } from "@/app/components/component/hooks/auth";
 import { getFasilitas } from "@/app/components/helper/faslitasHelper";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import DataKost from "@/app/(pages)/profile/data-kost/page";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
+import Container from "@/app/components/component/ui/Container";
 
 const SelectItemsChildren: React.FC = () => {
   const { currentUser } = useHook();
@@ -71,56 +71,57 @@ const SelectItemsChildren: React.FC = () => {
   }, [pathname, kostId]);
 
   return (
-    <div className="min-h-screen w-full bg-gray-100">
+    <Container className="min-h-screen w-full bg-gray-100">
       {isLoading ? (
-        <div className="flex-col">
-          <div className="fixed inset-x-0 top-0 h-16 z-10">
+        <Container className="flex-col">
+          <Container className="fixed inset-x-0 top-0 h-16 z-10">
             <NavbarItem />
-          </div>
-          <div className="flex justify-center items-center h-screen">
+          </Container>
+          <Container className="flex justify-center items-center h-screen">
             <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-blue-500 mr-2"></div>
             <p className="text-xl">Loading...</p>
-          </div>
-        </div>
+          </Container>
+        </Container>
       ) : kostData ? (
-        <div className="pt-20">
-          <div className="fixed inset-x-0 top-0 h-16 z-10">
+        <Container className="pt-20">
+          <Container className="fixed inset-x-0 top-0 h-16 z-10">
             <NavbarItem />
-          </div>
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          </Container>
+          <Container className="container mx-auto px-4 lg:px-8">
+            <Container className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {modal && <Modal {...modal} />}
-              <div className="lg:col-span-2 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="relative w-full h-[50vh] md:h-[60vh]">
-                    {/* {kostData.image.gallery.slice(0, 1).map((item, key) => (
+              <Container className="lg:col-span-2 space-y-6">
+                <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Container className="relative w-full h-[50vh] md:h-[60vh]">
+                    {kostData.image.gallery.slice(0, 1).map((items, key) => (
                       <Image
                         key={key}
-                        src={`http://localhost:5000/${item}`}
+                        src={`${items}`}
                         alt="Main gallery image"
                         fill
                         className="object-cover rounded-lg"
                         priority
                       />
-                    ))} */}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
-                    {/* {kostData.image.gallery.slice(1, 5).map((item, key) => (
-                      <div key={key} className="relative w-full h-full">
+                    ))}
+                  </Container>
+                  <Container className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
+                    {kostData.image.gallery.slice(1, 5).map((item, key) => (
+                      <Container key={key} className="relative w-full h-full">
                         <Image
-                          src={`http://localhost:5000/${item}`}
+                          src={`${item}`}
                           alt="Gallery image"
                           fill
                           className="object-cover rounded-lg"
+                          priority
                         />
-                      </div>
-                    ))} */}
-                  </div>
-                </div>
+                      </Container>
+                    ))}
+                  </Container>
+                </Container>
 
-                <div className="flex items-center justify-between">
+                <Container className="flex items-center justify-between">
                   <h1 className="text-3xl font-bold">{kostData.nama_kos}</h1>
-                  <div className="flex gap-4">
+                  <Container className="flex gap-4">
                     <Forward className="w-6 h-6 cursor-pointer hover:text-blue-500 transition" />
                     <button
                       onClick={() => {
@@ -138,45 +139,45 @@ const SelectItemsChildren: React.FC = () => {
                     >
                       <Bookmark className="w-6 h-6 cursor-pointer hover:text-yellow-300 transition" />
                     </button>
-                  </div>
-                </div>
+                  </Container>
+                </Container>
                 <p className="text-gray-600">{kostData.alamat}</p>
 
-                <div className="bg-blue-600 p-6 rounded-lg shadow-lg">
-                  <div className="flex flex-wrap gap-4">
+                <Container className="bg-blue-600 p-6 rounded-lg shadow-lg">
+                  <Container className="flex flex-wrap gap-4">
                     {kostData.fasilitas.map((item, key) => (
-                      <div
+                      <Container
                         key={key}
                         className="flex flex-col bg-white rounded-lg p-3 min-w-[120px]"
                       >
-                        <div className="flex items-center">
+                        <Container className="flex items-center">
                           {getFasilitas(item.nama)}
                           <p className="ml-2">{item.jumlah}</p>
-                        </div>
+                        </Container>
                         <span className="font-bold">{item.nama}</span>
-                      </div>
+                      </Container>
                     ))}
-                  </div>
-                </div>
+                  </Container>
+                </Container>
 
-                <div className="bg-blue-600 p-6 rounded-lg shadow-lg">
+                <Container className="bg-blue-600 p-6 rounded-lg shadow-lg">
                   <h2 className="text-xl font-bold text-white mb-2">
                     Description
                   </h2>
-                  <div className="bg-white p-4 rounded-md">
+                  <Container className="bg-white p-4 rounded-md">
                     <p>{kostData.deskripsi}</p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <div className="bg-blue-600 p-6 rounded-lg shadow-lg">
-                  <div className="bg-white p-6 rounded-md space-y-4">
+                  </Container>
+                </Container>
+              </Container>
+              <Container className="space-y-6">
+                <Container className="bg-blue-600 p-6 rounded-lg shadow-lg">
+                  <Container className="bg-white p-6 rounded-md space-y-4">
                     <h1 className="text-3xl font-bold">{kostData.nama_kos}</h1>
                     <p className="text-gray-600">{kostData.alamat}</p>
                     <p className="font-bold text-lg">
                       IDR {kostData.harga_pertahun}/Year
                     </p>
-                    <div className="flex items-center gap-2">
+                    <Container className="flex items-center gap-2">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star
                           key={star}
@@ -188,25 +189,25 @@ const SelectItemsChildren: React.FC = () => {
                           className="w-5 h-5 transition"
                         />
                       ))}
-                    </div>
-                    <div className="space-y-2">
+                    </Container>
+                    <Container className="space-y-2">
                       <p className="font-semibold">
                         Are you interested? Please contact us!
                       </p>
-                      <div className="flex items-center gap-2">
+                      <Container className="flex items-center gap-2">
                         <Hotel className="w-5 h-5" />
                         <p>{kostData.alamat}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
+                      </Container>
+                      <Container className="flex items-center gap-2">
                         <Phone className="w-5 h-5" />
                         <p>{kostData.kontak.nomor}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
+                      </Container>
+                      <Container className="flex items-center gap-2">
                         <Mail className="w-5 h-5" />
                         <p>{kostData.kontak.email}</p>
-                      </div>
+                      </Container>
                       <p className="font-semibold">Social Media</p>
-                      <div className="flex items-center gap-2">
+                      <Container className="flex items-center gap-2">
                         <Image
                           src={facebook}
                           alt="Facebook"
@@ -226,23 +227,23 @@ const SelectItemsChildren: React.FC = () => {
                           height={24}
                         />
                         <p>{kostData.nama_kos}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </Container>
+                    </Container>
+                  </Container>
+                </Container>
                 <Link href={`/kost/reservase/${kostData.id_kos}`}>
                   <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-md transition">
                     Reserve
                   </button>
                 </Link>
-              </div>
-            </div>
+              </Container>
+            </Container>
 
-            <div className="mt-8">
+            <Container className="mt-8">
               <h2 className="text-2xl font-bold mb-4">
                 {kostData.ulasan?.length || 0} Reviews
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {kostData.ulasan?.length ? (
                   kostData.ulasan.map((items, index) => (
                     <Reviews key={index} data={items} />
@@ -252,21 +253,21 @@ const SelectItemsChildren: React.FC = () => {
                     Belum ada ulasan untuk kost ini.
                   </p>
                 )}
-              </div>
-            </div>
-          </div>
-        </div>
+              </Container>
+            </Container>
+          </Container>
+        </Container>
       ) : (
-        <div className="flex-col">
-          <div className="fixed inset-x-0 top-0 h-16 z-10">
+        <Container className="flex-col">
+          <Container className="fixed inset-x-0 top-0 h-16 z-10">
             <NavbarItem />
-          </div>
-          <div className="flex justify-center items-center h-screen">
+          </Container>
+          <Container className="flex justify-center items-center h-screen">
             <p className="text-xl">Data tidak ditemukan</p>
-          </div>
-        </div>
+          </Container>
+        </Container>
       )}
-    </div>
+    </Container>
   );
 };
 

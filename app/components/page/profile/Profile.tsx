@@ -40,6 +40,10 @@ const ProfilChildren: React.FC = () => {
     return () => clearTimeout(time);
   }, []);
 
+  useEffect(() => {
+    console.log(`data Profile ${profileData}`);
+  }, [profileData]);
+
   return (
     <Container className="h-full w-full">
       {isLoading ? (
@@ -57,11 +61,12 @@ const ProfilChildren: React.FC = () => {
             <Container className="flex-col flex justify-center items-center gap-4">
               <Image
                 src={
-                  profileData?.fotoProfile ? profileData?.fotoProfile : Profile
+                  profileData?.fotoProfil ? profileData?.fotoProfil : Profile
                 }
                 alt="profile"
                 width={300}
                 height={100}
+                className="rounded-full"
               />
               <Link href="/profile/edit-profile">
                 <ButtonPrimary>Edit Photo</ButtonPrimary>

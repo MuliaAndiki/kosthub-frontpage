@@ -1,6 +1,4 @@
 "use client";
-import NavbarProfil from "@/app/components/component/navbar/NavbarProfil";
-import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import Image from "next/image";
 import profile from "@/public/asset/prfilhd.png";
 import { useState, useEffect } from "react";
