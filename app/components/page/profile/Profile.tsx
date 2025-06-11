@@ -43,8 +43,8 @@ const ProfilChildren: React.FC = () => {
   return (
     <Container className="h-full w-full">
       {isLoading ? (
-        <Container className="flex-col">
-          <Container className="flex justify-center items-center h-screen w-screen gap-2">
+        <Container className="flex-col ">
+          <Container className="flex justify-center items-center h-screen w-full gap-2">
             <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
               -
             </Container>
