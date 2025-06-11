@@ -40,10 +40,6 @@ const ProfilChildren: React.FC = () => {
     return () => clearTimeout(time);
   }, []);
 
-  useEffect(() => {
-    console.log(`data Profile ${profileData}`);
-  }, [profileData]);
-
   return (
     <Container className="h-full w-full">
       {isLoading ? (

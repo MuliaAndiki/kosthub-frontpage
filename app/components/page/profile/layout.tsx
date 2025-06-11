@@ -5,6 +5,7 @@ import Container from "../../component/ui/Container";
 import Sidebar from "../../component/sidebar/Sidebar";
 import { useHook } from "../../component/hooks/auth";
 import { useRouter } from "next/navigation";
+import API from "../../util/API";
 
 export default function ProfileChildrenLayout({
   children,
@@ -19,6 +20,7 @@ export default function ProfileChildrenLayout({
       router.push(`/auth/login`);
     }
   }, []);
+
   return (
     <Container className="flex flex-col min-h-screen w-full relative">
       <Container className="absolute top-0 z-50 w-full">

@@ -1,26 +1,44 @@
+"use client";
 import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
-import profil from "@/public/asset/porfil.png";
+import Profile from "@/public/asset/porfil.png";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { useHook } from "../hooks/auth";
+import { useState, useEffect } from "react";
+import { ProfileType } from "../../types/API";
+import API from "../../util/API";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useHook();
 
-  // const [search, setSearch] = useState<itemsTypeProps[]>();
-  // const [typing, setTyping] = useState<string>("");
+  const [profileData, setProfileData] = useState<ProfileType>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   setTyping(value);
+  const handleGetProfile = async () => {
+    try {
+      const res = await API.get(
+        `/api/auth/getProfile/${currentUser?.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${currentUser?.token}`,
+          },
+        }
+      );
 
-  //   const result = items.filter((item) => {
-  //     item.name.toLowerCase().includes(value);
-  //   });
-  //   setSearch(result);
-  // };
-
+      setProfileData(res.data.data);
+    } catch (error) {
+      console.log(`Gagal fetch Data User ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    const time = setTimeout(() => {
+      handleGetProfile();
+    }, 1000);
+    return () => clearTimeout(time);
+  }, []);
   return (
     <div className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
       <Link href="#">
@@ -41,11 +59,7 @@ const NavbarHome: React.FC = () => {
       <Link href="/profile">
         <div className="flex gap-2 items-center">
           <Image
-            src={
-              currentUser?.user.fotoProfil
-                ? currentUser?.user.fotoProfil
-                : profil
-            }
+            src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
             alt="profil"
             className="rounded-full"
             width={40}

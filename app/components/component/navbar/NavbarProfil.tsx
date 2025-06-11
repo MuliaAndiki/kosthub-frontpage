@@ -5,9 +5,39 @@ import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
 import { useHook } from "../hooks/auth";
 import Container from "../ui/Container";
+import API from "../../util/API";
+import { useState, useEffect } from "react";
+import { ProfileType } from "../../types/API";
 
 const NavbarProfil: React.FC = () => {
   const { currentUser } = useHook();
+  const [profileData, setProfileData] = useState<ProfileType>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const handleGetProfile = async () => {
+    try {
+      const res = await API.get(
+        `/api/auth/getProfile/${currentUser?.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${currentUser?.token}`,
+          },
+        }
+      );
+
+      setProfileData(res.data.data);
+    } catch (error) {
+      console.log(`Gagal fetch Data User ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    const time = setTimeout(() => {
+      handleGetProfile();
+    }, 1000);
+    return () => clearTimeout(time);
+  }, []);
 
   return (
     <Container className="flex justify-between p-6 pt-[1rem] pb-[1rem] my-2 border-b-1 ">
@@ -24,11 +54,7 @@ const NavbarProfil: React.FC = () => {
           </Container>
           <Container className="flex justify-center items-center gap-4">
             <Image
-              src={
-                currentUser?.user.fotoProfil
-                  ? currentUser?.user.fotoProfil
-                  : profil
-              }
+              src={profileData?.fotoProfil ? profileData?.fotoProfil : profil}
               alt="profil"
               className="rounded-full"
               width={40}

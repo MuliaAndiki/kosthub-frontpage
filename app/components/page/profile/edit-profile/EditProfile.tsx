@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import profilehd from "@/public/asset/prfilhd.png";
+import profile from "@/public/asset/prfilhd.png";
 import { useState } from "react";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
@@ -34,12 +34,6 @@ const EditProfileChildren: React.FC = () => {
   const [modalData, setModalData] = useState<ModalProps | null>(null);
   const [openPopUp, setOpenPopUp] = useState<"Edit" | null>(null);
   const router = useRouter();
-
-  const filter = Object.fromEntries(
-    Object.entries(formEditProfile).filter(
-      ([_, v]) => v !== undefined && v !== null && v !== ""
-    )
-  );
 
   const handleAlamatChange = (e: SelectChangeEvent) => {
     setFormEditProfile((prev) => ({
@@ -101,11 +95,15 @@ const EditProfileChildren: React.FC = () => {
       <Container className="flex w-full justify-center items-center h-full gap-4">
         <Container className="flex flex-col justify-center items-center gap-8">
           <Image
-            src={profilehd}
+            src={
+              currentUser?.user.fotoProfil
+                ? currentUser?.user.fotoProfil
+                : profile
+            }
             alt="profil"
             width={300}
             height={300}
-            className=""
+            className="rounded-full"
           />
           <ButtonUploads
             onChange={(e) => handleFotoChange(e)}
