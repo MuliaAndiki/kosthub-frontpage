@@ -64,7 +64,7 @@ const HomeChildren: React.FC = () => {
   useEffect(() => {
     handleFetch();
     if (!currentUser?.token) {
-      alert("Kamu Tidak Memiliki Akses, Mohon Terlebih Dahulu");
+      alert("Kamu Tidak Memiliki Akses, Mohon Login Terlebih Dahulu");
       router.push(`/auth/login`);
     }
   }, []);
