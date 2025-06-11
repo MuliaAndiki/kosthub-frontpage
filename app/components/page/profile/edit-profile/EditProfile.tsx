@@ -20,7 +20,7 @@ import Button from "@/app/components/component/ui/Button";
 import TextArea from "@/app/components/component/ui/TextArea";
 
 const EditProfileChildren: React.FC = () => {
-  const { setCurrentUser, currentUser } = useHook();
+  const { currentUser } = useHook();
   const [formEditProfile, setFormEditProfile] = useState<formEditProfile>({
     alamat: "",
     bio: "",
@@ -81,7 +81,7 @@ const EditProfileChildren: React.FC = () => {
       }
     )
       .then((res) => {
-        setCurrentUser(res.data);
+        console.log("Behasil Update", res);
       })
       .catch((err) => {
         console.log("gagal Update", err);

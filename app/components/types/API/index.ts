@@ -78,3 +78,16 @@ export interface ReviewType {
   tanggal: string;
   imageUlasan: string;
 }
+
+export interface ProfileType {
+  fotoProfile: any;
+  username: string;
+  email: string;
+  fullname?: string;
+  tanggal_lahir?: string;
+  nomor?: string;
+  gender?: boolean;
+  alamat?: string;
+  bio?: string;
+  role?: string;
+}
