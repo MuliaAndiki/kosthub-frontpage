@@ -74,7 +74,11 @@ const UbahPasswordChildren: React.FC = () => {
             <Container className="flex flex-col md:flex-row justify-center gap-20 items-center w-full ">
               <Container className="flex justify-center items-center">
                 <Image
-                  src={profile}
+                  src={
+                    currentUser?.user.fotoProfil
+                      ? currentUser?.user.fotoProfil
+                      : profile
+                  }
                   alt="profil"
                   width={300}
                   height={100}
