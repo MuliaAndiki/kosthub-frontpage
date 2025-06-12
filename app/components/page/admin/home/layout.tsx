@@ -1,7 +1,7 @@
 import Container from "@/app/components/component/ui/Container";
 import NavbarHome from "@/app/components/component/navbar/NavbarHome";
 
-export default function HomeAdminLayoutChildrem({
+export default function HomeAdminLayoutChildren({
   children,
 }: {
   children: React.ReactNode;

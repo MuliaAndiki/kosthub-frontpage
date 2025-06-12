@@ -8,6 +8,7 @@ import { useHook } from "../../core/hooks/auth/auth";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 import API from "../../core/util/API";
+import Container from "../ui/Container";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useHook();
@@ -40,14 +41,14 @@ const NavbarHome: React.FC = () => {
     return () => clearTimeout(time);
   }, []);
   return (
-    <div className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
+    <Container className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
       <Link href="/users/home">
-        <div className="flex">
+        <Container className="flex">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
-        </div>
+        </Container>
       </Link>
-      <div className="flex border-2 border-gray-300 rounded-full items-center w-[25vw] justify-between p-5">
+      <Container className="flex border-2 border-gray-300 rounded-full items-center w-[25vw] justify-between p-5">
         <input
           type="text"
           placeholder="Search"
@@ -55,9 +56,9 @@ const NavbarHome: React.FC = () => {
         />
 
         <Search />
-      </div>
+      </Container>
       <Link href="/users/profile">
-        <div className="flex gap-2 items-center">
+        <Container className="flex gap-2 items-center">
           <Image
             src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
             alt="profil"
@@ -66,9 +67,9 @@ const NavbarHome: React.FC = () => {
             height={35}
           />
           <h1 className="font-bold">{currentUser?.user.username}</h1>
-        </div>
+        </Container>
       </Link>
-    </div>
+    </Container>
   );
 };
 export default NavbarHome;

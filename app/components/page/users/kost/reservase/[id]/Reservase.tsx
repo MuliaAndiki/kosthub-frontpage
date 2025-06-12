@@ -13,34 +13,37 @@ import PopUp from "@/app/components/component/modal/PopUp";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
+import { Bank } from "@/app/components/core/data/constants/bank";
+import { formReservase } from "@/app/components/types/form";
+import Container from "@/app/components/component/ui/Container";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import Select from "@/app/components/component/ui/Select";
+import { MenuItem, SelectChangeEvent } from "@mui/material";
+import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
+import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 
 const ReservaseChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedField, setSelectedField] = useState<any>();
   const [kostData, setKostData] = useState<itemsType | null>(null);
   const [ratingStar] = useState<number>(0);
-  const [nama, setNama] = useState<string>("");
-  const [tanggal_lahir, setTanggal_Lahir] = useState<string>("");
-  const [nomor_hp, setNomor_Hp] = useState<string>();
-  const [gender, setGender] = useState<boolean | null>(null);
-  const [email, setEmail] = useState<string>("");
-  const [metode_pembayaran, setMetode_pembayaran] = useState<string>("");
-  const [kontrak, setKontrak] = useState<string>("");
-  const [bukti_pembayaran, setBukti_Pembayaran] = useState<string>("");
+
+  const [formReservase, setFormReservase] = useState<formReservase>({
+    nama: "",
+    bukti_pembayaran: null,
+    email: "",
+    gender: null,
+    kontrak: null,
+    metode_pembayaran: "",
+    nomor_hp: "",
+    tanggal_lahir: "",
+  });
+
   const [openPopUp, setOpenPopUp] = useState<"Reservase" | null>(null);
   const [modal, setModal] = useState<ModalProps | null>(null);
   const { currentUser } = useHook();
   const { id } = useParams();
   const router = useRouter();
-
-  const MetodePembayaran = [
-    "Bank Syariah Indonesia",
-    "Bank Mandiri",
-    "Bank Negara Indonesia",
-    "Bank Tabungan Negara",
-    "Bank Central Asia",
-    "Bank Aceh Syariah",
-  ];
 
   const handleGetDataKos = async () => {
     if (id) {
@@ -65,16 +68,7 @@ const ReservaseChildren: React.FC = () => {
     try {
       const res = await API.post(
         `/api/reservase/${currentUser?.user._id}/${kostData?.id_kos}`,
-        {
-          nama,
-          tanggal_lahir,
-          nomor_hp,
-          gender,
-          email,
-          metode_pembayaran: selectedField,
-          kontrak,
-          bukti_pembayaran,
-        },
+        formReservase,
         {
           headers: {
             Authorization: `Bearer ${currentUser?.token}`,
@@ -87,8 +81,46 @@ const ReservaseChildren: React.FC = () => {
     }
   };
 
-  const handleChange = (value: any) => {
-    setGender((prev) => (prev === value ? null : value));
+  const handleGenderChange = (e: SelectChangeEvent) => {
+    const value = e.target.value;
+    const booleanValue =
+      value === "true" ? true : value === "false" ? false : null;
+
+    setFormReservase((prev) => ({
+      ...prev,
+      gender: booleanValue,
+    }));
+  };
+
+  const handleKontrakChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Triger");
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      console.log("file:", file);
+      setFormReservase((prev) => ({
+        ...prev,
+        kontrak: file,
+      }));
+    }
+  };
+
+  const handleMetodePembayaranChange = (e: SelectChangeEvent) => {
+    setFormReservase((prev) => ({
+      ...prev,
+      metode_pembayaran: e.target.value,
+    }));
+  };
+
+  const handleBuktiPembayaran = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Triger");
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      console.log("file:", file);
+      setFormReservase((prev) => ({
+        ...prev,
+        bukti_pembayaran: file,
+      }));
+    }
   };
 
   useEffect(() => {
@@ -96,21 +128,21 @@ const ReservaseChildren: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-gray-100">
-      <div className="fixed inset-x-0 top-0 h-16 z-10">
+    <Container className="min-h-screen w-full bg-gray-100">
+      <Container className="fixed inset-x-0 top-0 h-16 z-10">
         <NavbarItem />
-      </div>
+      </Container>
 
-      <div className="container mx-auto pt-20 px-4 lg:px-8">
+      <Container className="container mx-auto pt-20 px-4 lg:px-8">
         {isLoading ? (
-          <div className="flex justify-center items-center h-[80vh]">
+          <Container className="flex justify-center items-center h-[80vh]">
             <p className="text-xl">Loading...</p>
-          </div>
+          </Container>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-6">
+          <Container className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <Container className="lg:col-span-2 space-y-6">
               {modal && <Modal {...modal} />}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative w-full h-[50vh] md:h-[60vh]">
                   {/* {kostData?.image.gallery.slice(0, 1).map((item, key) => (
                     <Image
@@ -123,7 +155,7 @@ const ReservaseChildren: React.FC = () => {
                     />
                   ))} */}
                 </div>
-                <div className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
+                <Container className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
                   {kostData?.image.gallery.slice(1, 5).map((item, key) => (
                     <div key={key} className="relative w-full h-full">
                       {/* <Image
@@ -134,17 +166,17 @@ const ReservaseChildren: React.FC = () => {
                       /> */}
                     </div>
                   ))}
-                </div>
-              </div>
+                </Container>
+              </Container>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-blue-600 text-white p-6 rounded-lg shadow-lg">
-                  <div className="bg-white text-black p-6 rounded-md">
+              <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Container className="bg-blue-600 text-white p-6 rounded-lg shadow-lg">
+                  <Container className="bg-white text-black p-6 rounded-md">
                     <h1 className="text-3xl font-bold">{kostData?.nama_kos}</h1>
                     <p className="text-gray-600 mt-2">{kostData?.alamat}</p>
-                    <div className="mt-4">
+                    <Container className="mt-4">
                       <p className="text-lg">{kostData?.harga_pertahun}</p>
-                      <div className="flex mt-2">
+                      <Container className="flex mt-2">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <Star
                             key={star}
@@ -156,131 +188,126 @@ const ReservaseChildren: React.FC = () => {
                             className="w-5 h-5"
                           />
                         ))}
-                      </div>
-                    </div>
-                    <div className="mt-4 space-y-2">
-                      <div className="flex items-center gap-2">
+                      </Container>
+                    </Container>
+                    <Container className="mt-4 space-y-2">
+                      <Container className="flex items-center gap-2">
                         <Phone className="w-5 h-5" />
                         <p>{kostData?.kontak.nomor}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
+                      </Container>
+                      <Container className="flex items-center gap-2">
                         <Mail className="w-5 h-5" />
                         <p>{kostData?.kontak.email}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </Container>
+                    </Container>
+                  </Container>
+                </Container>
 
-                <div className="bg-blue-600 p-6 rounded-lg shadow-lg">
-                  <div className="space-y-4">
+                <Container className="bg-blue-600 p-6 rounded-lg shadow-lg">
+                  <Container className="space-y-4">
                     {kostData?.fasilitas.map((item, key) => (
-                      <div
+                      <Container
                         key={key}
                         className="flex items-center bg-white p-3 rounded-lg"
                       >
                         {getFasilitas(item.nama)}
                         <p className="ml-2">{item.jumlah}</p>
                         <p className="ml-2">{item.nama}</p>
-                      </div>
+                      </Container>
                     ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </Container>
+                </Container>
+              </Container>
+            </Container>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg h-fit">
+            <Container className="bg-white p-6 rounded-lg shadow-lg h-fit">
               <h2 className="text-2xl font-bold text-center mb-6">
                 Formulir Reservasi
               </h2>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="nama" className="block font-medium">
-                      Nama
-                    </label>
-                    <input
-                      id="nama"
+              <Container className="space-y-4">
+                <Container className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Container>
+                    <TextFieldInput
+                      label="Nama"
+                      name={formReservase.nama}
                       type="text"
                       className="w-full border-2 rounded-md p-2"
-                      value={nama}
-                      onChange={(e) => setNama(e.target.value)}
+                      value={formReservase.nama}
+                      onChange={(e) =>
+                        setFormReservase((prev) => {
+                          const newObj = { ...prev, nama: e.target.value };
+                          return newObj;
+                        })
+                      }
                     />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="tanggal_lahir"
-                      className="block font-medium"
-                    >
-                      Tanggal Lahir
-                    </label>
-                    <input
-                      id="tanggal_lahir"
+                  </Container>
+                  <Container>
+                    <TextFieldInput
                       type="date"
+                      name={formReservase.tanggal_lahir}
                       className="w-full border-2 rounded-md p-2"
-                      value={tanggal_lahir}
-                      onChange={(e) => setTanggal_Lahir(e.target.value)}
+                      value={formReservase.tanggal_lahir}
+                      onChange={(e) =>
+                        setFormReservase((prev) => {
+                          const newObj = {
+                            ...prev,
+                            tanggal_lahir: e.target.value,
+                          };
+                          return newObj;
+                        })
+                      }
                     />
-                  </div>
-                </div>
+                  </Container>
+                </Container>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="nomor_hp" className="block font-medium">
-                      Nomor Handphone
-                    </label>
-                    <input
-                      id="nomor_hp"
+                <Container className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Container>
+                    <TextFieldInput
+                      label="Nomor HandPhone"
+                      name={formReservase.nomor_hp}
                       type="text"
                       className="w-full border-2 rounded-md p-2"
-                      value={nomor_hp}
-                      onChange={(e) => setNomor_Hp(e.target.value)}
+                      value={formReservase.nomor_hp}
+                      onChange={(e) =>
+                        setFormReservase((prev) => {
+                          const newObj = { ...prev, nomor_hp: e.target.value };
+                          return newObj;
+                        })
+                      }
                     />
-                  </div>
-                  <div>
-                    <label className="block font-medium">Gender</label>
-                    <div className="flex gap-4">
-                      <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="Laki"
-                          name="gender"
-                          value="true"
-                          checked={gender === true}
-                          onChange={() => setGender(true)}
-                          className="w-4 h-4"
-                        />
-                        <label htmlFor="Laki" className="ml-2">
-                          Laki-Laki
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="Perempuan"
-                          name="gender"
-                          value="false"
-                          checked={gender === false}
-                          onChange={() => setGender(false)}
-                          className="w-4 h-4"
-                        />
-                        <label htmlFor="Perempuan" className="ml-2">
-                          Perempuan
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  </Container>
 
-                <div>
-                  <label htmlFor="email" className="block font-medium">
-                    Email
-                  </label>
-                  <input
-                    id="email"
+                  <Container>
+                    <Select
+                      name="Gender"
+                      value={
+                        formReservase.gender === null
+                          ? ""
+                          : formReservase.gender === true
+                          ? "true"
+                          : "false"
+                      }
+                      onChange={(e) => handleGenderChange(e)}
+                    >
+                      <MenuItem value="true">Pria</MenuItem>
+                      <MenuItem value="false">Wanita</MenuItem>
+                    </Select>
+                  </Container>
+                </Container>
+
+                <Container>
+                  <TextFieldInput
+                    label="Email"
                     type="email"
+                    name={formReservase.email}
                     className="w-full border-2 rounded-md p-2"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formReservase.email}
+                    onChange={(e) =>
+                      setFormReservase((prev) => {
+                        const newObj = { ...prev, email: e.target.value };
+                        return newObj;
+                      })
+                    }
                   />
                   <p className="text-sm text-gray-600 mt-1">
                     Silakan unduh terlebih dahulu kontrak kos, tandatangani,
@@ -291,62 +318,44 @@ const ReservaseChildren: React.FC = () => {
                       </span>
                     </a>
                   </p>
-                </div>
+                </Container>
 
-                <div>
-                  <label htmlFor="kontrak" className="block font-medium">
-                    Unggah Kontrak
-                  </label>
-                  <input
-                    type="file"
-                    className="w-full border-2 rounded-md p-2"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setKontrak(file.name);
-                      }
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="pembayaran" className="block font-medium">
-                    Metode Pembayaran
-                  </label>
-                  <select
-                    value={selectedField}
-                    className="w-full border-2 rounded-md p-2"
-                    onChange={(e) => setSelectedField(e.target.value)}
+                <Container>
+                  <ButtonUploads
+                    multiple={false}
+                    accept="image/*"
+                    onChange={(e) => handleKontrakChange(e)}
                   >
-                    <option value="">Pilih Metode Pembayaran</option>
-                    {MetodePembayaran.map((e) => (
-                      <option key={e} value={e}>
+                    Unggah Kontrak Disini!
+                  </ButtonUploads>
+                </Container>
+
+                <Container>
+                  <Select
+                    value={formReservase.metode_pembayaran}
+                    name="Metode Pembayaran"
+                    onChange={(e) => handleMetodePembayaranChange(e)}
+                  >
+                    <MenuItem value="">Pilih Metode Pembayaran</MenuItem>
+                    {Bank.map((e) => (
+                      <MenuItem key={e} value={e}>
                         {e}
-                      </option>
+                      </MenuItem>
                     ))}
-                  </select>
-                </div>
+                  </Select>
+                </Container>
 
-                <div>
-                  <label
-                    htmlFor="bukti_pembayaran"
-                    className="block font-medium"
+                <Container>
+                  <ButtonUploads
+                    accept="image/*"
+                    multiple={false}
+                    onChange={(e) => handleBuktiPembayaran(e)}
                   >
-                    Unggah Bukti Pembayaran
-                  </label>
-                  <input
-                    type="file"
-                    className="w-full border-2 rounded-md p-2"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setBukti_Pembayaran(file.name);
-                      }
-                    }}
-                  />
-                </div>
+                    Unggah Bukti Pembayaran Disini
+                  </ButtonUploads>
+                </Container>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Container className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <button
                     type="button"
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-md transition duration-300"
@@ -356,19 +365,19 @@ const ReservaseChildren: React.FC = () => {
                       isOpen={openPopUp === "Reservase"}
                       onClose={() => setOpenPopUp(null)}
                     >
-                      <div className="flex justify-center items-center flex-col">
+                      <Container className="flex justify-center items-center flex-col">
                         <h1 className="text-black text-center w-80 text-[1.3rem]">
                           Apakah anda yakin ingin mengajukan Reservasi?
                         </h1>
-                        <div className="flex w-full justify-center my-2 gap-2">
-                          <button
-                            className="bg-red-600 border-2 p-3 rounded-md hover:scale-[105%] duration-[0.3s] "
+                        <Container className="flex w-full justify-center my-2 gap-2">
+                          <ButtonPopUp
+                            message="error"
                             onClick={() => setOpenPopUp(null)}
                           >
                             Tidak
-                          </button>
-                          <button
-                            className="bg-[#58CC41] border-2 p-3 rounded-md hover:scale-[105%] duration-[0.3s]"
+                          </ButtonPopUp>
+                          <ButtonPopUp
+                            message="success"
                             onClick={() => {
                               handleReservase();
                               setModal({
@@ -387,9 +396,9 @@ const ReservaseChildren: React.FC = () => {
                             }}
                           >
                             Yakin
-                          </button>
-                        </div>
-                      </div>
+                          </ButtonPopUp>
+                        </Container>
+                      </Container>
                     </PopUp>
                     Reserve
                   </button>
@@ -399,13 +408,13 @@ const ReservaseChildren: React.FC = () => {
                   >
                     Cancel
                   </button>
-                </div>
-              </div>
-            </div>
-          </div>
+                </Container>
+              </Container>
+            </Container>
+          </Container>
         )}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 };
 

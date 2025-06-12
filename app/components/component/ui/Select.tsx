@@ -12,7 +12,7 @@ export default function CustomSelect({
   ...props
 }: SelectType) {
   return (
-    <FormControl sx={{ minWidth: 240 }} fullWidth>
+    <FormControl sx={{ minWidth: 200 }} fullWidth>
       <InputLabel id={`${name}-label`}>
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </InputLabel>
