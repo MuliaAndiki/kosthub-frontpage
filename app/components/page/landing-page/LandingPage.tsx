@@ -11,51 +11,55 @@ import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import BestProperty from "@/app/components/component/card/BestProperty";
 import BestRewiew from "@/app/components/component/card/BestReview";
 import Marquee from "react-fast-marquee";
+import Container from "../../component/ui/Container";
 
 const LandingPageChildren: React.FC = () => {
   return (
-    <>
-      <div className="sticky top-0 z-50 bg-white p-2">
+    <Container className="w-full h-full ">
+      <Container className="sticky top-0 z-50 bg-white p-2">
         <NavbarLanding />
-      </div>
+      </Container>
 
-      <div
+      <Container
         data-aos="fade-up"
         className="h-screen w-full flex justify-center items-center"
       >
-        <div className="flex w-full justify-around gap-6">
-          <div className="flex justify-center flex-col">
+        <Container className="flex w-full justify-around gap-6">
+          <Container className="flex justify-center flex-col">
             <h1 className="font-bold text-[4rem]">Mari Temukan Rumah </h1>
             <h1 className="font-bold text-[4rem]">Terbaik & Ternyaman Anda</h1>
             <p className="font-light text-[1rem] mb-2">
               Cari Tempat Yang Sempurna Untukmu dengan tepat, cepat, dan aman!
             </p>
 
-            <div className="grid grid-cols-3 grid-rows-1  h-[10vh]">
-              <div className=" flex justify-center items-center flex-col bg-[#D9D9D9]">
+            <Container className="grid grid-cols-3 grid-rows-1  h-[10vh]">
+              <Container className=" flex justify-center items-center flex-col bg-[#D9D9D9]">
                 <h1 className="text-sky-500 font-bold text-[2rem]">7K+</h1>
                 <p className="font-semibold">Pengguna</p>
-              </div>
-              <div className="  flex justify-center items-center flex-col bg-[#A7E6FF]">
+              </Container>
+              <Container className="  flex justify-center items-center flex-col bg-[#A7E6FF]">
                 <h1 className="text-sky-500 font-bold text-[2rem]">40+</h1>
                 <p className="font-semibold">Properti</p>
-              </div>
-              <div className="  flex justify-center items-center flex-col bg-[#D9D9D9]">
+              </Container>
+              <Container className="  flex justify-center items-center flex-col bg-[#D9D9D9]">
                 <h1 className="text-sky-500 font-bold text-[2rem]">200+</h1>
                 <p className="font-semibold">Ulasan</p>
-              </div>
-            </div>
-          </div>
+              </Container>
+            </Container>
+          </Container>
 
-          <div className="">
+          <Container className="">
             <IconLanding />
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
 
-      <div title="Services" id="service">
-        <div className="h-screen w-screen flex flex-col justify-center items-center">
-          <div data-aos="fade-left" className="flex items-center flex-col">
+      <Container>
+        <Container className="h-screen w-screen flex flex-col justify-center items-center">
+          <Container
+            data-aos="fade-left"
+            className="flex items-center flex-col"
+          >
             <h1 className="font-bold text-[3rem]">Layanan Kami</h1>
             <p className="font-light text-[1rem]">
               Mari Temukan Rumah Ternyamanmu Dengan Layanan Yang Kami Sediakan
@@ -64,22 +68,19 @@ const LandingPageChildren: React.FC = () => {
             <p className="font-light text-[1rem]">
               Kami Dapat Memenuhi Kebutuhanmu Dengan Tepat!
             </p>
-          </div>
-          <div
+          </Container>
+          <Container
             data-aos="fade-right"
             className="flex justify-center gap-4 pl-[2rem] pt-[6rem]"
           >
             {ourServicesData.map((item, index) => (
               <OurServices key={index} data={item} />
             ))}
-          </div>
-        </div>
+          </Container>
+        </Container>
 
-        <div
-          className="h-screen w-screen flex flex-col justify-center items-center"
-          id="best"
-        >
-          <div
+        <Container className="h-screen w-screen flex flex-col justify-center items-center">
+          <Container
             data-aos="fade-right"
             className="flex justify-center flex-col text-center"
           >
@@ -88,7 +89,7 @@ const LandingPageChildren: React.FC = () => {
               Temukan pilihan properti terbaik dengan fasilitas unggulan dan
               lokasi strategis sesuai dengan kebutuhan dan gaya hidup anda.
             </p>
-          </div>
+          </Container>
           <Marquee
             direction="right"
             data-aos="zoom-out-up"
@@ -98,16 +99,16 @@ const LandingPageChildren: React.FC = () => {
               <BestProperty key={key} data={item} />
             ))}
           </Marquee>
-        </div>
+        </Container>
 
-        <div className="h-screen w-screen flex flex-col justify-center items-center">
-          <div
+        <Container className="h-screen w-screen flex flex-col justify-center items-center">
+          <Container
             data-aos="fade-left"
             className="flex justify-center flex-col text-center"
           >
             <h1 className="font-bold text-[4rem]">Ulasan Terbaik</h1>
             <p className="font-light">Properti dengan review terbaik!</p>
-          </div>
+          </Container>
           <Marquee
             direction="left"
             className="flex justify-between pt-[2rem] pb-[3rem] pl-[1rem]"
@@ -117,13 +118,13 @@ const LandingPageChildren: React.FC = () => {
               <BestRewiew key={index} data={item} />
             ))}
           </Marquee>
-        </div>
+        </Container>
 
-        <div className=" w-screen flex justify-center items-center" id="about">
+        <Container className=" w-screen flex justify-center items-center">
           <FooterLanding />
-        </div>
-      </div>
-    </>
+        </Container>
+      </Container>
+    </Container>
   );
 };
 

@@ -8,7 +8,7 @@ export type TextFieldType = TextFieldProps & {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export interface ContainerType {
+export interface ContainerType extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   className?: string;
   as?: keyof JSX.IntrinsicElements;

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Container from "@/app/components/component/ui/Container";
-import TextFieldInput from "@/app/components/component/ui/InputField";
 import { bestPropertyTypeProps } from "../../types/props";
 
 const BestProperty: React.FC<bestPropertyTypeProps> = ({ data }) => {

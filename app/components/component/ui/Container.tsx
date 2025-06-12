@@ -5,5 +5,9 @@ export default function Container({
   as: Tag = "div",
   ...props
 }: ContainerType) {
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} {...props}>
+      {children}
+    </div>
+  );
 }

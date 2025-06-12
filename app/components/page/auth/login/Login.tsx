@@ -50,6 +50,17 @@ const LoginChildren: React.FC = () => {
         user: res.data.user,
       };
       setCurrentUser(userPayload);
+      let redirectPatch = "/users/home";
+      const role = res.data.user.role;
+
+      if (role === "admin") {
+        redirectPatch = "/admin/home";
+      } else if (role === "owner") {
+        redirectPatch = "/owners/home";
+      } else if (role === "user") {
+        redirectPatch = "/users/home";
+      }
+
       setModalData({
         icon: "success",
         title: "Selamat Datang DiKostHub",
@@ -58,7 +69,7 @@ const LoginChildren: React.FC = () => {
         confirmButtonColor: "#3572EF",
         onClose: () => {
           setModalData(null);
-          router.push("/users/home");
+          router.push(redirectPatch);
         },
       });
     } catch (err) {

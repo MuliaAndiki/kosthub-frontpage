@@ -10,7 +10,7 @@ import { useHook } from "../../../core/hooks/auth/auth";
 import Container from "../../../component/ui/Container";
 import { useRouter } from "next/navigation";
 
-const HomeChildren: React.FC = () => {
+const HomeUserChildren: React.FC = () => {
   const [filter, setFilter] = useState<any>({
     fasilitas: [],
     minHarga: "",
@@ -170,4 +170,4 @@ const HomeChildren: React.FC = () => {
   );
 };
 
-export default HomeChildren;
+export default HomeUserChildren;
