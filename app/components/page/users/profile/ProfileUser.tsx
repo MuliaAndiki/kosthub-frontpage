@@ -116,6 +116,13 @@ const ProfilChildren: React.FC = () => {
                   </Container>
 
                   <Container className="mx-2">
+                    <label htmlFor="Alamat">Role :</label> <br />
+                    <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
+                      {profileData?.role}
+                    </h1>
+                  </Container>
+
+                  <Container className="mx-2">
                     <label htmlFor="">Bio :</label>
                     <br />
                     <h1 className="border-2 rounded-md py-2 w-[31vw] h-[10vh] px-2">

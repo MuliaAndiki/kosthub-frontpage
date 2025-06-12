@@ -73,7 +73,6 @@ const HomeUserChildren: React.FC = () => {
     <Container>
       {isLoading ? (
         <Container className="flex-col">
-          <NavbarHome />
           <Container className="flex justify-center items-center h-screen w-screen gap-2">
             <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
               -
@@ -82,89 +81,83 @@ const HomeUserChildren: React.FC = () => {
           </Container>
         </Container>
       ) : (
-        <>
-          <Container className="w-screen h-full pb-[1rem] ">
-            <Container className="m-2">
-              <NavbarHome />
-            </Container>
-            <Container className="flex justify-around">
-              <Container className="flex w-full justify-around gap-[60rem]">
-                <Container className="flex space-x-4 ">
-                  <button className="border-2 border-gray-300 rounded-md w-[5vw]  duration-[1s]">
-                    All
-                  </button>
-                  <button className="border-2 border-gray-300 rounded-md w-[5vw]  duration-[1s]">
-                    Top Kost
-                  </button>
-                </Container>
-                <Container className="flex space-x-4">
-                  <form
-                    action={handleButtonFilter}
-                    className="border-2  border-gray-300 rounded-sm flex items-center space-x-2 p-1"
+        <Container className="w-screen h-full my-4">
+          <Container className="flex justify-around">
+            <Container className="flex w-full justify-around gap-[60rem]">
+              <Container className="flex space-x-4 ">
+                <button className="border-2 border-gray-300 rounded-md w-[5vw]  duration-[1s]">
+                  All
+                </button>
+                <button className="border-2 border-gray-300 rounded-md w-[5vw]  duration-[1s]">
+                  Top Kost
+                </button>
+              </Container>
+              <Container className="flex space-x-4">
+                <form
+                  action={handleButtonFilter}
+                  className="border-2  border-gray-300 rounded-sm flex items-center space-x-2 p-1"
+                >
+                  <Funnel />
+                  <h1 className="">Filter</h1>
+                  <select
+                    name=""
+                    value={selectedField}
+                    className="outline-none"
+                    onChange={(e) => {
+                      const field = e.target.value;
+                      setSelectedField(field);
+                    }}
                   >
-                    <Funnel />
-                    <h1 className="">Filter</h1>
-                    <select
-                      name=""
-                      value={selectedField}
-                      className="outline-none"
-                      onChange={(e) => {
-                        const field = e.target.value;
-                        setSelectedField(field);
-                      }}
-                    >
-                      <option value="" className="text-black font-bold">
-                        Pilih Filter
+                    <option value="" className="text-black font-bold">
+                      Pilih Filter
+                    </option>
+                    {FilterOption.map((e) => (
+                      <option key={e} value={e}>
+                        {e}
                       </option>
-                      {FilterOption.map((e) => (
-                        <option key={e} value={e}>
-                          {e}
-                        </option>
-                      ))}
-                    </select>
+                    ))}
+                  </select>
 
-                    {selectedField && (
-                      <input
-                        type="text"
-                        placeholder="Saya ingin:"
-                        className="border-2 border-gray-300 p-2 rounded-lg "
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          setFilter((prev: any) => ({
-                            ...prev,
-                            [selectedField]: value,
-                          }));
-                        }}
-                      />
-                    )}
+                  {selectedField && (
+                    <input
+                      type="text"
+                      placeholder="Saya ingin:"
+                      className="border-2 border-gray-300 p-2 rounded-lg "
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setFilter((prev: any) => ({
+                          ...prev,
+                          [selectedField]: value,
+                        }));
+                      }}
+                    />
+                  )}
 
-                    {selectedField && (
-                      <button
-                        type="submit"
-                        className="border-2 border-gray-300 p-2 rounded-lg"
-                      >
-                        Filter
-                      </button>
-                    )}
-                  </form>
-                </Container>
-              </Container>
-            </Container>
-            <Container className="w-full h-full ">
-              <Container className=" flex justify-center items-center my-8">
-                <h1 className="font-bold text-[3rem]">
-                  Pilihan Teratas Untuk Anda
-                </h1>
-              </Container>
-              <Container className="w-full justify-center gap-8 flex p-[1rem]">
-                {items.slice(0, 4).map((item, index) => (
-                  <Items key={index} data={item} />
-                ))}
+                  {selectedField && (
+                    <button
+                      type="submit"
+                      className="border-2 border-gray-300 p-2 rounded-lg"
+                    >
+                      Filter
+                    </button>
+                  )}
+                </form>
               </Container>
             </Container>
           </Container>
-          <FooterLanding />
-        </>
+          <Container className="w-full h-full ">
+            <Container className=" flex justify-center items-center my-8">
+              <h1 className="font-bold text-[3rem]">
+                Pilihan Teratas Untuk Anda
+              </h1>
+            </Container>
+            <Container className="w-full justify-center gap-8 flex p-[1rem]">
+              {items.slice(0, 4).map((item, index) => (
+                <Items key={index} data={item} />
+              ))}
+            </Container>
+          </Container>
+        </Container>
       )}
     </Container>
   );
