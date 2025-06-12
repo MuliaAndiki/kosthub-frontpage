@@ -41,3 +41,8 @@ export interface formReservase {
   kontrak: File | null;
   bukti_pembayaran: File | null;
 }
+
+export interface formAddReview {
+  komentar: string;
+  image: File | null;
+}
