@@ -3,32 +3,58 @@ import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
 import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
-import { useHook } from "../hooks/auth";
+import { useHook } from "../../core/hooks/auth/auth";
 import Container from "../ui/Container";
+import API from "../../core/util/API";
+import { useState, useEffect } from "react";
+import { ProfileType } from "../../types/API";
 
 const NavbarProfil: React.FC = () => {
   const { currentUser } = useHook();
+  const [profileData, setProfileData] = useState<ProfileType>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const handleGetProfile = async () => {
+    try {
+      const res = await API.get(
+        `/api/auth/getProfile/${currentUser?.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${currentUser?.token}`,
+          },
+        }
+      );
+
+      setProfileData(res.data.data);
+    } catch (error) {
+      console.log(`Gagal fetch Data User ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    const time = setTimeout(() => {
+      handleGetProfile();
+    }, 1000);
+    return () => clearTimeout(time);
+  }, []);
 
   return (
     <Container className="flex justify-between p-6 pt-[1rem] pb-[1rem] my-2 border-b-1 ">
-      <Link href="/home">
+      <Link href="/users/home">
         <Container className="flex">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
         </Container>
       </Link>
-      <Link href="/home">
+      <Link href="/users/home">
         <Container className="flex gap-8 items-center">
           <Container className="rounded-full p-1">
             <h1 className="font-bold">Beranda</h1>
           </Container>
           <Container className="flex justify-center items-center gap-4">
             <Image
-              src={
-                currentUser?.user.fotoProfil
-                  ? currentUser?.user.fotoProfil
-                  : profil
-              }
+              src={profileData?.fotoProfil ? profileData?.fotoProfil : profil}
               alt="profil"
               className="rounded-full"
               width={40}

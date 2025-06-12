@@ -2,18 +2,18 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Icon from "@/public/asset/icon.png";
-import { RouteStatiData } from "@/app/components/data/appConfig";
+import { RouteStatiData } from "@/app/components/core/data/appConfig";
 import { useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps, userType } from "@/app/components/types/API/index";
-import API from "@/app/components/util/API";
-import { useHook } from "@/app/components/component/hooks/auth";
+import API from "@/app/components/core/util/API";
+import { useHook } from "@/app/components/core/hooks/auth/auth";
 import { formLogin } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Button from "@/app/components/component/ui/Button";
-import { MedsosData } from "@/app/components/data/appConfig";
+import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 
 const LoginChildren: React.FC = () => {
@@ -58,7 +58,7 @@ const LoginChildren: React.FC = () => {
         confirmButtonColor: "#3572EF",
         onClose: () => {
           setModalData(null);
-          router.push("/home");
+          router.push("/users/home");
         },
       });
     } catch (err) {

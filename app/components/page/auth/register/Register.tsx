@@ -6,19 +6,19 @@ import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/types/API";
-import API from "@/app/components/util/API";
-import { useHook } from "@/app/components/component/hooks/auth";
+import API from "@/app/components/core/util/API";
+import { useHook } from "@/app/components/core/hooks/auth/auth";
 import { formRegister } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import { SelectRole } from "@/app/components/types/components/index";
 import Button from "@/app/components/component/ui/Button";
-import { MedsosData } from "@/app/components/data/appConfig";
+import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
-import { RouteStatiData } from "@/app/components/data/appConfig";
+import { RouteStatiData } from "@/app/components/core/data/appConfig";
 import Select from "@/app/components/component/ui/Select";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
-import { Provensi } from "@/app/components/data/constants/Provensi";
+import { Provensi } from "@/app/components/core/data/constants/Provensi";
 
 const RegisterChildren: React.FC = () => {
   const { setCurrentUser } = useHook();
