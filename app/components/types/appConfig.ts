@@ -16,3 +16,8 @@ export interface RouteStaticProfile {
   icon: any;
   label: string;
 }
+
+export interface RouteStaticLanding {
+  label: string;
+  href: string;
+}

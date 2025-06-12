@@ -48,3 +48,9 @@ export type TextareaType = TextFieldProps & {
   placeholder: string;
   value: string;
 };
+
+export interface RatingPrimaryType {
+  name: string;
+  onChange: (event: React.SyntheticEvent, value: number | null) => void;
+  onChangeActive: (event: React.SyntheticEvent, value: number) => void;
+}

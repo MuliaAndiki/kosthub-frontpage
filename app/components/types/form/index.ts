@@ -30,3 +30,19 @@ export interface formEditProfile {
   bio: string;
   fotoProfil: File | null;
 }
+
+export interface formReservase {
+  nama: string;
+  tanggal_lahir: string;
+  nomor_hp: string;
+  gender: boolean | null;
+  email: string;
+  metode_pembayaran: string;
+  kontrak: File | null;
+  bukti_pembayaran: File | null;
+}
+
+export interface formAddReview {
+  komentar: string;
+  image: File | null;
+}

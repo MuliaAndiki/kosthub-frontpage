@@ -1,9 +1,10 @@
 import KostDumy from "../../../../../public/kost2.png";
 import Image from "next/image";
 import { reservasiTypeProps } from "../../../types/props";
+import Container from "../../ui/Container";
 const DataKostUser: React.FC<reservasiTypeProps> = ({ data }) => {
   return (
-    <main className="">
+    <Container as="main" className="">
       <div className="rounded-md w-full p-2 flex justify-center items-center flex-col">
         {/* <Image
           src={`http://localhost:5000/${data.id_kos.image.thumbnail}`}
@@ -30,7 +31,7 @@ const DataKostUser: React.FC<reservasiTypeProps> = ({ data }) => {
           <span className="font-semibold">{data.id_kos.alamat}</span>
         </div>
       </div>
-    </main>
+    </Container>
   );
 };
 export default DataKostUser;

@@ -1,7 +1,5 @@
 "use client";
 import { useHook } from "@/app/components/core/hooks/auth/auth";
-
-import Sidebar from "@/app/components/component/sidebar/Sidebar";
 import API from "@/app/components/core/util/API";
 import { useEffect, useState } from "react";
 import { reservasiType } from "@/app/components/types/API";
@@ -10,13 +8,16 @@ import FasilitasParticial from "@/app/components/component/particial/Fasilitas";
 import DataKostUser from "@/app/components/component/card/user/DataKosComponents";
 import ProfileParticial from "@/app/components/component/particial/Profile";
 import PopUp from "@/app/components/component/modal/PopUp";
-import { Star } from "lucide-react";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
 import Container from "@/app/components/component/ui/Container";
 import Button from "@/app/components/component/ui/Button";
 import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
+import TextFieldInput from "@/app/components/component/ui/InputField";
+import RatingPrimary from "@/app/components/component/ui/RatingPrimary";
+import { formAddReview } from "@/app/components/types/form";
+import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
 
 const DataKostChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -26,10 +27,12 @@ const DataKostChildren: React.FC = () => {
   const [openPopUp, setOpenPopUp] = useState<
     "Pengaduan" | "Review" | "Submit" | "Hapus" | null
   >(null);
-  const [ratingStar, setRatingStar] = useState<number>(0);
-  const [hoverStar, setHoverStar] = useState<number>(0);
-  const [image, setImage] = useState<File | null>(null);
-  const [komentar, setKomentar] = useState<string>("");
+  const [ratingStar, setRatingStar] = useState<number | null>(null);
+
+  const [formAddReview, setFormAddRevie] = useState<formAddReview>({
+    image: null,
+    komentar: "",
+  });
   const [modal, setModal] = useState<ModalProps | null>();
   const router = useRouter();
 
@@ -69,19 +72,15 @@ const DataKostChildren: React.FC = () => {
   };
 
   const handleAddReview = async () => {
-    if (!ratingStar || !komentar || !image) {
+    if (!ratingStar || !formAddReview.komentar || !formAddReview.image) {
       console.log("Harap lengkapi semua field!");
       return;
     }
-    const formData = new FormData();
-    formData.append("bintang", ratingStar.toString()),
-      formData.append("komentar", komentar),
-      formData.append("imageUlasan", image);
 
     try {
       const res = await API.post(
         `/api/reservase/review/${currentUser?.user._id}/${idReservase?._id}`,
-        formData,
+        formAddReview,
         {
           headers: {
             Authorization: `Bearer ${currentUser?.token}`,
@@ -94,51 +93,55 @@ const DataKostChildren: React.FC = () => {
     }
   };
 
+  const handleFotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Triger");
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      console.log("file:", file);
+      setFormAddRevie((prev) => ({
+        ...prev,
+        image: file,
+      }));
+    }
+  };
+
   useEffect(() => {
     handleFetchResevase();
   }, []);
 
-  // Debugg ambil id reservase
-  // useEffect(() => {
-  //   console.log("idReservase:", idReservase?._id);
-  // }, [idReservase]);
-
-  // useEffect(() => {
-  //   console.log("idUser:", currentUser?.user._id);
-  // }, [currentUser]);
   return (
-    <>
-      <Container>
-        {isLoading ? (
-          <Container className="flex-col">
-            <Container className="flex justify-center items-center h-screen w-screen gap-2">
-              <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
-                -
-              </Container>
-
-              <p className="text-[2rem] font-light">Loading...</p>
+    <Container className="w-full h-full">
+      {isLoading ? (
+        <Container className="flex-col">
+          <Container className="flex justify-center items-center h-screen w-screen gap-2">
+            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
+              -
             </Container>
-          </Container>
-        ) : (
-          <Container className="h-full w-full">
-            <Container className="flex justify-center w-full items-center">
-              {modal && <Modal {...modal} />}
-              <Container className="grid grid-cols-[1fr_0.7fr] grid-rows-1 gap-4">
-                {dataReservase?.map((item, key) => (
-                  <DataKostUser key={key} data={item} />
-                ))}
 
-                <Container className="flex justify-center">
-                  <Container className="grid grid-cols-1 grid-rows-3 gap-4">
+            <p className="text-[2rem] font-light">Loading...</p>
+          </Container>
+        </Container>
+      ) : (
+        <Container className="h-full w-full">
+          <Container className="flex justify-center w-full items-center">
+            {modal && <Modal {...modal} />}
+            <Container className="grid grid-cols-[1fr_0.7fr] grid-rows-1 gap-4">
+              {dataReservase?.map((item, key) => (
+                <DataKostUser key={key} data={item} />
+              ))}
+
+              <Container className="flex justify-center">
+                <Container className="grid grid-cols-1 grid-rows-3 gap-4">
+                  {dataReservase?.map((item, key) => (
+                    <DescriptionPartical key={key} data={item} />
+                  ))}
+                  <Container>
                     {dataReservase?.map((item, key) => (
-                      <DescriptionPartical key={key} data={item} />
+                      <FasilitasParticial key={key} data={item} />
                     ))}
-                    <Container>
-                      {dataReservase?.map((item, key) => (
-                        <FasilitasParticial key={key} data={item} />
-                      ))}
-                    </Container>
-                    <Container className="flex items-center  ">
+                  </Container>
+                  <Container className="flex items-center">
+                    {dataReservase && dataReservase.length > 0 ? (
                       <Container className="flex justify-center items-center gap-2 w-full flex-col">
                         {dataReservase?.map((item, key) => (
                           <ProfileParticial key={key} data={item} />
@@ -188,62 +191,53 @@ const DataKostChildren: React.FC = () => {
                             <Container className="mt-2">
                               <h1 className="text-[1.3rem]">Rating</h1>
                               <Container className="flex space-x-1">
-                                {[1, 2, 3, 4, 5].map((key) => (
-                                  <div
-                                    key={key}
-                                    onMouseEnter={() => setHoverStar(key)}
-                                    onMouseLeave={() => setHoverStar(0)}
-                                    onClick={() => setRatingStar(key)}
-                                    className="cursor-pointer transition-transform duration-200 hover:scale-110"
-                                  >
-                                    <Star
-                                      size={24}
-                                      color={
-                                        key <= (hoverStar || ratingStar)
-                                          ? "#FFD700"
-                                          : "#D1D5DB"
-                                      }
-                                      fill={
-                                        key <= (hoverStar || ratingStar)
-                                          ? "#FFD700"
-                                          : "none"
-                                      }
-                                    />
-                                  </div>
-                                ))}
+                                <RatingPrimary
+                                  name="Rating"
+                                  onChange={(event, value) => {
+                                    console.log("Rating dipilih:", value);
+                                    setRatingStar(value);
+                                  }}
+                                  onChangeActive={(event, value) => {
+                                    console.log("Hover rating:", value);
+                                  }}
+                                />
                               </Container>
 
                               <Container className="mt-2 ">
-                                <h1 className="text-[1.3rem]">Review</h1>
-                                <input
+                                <TextFieldInput
+                                  name={formAddReview.komentar}
+                                  value={formAddReview.komentar}
+                                  label="Komentar"
                                   type="text"
-                                  className="w-full bg-[#979797] outline-none rounded-md p-2"
-                                  onChange={(e) => setKomentar(e.target.value)}
+                                  className="w-full  outline-none rounded-md p-2"
+                                  onChange={(e) =>
+                                    setFormAddRevie((prev) => {
+                                      const newObj = {
+                                        ...prev,
+                                        komentar: e.target.value,
+                                      };
+                                      return newObj;
+                                    })
+                                  }
                                 />
                                 <Container className="flex gap-2 mt-2">
                                   <input type="checkbox" />
                                   <h1>Submit as anonymous</h1>
                                 </Container>
                                 <Container className="mt-2">
-                                  <h1 className="text-[1.3rem]">
-                                    Foto Pendukung
-                                  </h1>
-                                  <input
-                                    type="file"
-                                    placeholder=""
-                                    className="w-full bg-[#979797] p-2 rounded-md"
-                                    onChange={(e) => {
-                                      if (
-                                        e.target.files &&
-                                        e.target.files.length > 0
-                                      ) {
-                                        setImage(e.target.files[0]);
-                                      }
-                                    }}
-                                  />
+                                  <ButtonUploads
+                                    multiple={true}
+                                    accept="image/*"
+                                    onChange={(e) => handleFotoChange(e)}
+                                  >
+                                    <h1 className="font-bold">
+                                      Foto Pendukung
+                                    </h1>
+                                  </ButtonUploads>
                                 </Container>
-                                <Container className="mt-4 ">
-                                  <button
+                                <Container className="mt-4  flex  gap-8">
+                                  <ButtonPopUp
+                                    message="success"
                                     onClick={() => {
                                       handleAddReview();
                                       setModal({
@@ -256,10 +250,16 @@ const DataKostChildren: React.FC = () => {
                                         },
                                       });
                                     }}
-                                    className="font-bold rounded-md bg-[#06BE37] p-2 text-white hover:scale-[103%] duration-[0.3s]"
                                   >
                                     Submit Review
-                                  </button>
+                                  </ButtonPopUp>
+
+                                  <ButtonPopUp
+                                    message="error"
+                                    onClick={() => setOpenPopUp(null)}
+                                  >
+                                    Batal Review
+                                  </ButtonPopUp>
                                 </Container>
                               </Container>
                             </Container>
@@ -309,15 +309,23 @@ const DataKostChildren: React.FC = () => {
                           </Button>
                         </Container>
                       </Container>
-                    </Container>
+                    ) : (
+                      <Container className="w-full h-full">
+                        <Container className="flex justify-center items-center w-full h-full">
+                          <p className="text-center">
+                            Tidak Ada Reservasi Untuk Akun Ini!!
+                          </p>
+                        </Container>
+                      </Container>
+                    )}
                   </Container>
                 </Container>
               </Container>
             </Container>
           </Container>
-        )}
-      </Container>
-    </>
+        </Container>
+      )}
+    </Container>
   );
 };
 

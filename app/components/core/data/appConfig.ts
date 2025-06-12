@@ -5,7 +5,11 @@ import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
 import { MedsosConfig } from "@/app/components/types/components/index";
-import { RouteStatic, RouteStaticProfile } from "../../types/appConfig";
+import {
+  RouteStatic,
+  RouteStaticProfile,
+  RouteStaticLanding,
+} from "../../types/appConfig";
 import { User, File, HandCoins, Bookmark, KeyRound } from "lucide-react";
 
 export const appFooterDatas: appFooterType[] = [
@@ -122,5 +126,28 @@ export const RouteStaticProfileData: RouteStaticProfile[] = [
     href: "/users/profile/ubah-password",
     icon: KeyRound,
     label: "Ubah Password",
+  },
+];
+
+export const RouteStaticLandingData: RouteStaticLanding[] = [
+  {
+    label: "home",
+    href: "#",
+  },
+  {
+    label: "Layanan",
+    href: "#",
+  },
+  {
+    label: "Produk",
+    href: "#",
+  },
+  {
+    label: "Tentang Kami",
+    href: "#",
+  },
+  {
+    label: "Masuk",
+    href: "/auth/login",
   },
 ];
