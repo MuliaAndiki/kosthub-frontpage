@@ -6,7 +6,7 @@ import {
   ourServicesData,
   bestReviewData,
   bestProperyData,
-} from "@/app/components/data/card";
+} from "@/app/components/core/data/card";
 import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import BestProperty from "@/app/components/component/card/BestProperty";
 import BestRewiew from "@/app/components/component/card/BestReview";
@@ -119,7 +119,6 @@ const LandingPageChildren: React.FC = () => {
           </Marquee>
         </div>
 
-        {/* Section 4: Footer */}
         <div className=" w-screen flex justify-center items-center" id="about">
           <FooterLanding />
         </div>

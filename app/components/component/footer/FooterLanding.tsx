@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { appFooterDatas } from "@/app/components/data/appConfig";
+import { appFooterDatas } from "@/app/components/core/data/appConfig";
 
 const FooterLanding: React.FC = () => {
   return (

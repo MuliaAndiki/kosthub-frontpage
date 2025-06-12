@@ -4,10 +4,10 @@ import Image from "next/image";
 import Profile from "@/public/asset/porfil.png";
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useHook } from "../hooks/auth";
+import { useHook } from "../../core/hooks/auth/auth";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
-import API from "../../util/API";
+import API from "../../core/util/API";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useHook();
@@ -41,7 +41,7 @@ const NavbarHome: React.FC = () => {
   }, []);
   return (
     <div className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
-      <Link href="#">
+      <Link href="/users/home">
         <div className="flex">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
@@ -56,7 +56,7 @@ const NavbarHome: React.FC = () => {
 
         <Search />
       </div>
-      <Link href="/profile">
+      <Link href="/users/profile">
         <div className="flex gap-2 items-center">
           <Image
             src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}

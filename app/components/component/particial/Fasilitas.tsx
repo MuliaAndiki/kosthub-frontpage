@@ -1,5 +1,5 @@
 import { reservasiTypeProps } from "../../types/props";
-import { getFasilitas } from "../../helper/faslitasHelper";
+import { getFasilitas } from "../../core/helper/faslitasHelper";
 const FasilitasParticial: React.FC<reservasiTypeProps> = ({ data }) => {
   return (
     <div className="bg-[#3572EF] w-[25vw] px-6 py-4 rounded-lg">

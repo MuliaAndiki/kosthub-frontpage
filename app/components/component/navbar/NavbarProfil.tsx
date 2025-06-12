@@ -3,9 +3,9 @@ import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
 import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
-import { useHook } from "../hooks/auth";
+import { useHook } from "../../core/hooks/auth/auth";
 import Container from "../ui/Container";
-import API from "../../util/API";
+import API from "../../core/util/API";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 
@@ -41,13 +41,13 @@ const NavbarProfil: React.FC = () => {
 
   return (
     <Container className="flex justify-between p-6 pt-[1rem] pb-[1rem] my-2 border-b-1 ">
-      <Link href="/home">
+      <Link href="/users/home">
         <Container className="flex">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
         </Container>
       </Link>
-      <Link href="/home">
+      <Link href="/users/home">
         <Container className="flex gap-8 items-center">
           <Container className="rounded-full p-1">
             <h1 className="font-bold">Beranda</h1>

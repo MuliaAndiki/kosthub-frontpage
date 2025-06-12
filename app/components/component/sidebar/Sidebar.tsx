@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import Container from "../ui/Container";
 import ButtonPopUp from "../ui/ButtonPopup";
 import Button from "../ui/Button";
-import { RouteStaticProfileData } from "../../data/appConfig";
+import { RouteStaticProfileData } from "../../core/data/appConfig";
 
 const Sidebar: React.FC = () => {
   const [openPopUp, setOpenPopUp] = useState<"Keluar" | null>(null);

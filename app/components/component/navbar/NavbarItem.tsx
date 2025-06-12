@@ -3,7 +3,7 @@ import icon from "@/public/asset/icon.png";
 import profile from "@/public/asset/prfilhd.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useHook } from "../hooks/auth";
+import { useHook } from "../../core/hooks/auth/auth";
 
 const NabvarItem: React.FC = () => {
   const { currentUser } = useHook();
@@ -15,7 +15,7 @@ const NabvarItem: React.FC = () => {
           <h1 className="font-bold text-[2rem] text-white">KOSTHUB</h1>
         </div>
         <div className="flex justify-center items-center gap-x-4">
-          <Link href="/home">
+          <Link href="/users/home">
             <div className="p-2 border-1 rounded-md">
               <h1 className="font-bold text-white">Beranda</h1>
             </div>
