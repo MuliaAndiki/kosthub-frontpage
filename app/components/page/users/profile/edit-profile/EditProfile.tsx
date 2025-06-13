@@ -259,7 +259,7 @@ const EditProfileChildren: React.FC = () => {
                             onClose: () => {
                               setModalData(null);
                               setOpenPopUp(null);
-                              router.push("/profile");
+                              router.push("/users/profile");
                             },
                           });
                         }}
