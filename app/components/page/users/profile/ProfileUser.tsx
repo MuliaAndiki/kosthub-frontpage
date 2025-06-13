@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Profile from "@/public/asset/prfilhd.png";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { getGenderString } from "@/app/components/core/helper/helper";
 import Image from "next/image";
 import Container from "../../../component/ui/Container";
@@ -11,7 +11,7 @@ import API from "../../../core/util/API";
 import { ProfileType } from "../../../types/API";
 
 const ProfilChildren: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [profileData, setProfileData] = useState<ProfileType>();
 

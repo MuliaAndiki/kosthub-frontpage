@@ -3,14 +3,14 @@ import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
 import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
-import { useHook } from "../../core/hooks/auth/auth";
+import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
 import Container from "../ui/Container";
 import API from "../../core/util/API";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 
 const NavbarProfil: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [profileData, setProfileData] = useState<ProfileType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

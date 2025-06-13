@@ -1,5 +1,5 @@
 import Container from "../../component/ui/Container";
-import { useHook } from "../../core/hooks/auth/auth";
+import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 export default function UserChildrenLayout({
@@ -7,7 +7,7 @@ export default function UserChildrenLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const router = useRouter();
   useEffect(() => {
     if (!currentUser?.token) {

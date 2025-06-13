@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
+    "@reduxjs/toolkit": "^2.8.2",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
     "lucide": "^0.485.0",
@@ -22,6 +23,8 @@
     "react-dom": "^19.0.0",
     "react-fast-marquee": "^1.6.5",
     "react-hot-toast": "^2.5.2",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "sweetalert2": "^11.17.2",
     "swiper": "^11.2.6"
   },

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps } from "@/app/components/types/API";
 import { useRouter } from "next/navigation";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import API from "@/app/components/core/util/API";
 import PopUp from "@/app/components/component/modal/PopUp";
 import Container from "@/app/components/component/ui/Container";
@@ -20,7 +20,7 @@ import Button from "@/app/components/component/ui/Button";
 import TextArea from "@/app/components/component/ui/TextArea";
 
 const EditProfileChildren: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [formEditProfile, setFormEditProfile] = useState<formEditProfile>({
     alamat: "",
     bio: "",

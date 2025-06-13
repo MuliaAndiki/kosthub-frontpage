@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Star, Phone, Mail } from "lucide-react";
 import API from "@/app/components/core/util/API";
 import { useParams } from "next/navigation";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { itemsType } from "@/app/components/types/API";
 import { getFasilitas } from "@/app/components/core/helper/faslitasHelper";
 import PopUp from "@/app/components/component/modal/PopUp";
@@ -41,7 +41,7 @@ const ReservaseChildren: React.FC = () => {
 
   const [openPopUp, setOpenPopUp] = useState<"Reservase" | null>(null);
   const [modal, setModal] = useState<ModalProps | null>(null);
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const { id } = useParams();
   const router = useRouter();
 

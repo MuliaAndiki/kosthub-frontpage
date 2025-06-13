@@ -3,12 +3,12 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { reservasiType } from "@/app/components/types/API";
 import API from "@/app/components/core/util/API";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import Container from "@/app/components/component/ui/Container";
 
 const PenyewaanChildren: React.FC = () => {
   const [month, setMonth] = useState<string>();
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [dataReservase, setDataReservase] = useState<reservasiType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

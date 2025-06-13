@@ -1,5 +1,5 @@
 "use client";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { itemsType } from "@/app/components/types/API";
 import Items from "@/app/components/component/card/user/Items";
 import API from "@/app/components/core/util/API";
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Container from "@/app/components/component/ui/Container";
 
 const SimpanKostChildren: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [dataKost, setDataKost] = useState<itemsType[]>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

@@ -8,16 +8,17 @@ import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps, userType } from "@/app/components/types/API/index";
 import API from "@/app/components/core/util/API";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppDispatch } from "@/app/components/core/hooks/dispatch/dispatch";
 import { formLogin } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Button from "@/app/components/component/ui/Button";
 import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
+import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
 
 const LoginChildren: React.FC = () => {
-  const { setCurrentUser } = useHook();
+  const dispatch = useAppDispatch();
   const [formLogin, setFormLogin] = useState<formLogin>({
     username: "",
     password: "",
@@ -49,7 +50,7 @@ const LoginChildren: React.FC = () => {
         token: res.data.token,
         user: res.data.user,
       };
-      setCurrentUser(userPayload);
+      dispatch(setCurrentUser(userPayload));
       let redirectPatch = "/users/home";
       const role = res.data.user.role;
 
