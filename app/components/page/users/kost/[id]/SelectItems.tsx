@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { Hotel, Star, Phone, Mail, Forward, Bookmark } from "lucide-react";
 import API from "@/app/components/core/util/API";
 import { itemsType } from "@/app/components/types/API";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { getFasilitas } from "@/app/components/core/helper/faslitasHelper";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -19,7 +19,7 @@ import { ModalProps } from "@/app/components/types/API";
 import Container from "@/app/components/component/ui/Container";
 
 const SelectItemsChildren: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [kostId, setKostId] = useState<string>("");
   const [kostData, setKostData] = useState<itemsType | null>(null);
   const [ratingStar] = useState<number>(0);

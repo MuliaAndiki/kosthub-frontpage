@@ -3,11 +3,11 @@ import icon from "@/public/asset/icon.png";
 import profile from "@/public/asset/prfilhd.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useHook } from "../../core/hooks/auth/auth";
+import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
 import Container from "../ui/Container";
 
 const NabvarItem: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   return (
     <Container className="flex justify-center mt-2">
       <Container className="w-[90vw] bg-[#0C106B] rounded-md h-[7vh] flex justify-around items-center">

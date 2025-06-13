@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import API from "@/app/components/core/util/API";
 import { ModalProps } from "@/app/components/types/API";
 import Modal from "@/app/components/component/modal/Modal";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
 import { formUbahPassword } from "@/app/components/types/form";
@@ -15,7 +15,7 @@ import Button from "@/app/components/component/ui/Button";
 import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 
 const UbahPasswordChildren: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [formUbahPassword, setFormUbahPassword] = useState<formUbahPassword>({
     oldPassword: "",
     newPassword: "",

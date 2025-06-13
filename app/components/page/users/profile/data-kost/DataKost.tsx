@@ -1,5 +1,5 @@
 "use client";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import API from "@/app/components/core/util/API";
 import { useEffect, useState } from "react";
 import { reservasiType } from "@/app/components/types/API";
@@ -21,7 +21,7 @@ import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
 
 const DataKostChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [dataReservase, setDataReservase] = useState<reservasiType[]>();
   const [idReservase, setIdReservase] = useState<reservasiType>();
   const [openPopUp, setOpenPopUp] = useState<

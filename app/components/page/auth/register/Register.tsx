@@ -7,7 +7,7 @@ import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/types/API";
 import API from "@/app/components/core/util/API";
-import { useHook } from "@/app/components/core/hooks/auth/auth";
+
 import { formRegister } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
@@ -21,7 +21,6 @@ import { MenuItem, SelectChangeEvent } from "@mui/material";
 import { Provensi } from "@/app/components/core/data/constants/Provensi";
 
 const RegisterChildren: React.FC = () => {
-  const { setCurrentUser } = useHook();
   const [formRegister, setFormRegister] = useState<formRegister>({
     username: "",
     alamat: "",
@@ -65,7 +64,6 @@ const RegisterChildren: React.FC = () => {
 
     API.post("/api/auth/register", formRegister)
       .then((res) => {
-        setCurrentUser(res.data.user);
         setModalData({
           title: "Berhasil Daftar",
           icon: "success",

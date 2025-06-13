@@ -4,14 +4,14 @@ import Image from "next/image";
 import Profile from "@/public/asset/porfil.png";
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useHook } from "../../core/hooks/auth/auth";
+import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 import API from "../../core/util/API";
 import Container from "../ui/Container";
 
 const NavbarHome: React.FC = () => {
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
 
   const [profileData, setProfileData] = useState<ProfileType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);

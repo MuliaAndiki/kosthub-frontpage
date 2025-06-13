@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ProvinderKost } from "./components/store/Provider";
-import FooterLanding from "./components/component/footer/FooterLanding";
+import ProvinderStore from "./components/store/Provinder";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">
-        <ProvinderKost>{children}</ProvinderKost>
+        <ProvinderStore>{children}</ProvinderStore>
       </body>
     </html>
   );

@@ -6,7 +6,7 @@ import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import { Funnel } from "lucide-react";
 import API from "@/app/components/core/util/API";
 import { itemsType } from "@/app/components/types/API/index";
-import { useHook } from "../../../core/hooks/auth/auth";
+import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import Container from "../../../component/ui/Container";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +21,7 @@ const HomeUserChildren: React.FC = () => {
   });
   const router = useRouter();
   const [items, setItems] = useState<itemsType[]>([]);
-  const { currentUser } = useHook();
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedField, setSelectedField] = useState<any>();
 
