@@ -16,6 +16,11 @@ import Button from "@/app/components/component/ui/Button";
 import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
+import {
+  CredentialResponse,
+  GoogleLogin,
+  GoogleOAuthProvider,
+} from "@react-oauth/google";
 
 const LoginChildren: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -90,6 +95,46 @@ const LoginChildren: React.FC = () => {
     }
   };
 
+  const handleLoginGoogle = async (e: CredentialResponse) => {
+    try {
+      setIsloading(true);
+      const googleToken = e.credential;
+      const res = await API.post("/api/auth/google", { token: googleToken });
+
+      dispatch(
+        setCurrentUser({
+          token: res.data.token,
+          user: res.data.user,
+        })
+      );
+
+      let redirectPatch = "/users/home";
+      const role = res.data.user.role;
+
+      if (role === "owner") {
+        redirectPatch = "/owners/home";
+      } else if (role === "user") {
+        redirectPatch = "/users/home";
+      }
+
+      setModalData({
+        icon: "success",
+        title: "Selamat Datang DiKostHub",
+        deskripsi: "Cari KOST Teryamanmu Disini",
+        confirmButtonText: "Lanjut",
+        confirmButtonColor: "#3572EF",
+        onClose: () => {
+          setModalData(null);
+          router.push(redirectPatch);
+        },
+      });
+    } catch (error) {
+      console.log("Gagal Melakukan Login Menggunakan Goggle", error);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
   return (
     <Container className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
       <Container className="grid grid-cols-[2fr_1fr] grid-rows-1 gap-4">
@@ -99,12 +144,17 @@ const LoginChildren: React.FC = () => {
               <h1 className="text-4xl font-bold text-[4rem]">Masuk</h1>
             </Container>
 
-            <Container className="grid grid-cols-4 gap-4 py-4">
-              {MedsosData.map((items, key) => (
-                <Link key={key} href={items.href}>
-                  <Image alt="" src={items.image} />
-                </Link>
-              ))}
+            <Container className="w-full max-w-md ">
+              <GoogleOAuthProvider
+                clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+              >
+                <GoogleLogin
+                  onSuccess={(e) => handleLoginGoogle(e)}
+                  onError={() =>
+                    console.log("Gagal Melakukan Login Menggunakan Google")
+                  }
+                />
+              </GoogleOAuthProvider>
             </Container>
 
             <Container className="text-center py-2">

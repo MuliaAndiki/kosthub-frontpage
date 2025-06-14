@@ -7,20 +7,27 @@ import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/components/types/API";
 import API from "@/app/components/core/util/API";
-
 import { formRegister } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import { SelectRole } from "@/app/components/types/components/index";
 import Button from "@/app/components/component/ui/Button";
-import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { RouteStatiData } from "@/app/components/core/data/appConfig";
 import Select from "@/app/components/component/ui/Select";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
 import { Provensi } from "@/app/components/core/data/constants/Provensi";
 
+import {
+  GoogleLogin,
+  CredentialResponse,
+  GoogleOAuthProvider,
+} from "@react-oauth/google";
+import { useAppDispatch } from "@/app/components/core/hooks/dispatch/dispatch";
+import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
+
 const RegisterChildren: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [formRegister, setFormRegister] = useState<formRegister>({
     username: "",
     alamat: "",
@@ -38,6 +45,7 @@ const RegisterChildren: React.FC = () => {
     owner: "",
     user: "",
   });
+  const [isLoading, setIsloading] = useState<boolean>(true);
 
   const handleRegister = () => {
     if (
@@ -90,6 +98,46 @@ const RegisterChildren: React.FC = () => {
       });
   };
 
+  const handleLoginGoogle = async (e: CredentialResponse) => {
+    try {
+      setIsloading(true);
+      const googleToken = e.credential;
+      const res = await API.post("/api/auth/google", { token: googleToken });
+
+      dispatch(
+        setCurrentUser({
+          token: res.data.token,
+          user: res.data.user,
+        })
+      );
+
+      let redirectPatch = "/users/home";
+      const role = res.data.user.role;
+
+      if (role === "owner") {
+        redirectPatch = "/owners/home";
+      } else if (role === "user") {
+        redirectPatch = "/users/home";
+      }
+
+      setModalData({
+        icon: "success",
+        title: "Selamat Datang DiKostHub",
+        deskripsi: "Cari KOST Teryamanmu Disini",
+        confirmButtonText: "Lanjut",
+        confirmButtonColor: "#3572EF",
+        onClose: () => {
+          setModalData(null);
+          router.push(redirectPatch);
+        },
+      });
+    } catch (error) {
+      console.log("Gagal Melakukan Login Menggunakan Goggle", error);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
   const handleRoleChange = (e: SelectChangeEvent) => {
     setFormRegister((prev) => ({
       ...prev,
@@ -121,7 +169,13 @@ const RegisterChildren: React.FC = () => {
         <Container className="bg-[#3572EF] flex justify-center items-center rounded-r-[10rem] p-4">
           <Container className="flex flex-col items-center w-full">
             <Container className="flex justify-center mb-4">
-              <img className="h-[15vh] w-[8vw]" src={Icon.src} alt="Logo" />
+              <Image
+                className="h-[15vh] w-[8vw]"
+                src={Icon.src}
+                alt="Logo"
+                width={1100}
+                height={110}
+              />
             </Container>
 
             <h1 className="text-[2rem] md:text-[3rem] font-bold text-white text-center mb-4">
@@ -143,12 +197,17 @@ const RegisterChildren: React.FC = () => {
             Daftar Akun
           </h1>
 
-          <Container className="grid grid-cols-4 gap-4 mb-4">
-            {MedsosData.map((items, key) => (
-              <Link key={key} href={items.href}>
-                <Image src={items.image} alt="Medsos" />
-              </Link>
-            ))}
+          <Container className="rounded-lg w-150 py-1">
+            <GoogleOAuthProvider
+              clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+            >
+              <GoogleLogin
+                onSuccess={(e) => handleLoginGoogle(e)}
+                onError={() =>
+                  console.log("Gagal Melakukan Login Menggunakan Goggle")
+                }
+              />
+            </GoogleOAuthProvider>
           </Container>
 
           <p className="text-gray-600 text-sm mb-6 text-center">
