@@ -10,19 +10,41 @@ import Container from "../ui/Container";
 import ButtonPopUp from "../ui/ButtonPopup";
 import Button from "../ui/Button";
 import { RouteStaticProfileData } from "../../core/data/appConfig";
+import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
 
 const Sidebar: React.FC = () => {
+  const { currentUser } = useAppSelector((state) => state.auth);
   const [openPopUp, setOpenPopUp] = useState<"Keluar" | null>(null);
   const [modal, setModal] = useState<ModalProps | null>(null);
   const router = useRouter();
 
+  const RoleSideHiden = [
+    "/users/profile/data-kost",
+    "/users/profile/simpan-kost",
+    "/users/profile/penyewaan",
+  ];
+
+  const handleFilterMenu = RouteStaticProfileData.filter((item) => {
+    if (
+      currentUser?.user.role === "owner" &&
+      RoleSideHiden.includes(item.href)
+    ) {
+      return false;
+    } else if (
+      currentUser?.user.role === "admin" &&
+      RoleSideHiden.includes(item.href)
+    ) {
+      return false;
+    }
+    return true;
+  });
   return (
     <Container as="main" className="h-full w-full p-4">
       {modal && <Modal {...modal} />}
 
       <Container className="flex flex-col justify-between h-full  rounded-lg p-4">
         <Container className="">
-          {RouteStaticProfileData.map((items, key) => (
+          {handleFilterMenu.map((items, key) => (
             <Link key={key} href={items.href} className="flex gap-4">
               <items.icon className="w-5 h-5" />
               <span className="font-bold text-lg hover:text-blue-400 duration-[0.3s]">
