@@ -99,6 +99,7 @@ const LoginChildren: React.FC = () => {
     try {
       setIsloading(true);
       const googleToken = e.credential;
+      console.log("token google", googleToken);
       const res = await API.post("/api/auth/google", { token: googleToken });
 
       dispatch(
