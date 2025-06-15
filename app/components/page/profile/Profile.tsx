@@ -4,11 +4,11 @@ import Profile from "@/public/asset/prfilhd.png";
 import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
 import { getGenderString } from "@/app/components/core/helper/helper";
 import Image from "next/image";
-import Container from "../../../component/ui/Container";
-import ButtonPrimary from "../../../component/ui/ButtonPrimary";
+import Container from "../../component/ui/Container";
+import ButtonPrimary from "../../component/ui/ButtonPrimary";
 import { useState, useEffect } from "react";
-import API from "../../../core/util/API";
-import { ProfileType } from "../../../types/API";
+import API from "../../core/util/API";
+import { ProfileType } from "../../types/API";
 
 const ProfilChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -64,7 +64,7 @@ const ProfilChildren: React.FC = () => {
                 height={100}
                 className="rounded-full"
               />
-              <Link href="/users/profile/edit-profile">
+              <Link href="/profile/edit-profile">
                 <ButtonPrimary>Edit Photo</ButtonPrimary>
               </Link>
             </Container>
@@ -130,7 +130,7 @@ const ProfilChildren: React.FC = () => {
                     </h1>
                   </Container>
                   <Container className="mx-2">
-                    <Link href="/users/profile/edit-profile">
+                    <Link href="/profile/edit-profile">
                       <ButtonPrimary>Edit Porfile</ButtonPrimary>
                     </Link>
                   </Container>

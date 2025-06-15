@@ -11,8 +11,14 @@ const NabvarItem: React.FC = () => {
   return (
     <Container className="flex justify-center mt-2">
       <Container className="w-[90vw] bg-[#0C106B] rounded-md h-[7vh] flex justify-around items-center">
-        <Container className="flex">
-          <Image src={icon} alt="icon" width={36} height={63} />
+        <Container className="flex gap-2 items-center justify-center">
+          <Image
+            src={icon}
+            alt="icon"
+            width={36}
+            height={63}
+            className="w-full"
+          />
           <h1 className="font-bold text-[2rem] text-white">KOSTHUB</h1>
         </Container>
         <Container className="flex justify-center items-center gap-x-4">

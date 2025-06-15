@@ -103,27 +103,27 @@ export const RouteStatiData: RouteStatic[] = [
 
 export const RouteStaticProfileData: RouteStaticProfile[] = [
   {
-    href: "/users/profile",
+    href: "/profile",
     icon: User,
     label: "Profile",
   },
   {
-    href: "/users/profile/data-kost",
+    href: "/profile/data-kost",
     icon: File,
     label: "Data Kost",
   },
   {
-    href: "/users/profile/simpan-kost",
+    href: "/profile/simpan-kost",
     icon: Bookmark,
     label: "Simpan Kost",
   },
   {
-    href: "/users/profile/penyewaan",
+    href: "/profile/penyewaan",
     icon: HandCoins,
     label: "Penyewaan",
   },
   {
-    href: "/users/profile/ubah-password",
+    href: "/profile/ubah-password",
     icon: KeyRound,
     label: "Ubah Password",
   },

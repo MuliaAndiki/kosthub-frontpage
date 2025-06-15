@@ -43,7 +43,7 @@ const NavbarHome: React.FC = () => {
   return (
     <Container className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
       <Link href="/users/home">
-        <Container className="flex">
+        <Container className="flex gap-2 justify-center items-center ">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
         </Container>
@@ -57,7 +57,7 @@ const NavbarHome: React.FC = () => {
 
         <Search />
       </Container>
-      <Link href="/users/profile">
+      <Link href="/profile">
         <Container className="flex gap-2 items-center">
           <Image
             src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
