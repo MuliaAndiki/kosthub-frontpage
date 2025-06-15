@@ -26,28 +26,52 @@ const UbahPasswordChildren: React.FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const handlePassword = () => {
-    API.put("/api/auth/change-password", formUbahPassword, {
-      headers: {
-        Authorization: `Bearer ${currentUser?.token}`,
-      },
-    })
-      .then((res) => {
-        console.log("Berhasil", res);
-      })
-      .catch((err) => {
-        setModalData({
-          title: "Gagal ganti password",
-          deskripsi: "Gagal mohon coba lagi",
-          icon: "error",
-          confirmButtonColor: "#3572EF",
-          confirmButtonText: "Try again ",
-          onClose: () => {
-            setModalData(null);
-            console.log("Gagal Ubah password", err);
-          },
-        });
+  const baseUrlProfile = "/profile";
+
+  const handleRedirect = () => {
+    let redirectPath = "/";
+    if (currentUser?.user.role === "user") {
+      redirectPath = `${baseUrlProfile}`;
+    } else if (currentUser?.user.role === "admin") {
+      redirectPath = `${baseUrlProfile}`;
+    } else if (currentUser?.user.role === "owner") {
+      redirectPath = `${baseUrlProfile}`;
+    }
+    return redirectPath;
+  };
+
+  const handlePassword = async () => {
+    try {
+      const res = await API.put("/api/auth/change-password", formUbahPassword, {
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
       });
+      console.log(`Berhasil Ubah Password ${res}`);
+      setModalData({
+        icon: "success",
+        title: "Berhasil",
+        deskripsi: "Password Anda Berhasil di rubah",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: "Lanjutkan",
+        onClose: () => {
+          setModalData(null);
+          router.push(handleRedirect());
+        },
+      });
+    } catch (error) {
+      console.log(`Gagal Merubah Password ${error} `);
+      setModalData({
+        icon: "error",
+        title: "Gagal Ubah Password",
+        deskripsi: "Mohon Periksa Kembali Passoword Anda",
+        confirmButtonColor: "#3572EF",
+        confirmButtonText: "Coba Lagi",
+        onClose: () => {
+          setModalData(null);
+        },
+      });
+    }
   };
 
   useEffect(() => {
@@ -135,21 +159,7 @@ const UbahPasswordChildren: React.FC = () => {
                     </ButtonPopUp>
                     <ButtonPopUp
                       message="success"
-                      onClick={() => {
-                        handlePassword();
-                        setModalData({
-                          title: "Berhasil ganti password",
-                          deskripsi: "Selamat Password Anda Berubah",
-                          icon: "success",
-                          confirmButtonColor: "#3572EF",
-                          confirmButtonText: "lanjut",
-                          onClose: () => {
-                            setModalData(null);
-                            setOpenPopUp(null);
-                            router.push("/profile");
-                          },
-                        });
-                      }}
+                      onClick={() => handlePassword()}
                     >
                       Yakin
                     </ButtonPopUp>

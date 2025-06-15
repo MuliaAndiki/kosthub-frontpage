@@ -39,15 +39,28 @@ const NavbarProfil: React.FC = () => {
     return () => clearTimeout(time);
   }, []);
 
+  const baseUrlHome = "/home";
+  const handleRedirect = () => {
+    let redirectPath = "";
+    if (currentUser?.user.role === "users") {
+      redirectPath = `/users${baseUrlHome}`;
+    } else if (currentUser?.user.role === "owner") {
+      redirectPath = `/owners${baseUrlHome}`;
+    } else if (currentUser?.user.role === "admin") {
+      redirectPath = `/admin${baseUrlHome}`;
+    }
+    return redirectPath;
+  };
+
   return (
     <Container className="flex justify-between p-6 pt-[1rem] pb-[1rem] my-2 border-b-1 ">
-      <Link href="/users/home">
-        <Container className="flex">
+      <Link href={handleRedirect()}>
+        <Container className="flex gap-2 justify-center items-center">
           <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
           <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
         </Container>
       </Link>
-      <Link href="/users/home">
+      <Link href={handleRedirect()}>
         <Container className="flex gap-8 items-center">
           <Container className="rounded-full p-1">
             <h1 className="font-bold">Beranda</h1>

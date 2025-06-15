@@ -19,9 +19,9 @@ const Sidebar: React.FC = () => {
   const router = useRouter();
 
   const RoleSideHiden = [
-    "/users/profile/data-kost",
-    "/users/profile/simpan-kost",
-    "/users/profile/penyewaan",
+    "/profile/data-kost",
+    "/profile/simpan-kost",
+    "/profile/penyewaan",
   ];
 
   const handleFilterMenu = RouteStaticProfileData.filter((item) => {

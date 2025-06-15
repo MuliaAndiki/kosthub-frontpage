@@ -1,8 +1,8 @@
 "use client";
 
-import NavbarProfil from "../../../component/navbar/NavbarProfil";
-import Container from "../../../component/ui/Container";
-import Sidebar from "../../../component/sidebar/Sidebar";
+import NavbarProfil from "../../component/navbar/NavbarProfil";
+import Container from "../../component/ui/Container";
+import Sidebar from "../../component/sidebar/Sidebar";
 
 export default function ProfileChildrenLayout({
   children,

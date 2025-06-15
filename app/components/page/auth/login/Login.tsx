@@ -13,7 +13,6 @@ import { formLogin } from "@/app/components/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Button from "@/app/components/component/ui/Button";
-import { MedsosData } from "@/app/components/core/data/appConfig";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
 import {
