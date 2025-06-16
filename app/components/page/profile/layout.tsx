@@ -16,7 +16,7 @@ export default function ProfileChildrenLayout({
       </Container>
 
       <Container className="flex flex-1 pt-[6rem] w-full">
-        <Container className="hidden md:block w-64 border-r min-h-[90%]">
+        <Container className="hidden md:block w-64  border-r rounded-r-lg min-h-[90%]">
           <Sidebar />
         </Container>
 

@@ -18,6 +18,8 @@ import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
 import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 import Button from "@/app/components/component/ui/Button";
 import TextArea from "@/app/components/component/ui/TextArea";
+import Link from "next/link";
+import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 
 const EditProfileChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -259,7 +261,7 @@ const EditProfileChildren: React.FC = () => {
                             onClose: () => {
                               setModalData(null);
                               setOpenPopUp(null);
-                              router.push("/users/profile");
+                              router.push("/profile");
                             },
                           });
                         }}
@@ -269,6 +271,11 @@ const EditProfileChildren: React.FC = () => {
                     </Container>
                   </Container>
                 </PopUp>
+              </Container>
+              <Container className="mx-2">
+                <Link href="/profile">
+                  <ButtonPrimary>Batal</ButtonPrimary>
+                </Link>
               </Container>
             </Container>
           </Container>
