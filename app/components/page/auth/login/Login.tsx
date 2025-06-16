@@ -20,6 +20,8 @@ import {
   GoogleLogin,
   GoogleOAuthProvider,
 } from "@react-oauth/google";
+import { formLengkapiData } from "@/app/components/types/form";
+import { Provensi } from "@/app/components/core/data/constants/Provensi";
 
 const LoginChildren: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,6 +34,8 @@ const LoginChildren: React.FC = () => {
   const router = useRouter();
   const [showpassword, setShowpassword] = useState<boolean>();
   const [isLoading, setIsloading] = useState<boolean>(true);
+  const [stateValidation, setStateValidation] =
+    useState<formLengkapiData | null>(null);
 
   const handleLogin = async () => {
     try {
@@ -98,23 +102,24 @@ const LoginChildren: React.FC = () => {
     try {
       setIsloading(true);
       const googleToken = e.credential;
-      console.log("token google", googleToken);
       const res = await API.post("/api/auth/google", { token: googleToken });
+      const userPayload: userType = {
+        token: res.data.token,
+        user: res.data.user,
+      };
+      dispatch(setCurrentUser(userPayload));
 
-      dispatch(
-        setCurrentUser({
-          token: res.data.token,
-          user: res.data.user,
-        })
-      );
-
-      let redirectPatch = "/users/home";
       const role = res.data.user.role;
-
-      if (role === "owner") {
-        redirectPatch = "/owners/home";
+      const baseUrl = "/home";
+      let redirectPatch = "/";
+      if (role === "default") {
+        redirectPatch = "/auth/lengkapi-data";
       } else if (role === "user") {
-        redirectPatch = "/users/home";
+        redirectPatch = `/users/${baseUrl}`;
+      } else if (role === "admin") {
+        redirectPatch = `/admin${baseUrl}`;
+      } else if (role === "owner") {
+        redirectPatch === `/owners${baseUrl}`;
       }
 
       setModalData({

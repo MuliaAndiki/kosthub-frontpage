@@ -44,6 +44,7 @@ export interface SelectRole {
 export interface MedsosConfig {
   image: any;
   href: string;
+  label: string;
 }
 
 export interface ownerProfileConfig {

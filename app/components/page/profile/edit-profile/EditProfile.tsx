@@ -112,7 +112,7 @@ const EditProfileChildren: React.FC = () => {
             multiple={false}
             accept="image/*"
           >
-            Uploads Foto
+            Unggah Foto
           </ButtonUploads>
         </Container>
         <Container className=" flex justify-center items-center">

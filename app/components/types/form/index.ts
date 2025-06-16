@@ -46,3 +46,12 @@ export interface formAddReview {
   komentar: string;
   image: File | null;
 }
+
+export interface formLengkapiData {
+  tanggal_lahir: string;
+  alamat: string;
+  gender: boolean | null;
+  role: string;
+  fotoProfil: File | null;
+  bio: string;
+}
