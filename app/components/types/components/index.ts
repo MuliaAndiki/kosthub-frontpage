@@ -45,3 +45,14 @@ export interface MedsosConfig {
   image: any;
   href: string;
 }
+
+export interface ownerProfileConfig {
+  foto: {
+    image?: string;
+    username?: string;
+  };
+  detail: {
+    label?: string;
+    datas?: string;
+  }[];
+}
