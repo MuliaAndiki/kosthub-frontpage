@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import NavbarHome from "@/app/components/component/navbar/NavbarHome";
 import Items from "@/app/components/component/card/user/Items";
-import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import { Funnel } from "lucide-react";
 import API from "@/app/components/core/util/API";
 import { itemsType } from "@/app/components/types/API/index";

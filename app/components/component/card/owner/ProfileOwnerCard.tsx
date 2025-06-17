@@ -8,6 +8,7 @@ import { useOwnerProfileConfigData } from "@/app/components/core/data/card/owner
 import { useEffect, useState } from "react";
 import API from "@/app/components/core/util/API";
 import { ProfileType } from "@/app/components/types/API";
+import Link from "next/link";
 
 const ProfileCardOwners: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -59,12 +60,17 @@ const ProfileCardOwners: React.FC = () => {
               </p>
             </Container>
           ))}
-          <ButtonPrimary>Lihat Detail</ButtonPrimary>
+          <Link href="/profile">
+            <ButtonPrimary>Lihat Detail</ButtonPrimary>
+          </Link>
         </Container>
       </Container>
-      <Container className="flex-[2] flex flex-col justify-center items-start p-2 gap-4 w-full">
+      <Container className="flex-[2] flex flex-col justify-center items-start p-2 w-full">
         {ownerProfileConfigData.map((items, key) => (
-          <Container key={key}>
+          <Container
+            key={key}
+            className="gap-6 w-full flex justify-center items-start flex-col "
+          >
             {items.detail.map((items, key) => (
               <h1 className="font-bold text-lg" key={key}>
                 {items.label} {items.datas}
