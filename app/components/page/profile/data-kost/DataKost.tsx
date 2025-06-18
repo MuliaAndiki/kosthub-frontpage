@@ -51,6 +51,7 @@ const DataKostChildren: React.FC = () => {
       console.log("gagal Mengapus Reservase Kost", error);
     }
   };
+
   const handleFetchResevase = async () => {
     try {
       const res = await API.get(
@@ -62,8 +63,10 @@ const DataKostChildren: React.FC = () => {
         }
       );
       console.log("Respon Api Reservase", res.data);
+      
       setDataReservase(res.data.data);
       setIdReservase(res.data.data[0]);
+      
     } catch (error) {
       console.log("Gagal Melakukan Fetch Reservase Data", error);
     } finally {

@@ -12,10 +12,10 @@ const SideHomeOwners = () => {
   const router = useRouter();
 
   const handleRedirect = () => {
-    if (!currentUser?.user.nomor || currentUser.user.alamat) {
+    if (!currentUser?.user.nomor || !currentUser.user.alamat) {
       router.push("/profile/edit-profile");
     } else {
-      router.push("");
+      router.push("/owners/bikin-kos");
     }
   };
   return (
