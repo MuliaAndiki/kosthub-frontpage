@@ -110,7 +110,7 @@ const PenyewaanChildren: React.FC = () => {
                   </h1>
                 </Container>
 
-                <h1 title="Nomor Kos">{dataReservase?.id_kos.id_kos}</h1>
+                <h1 title="Nomor Kos">{dataReservase?.id_kos.slug}</h1>
               </Container>
             </Container>
           </Container>

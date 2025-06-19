@@ -34,7 +34,7 @@ const SelectItemsChildren: React.FC = () => {
       try {
         const res = await API.get(`/api/kos/${id}`, {
           headers: {
-            Authorization: `Bearer ${id}`,
+            Authorization: `Bearer ${currentUser?.token}`,
           },
         });
         setKostData(res.data);
@@ -50,7 +50,7 @@ const SelectItemsChildren: React.FC = () => {
   const handleSaveKost = async () => {
     try {
       await API.post(
-        `/api/auth/save-kos/${kostData?.id_kos}`,
+        `/api/auth/save-kos/${kostData?.slug}`,
         {},
         {
           headers: {
@@ -67,7 +67,7 @@ const SelectItemsChildren: React.FC = () => {
 
   useEffect(() => {
     handleGetData();
-    console.log("Id Kost", kostData?.id_kos);
+    console.log("Id Kost", kostData?.slug);
   }, [pathname, kostId]);
 
   return (
@@ -231,7 +231,7 @@ const SelectItemsChildren: React.FC = () => {
                     </Container>
                   </Container>
                 </Container>
-                <Link href={`/users/kost/reservase/${kostData.id_kos}`}>
+                <Link href={`/users/kost/reservase/${kostData.slug}`}>
                   <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-md transition">
                     Reserve
                   </button>

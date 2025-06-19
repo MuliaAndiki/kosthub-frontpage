@@ -17,8 +17,8 @@ export interface userType {
 }
 
 export interface itemsType {
-  id_kos: number;
   nama_kos: string;
+  slug: string;
   alamat: string;
   fasilitas: [
     {

@@ -9,7 +9,7 @@ import Container from "../../ui/Container";
 const Items: React.FC<itemsTypeProps> = ({ data }) => {
   return (
     <Link
-      href={`/users/kost/${data.id_kos}`}
+      href={`/users/kost/${data.slug}`}
       className="block w-full max-w-sm bg-white shadow-lg rounded-lg p-4 hover:scale-105 transition-transform duration-300 border border-gray-200"
     >
       <Image
