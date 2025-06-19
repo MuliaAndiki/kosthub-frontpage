@@ -1,8 +1,8 @@
 import { useAppSelector } from "../../../hooks/dispatch/dispatch";
-import { ownerProfileConfig } from "@/app/components/types/components";
+import { ownerProfileConfig } from "@/app/types/components";
 import API from "../../../util/API";
 import { useState, useEffect } from "react";
-import { ProfileType } from "@/app/components/types/API";
+import { ProfileType } from "@/app/types/API";
 
 export const useOwnerProfileConfigData = (): ownerProfileConfig[] => {
   const { currentUser } = useAppSelector((state) => state.auth);

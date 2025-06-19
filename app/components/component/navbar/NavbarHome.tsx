@@ -4,10 +4,10 @@ import Image from "next/image";
 import Profile from "@/public/asset/porfil.png";
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
 import { useState, useEffect } from "react";
-import { ProfileType } from "../../types/API";
-import API from "../../core/util/API";
+import { ProfileType } from "../../../types/API";
+import API from "../../../core/util/API";
 import Container from "../ui/Container";
 
 const NavbarHome: React.FC = () => {

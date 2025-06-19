@@ -1,4 +1,4 @@
-import { SelectType } from "../../types/ui";
+import { SelectType } from "../../../types/ui";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";

@@ -1,5 +1,5 @@
 // components/TextArea.tsx
-import { TextareaType } from "../../types/ui";
+import { TextareaType } from "../../../types/ui";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { Box } from "@mui/material";
 

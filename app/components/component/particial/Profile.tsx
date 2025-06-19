@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { reservasiTypeProps } from "../../types/props";
+import { reservasiTypeProps } from "../../../types/props";
 import ProfileDumy from "@/public/asset/prfilhd.png";
 import { Phone } from "lucide-react";
 import Container from "../ui/Container";

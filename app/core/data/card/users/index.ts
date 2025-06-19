@@ -2,7 +2,7 @@ import {
   ourServicesType,
   bestPropertyType,
   bestReviewType,
-} from "@/app/components/types/components";
+} from "@/app/types/components";
 import HomeSecure from "@/public/asset/Home Secure.png";
 import Secure from "@/public/asset/Secured.png";
 import MoneyDolar from "@/public/asset/Money Dollar.png";

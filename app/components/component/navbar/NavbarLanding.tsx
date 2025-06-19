@@ -2,7 +2,7 @@ import Link from "next/link";
 import IconHitam from "@/public/asset/IconHitam.png";
 import { CircleUserRound } from "lucide-react";
 import Image from "next/image";
-import { RouteStaticLandingData } from "../../core/data/appConfig";
+import { RouteStaticLandingData } from "../../../core/data/appConfig";
 import Container from "../ui/Container";
 
 const NavbarLanding: React.FC = () => {

@@ -1,4 +1,4 @@
-import { popUP } from "@/app/components/types/components";
+import { popUP } from "@/app/types/components";
 import Container from "../ui/Container";
 
 const PopUp: React.FC<popUP> = ({ isOpen, onClose, children }) => {

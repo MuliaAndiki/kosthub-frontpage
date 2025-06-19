@@ -1,4 +1,4 @@
-import { reservasiTypeProps } from "../../types/props";
+import { reservasiTypeProps } from "../../../types/props";
 import Container from "../ui/Container";
 const DescriptionPartical: React.FC<reservasiTypeProps> = ({ data }) => {
   return (

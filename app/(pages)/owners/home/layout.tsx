@@ -1,4 +1,4 @@
-import HomeOwnerLayoutChildren from "@/app/components/page/owners/layout";
+import HomeOwnerLayoutChildren from "@/app/components/page/owners/home/layout";
 
 export default function HomeOwnerLayout({
   children,

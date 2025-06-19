@@ -1,7 +1,7 @@
 "use client";
 import Container from "@/app/components/component/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
 import ProfileCardOwners from "@/app/components/component/card/owner/ProfileOwnerCard";
 import SideHomeOwners from "@/app/components/component/card/owner/SideHome";
 
@@ -20,9 +20,7 @@ const HomeOwnerChildren: React.FC = () => {
       {isLoading ? (
         <Container className="flex-col ">
           <Container className="flex justify-center items-center h-screen w-full gap-2">
-            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
-              -
-            </Container>
+            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></div>
             <p className="text-[2rem] font-light">Loading...</p>
           </Container>
         </Container>
