@@ -24,7 +24,6 @@ import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 
 const ReservaseChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [selectedField, setSelectedField] = useState<any>();
   const [kostData, setKostData] = useState<itemsType | null>(null);
   const [ratingStar] = useState<number>(0);
 
@@ -51,7 +50,7 @@ const ReservaseChildren: React.FC = () => {
       try {
         const res = await API.get(`/api/kos/${id}`, {
           headers: {
-            Authorization: `Bearer ${id}`,
+            Authorization: `Bearer ${currentUser?.token}`,
           },
         });
         setKostData(res.data);
@@ -67,7 +66,7 @@ const ReservaseChildren: React.FC = () => {
   const handleReservase = async () => {
     try {
       const res = await API.post(
-        `/api/reservase/${currentUser?.user._id}/${kostData?.id_kos}`,
+        `/api/reservase/${currentUser?.user._id}/${kostData?.slug}`,
         formReservase,
         {
           headers: {
