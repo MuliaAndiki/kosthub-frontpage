@@ -1,4 +1,4 @@
-import { ContainerType } from "@/app/components/types/ui";
+import { ContainerType } from "@/app/types/ui";
 export default function Container({
   children,
   className,

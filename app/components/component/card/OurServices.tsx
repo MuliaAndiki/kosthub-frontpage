@@ -1,4 +1,4 @@
-import { ourServicesTypeProps } from "../../types/props";
+import { ourServicesTypeProps } from "../../../types/props";
 import Image from "next/image";
 import Container from "../ui/Container";
 

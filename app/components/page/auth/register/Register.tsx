@@ -5,26 +5,26 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
-import { ModalProps } from "@/app/components/types/API";
-import API from "@/app/components/core/util/API";
-import { formRegister } from "@/app/components/types/form";
+import { ModalProps } from "@/app/types/API";
+import API from "@/app/core/util/API";
+import { formRegister } from "@/app/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
-import { SelectRole } from "@/app/components/types/components/index";
+import { SelectRole } from "@/app/types/components/index";
 import Button from "@/app/components/component/ui/Button";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
-import { RouteStatiData } from "@/app/components/core/data/appConfig";
+import { RouteStatiData } from "@/app/core/data/appConfig";
 import Select from "@/app/components/component/ui/Select";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
-import { Provensi } from "@/app/components/core/data/constants/Provensi";
+import { Provensi } from "@/app/core/data/constants/Provensi";
 
 import {
   GoogleLogin,
   CredentialResponse,
   GoogleOAuthProvider,
 } from "@react-oauth/google";
-import { useAppDispatch } from "@/app/components/core/hooks/dispatch/dispatch";
-import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
+import { useAppDispatch } from "@/app/core/hooks/dispatch/dispatch";
+import { setCurrentUser } from "@/app/store/reduser/authSlice";
 
 const RegisterChildren: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -1,22 +1,22 @@
 "use client";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import API from "@/app/components/core/util/API";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import API from "@/app/core/util/API";
 import { useEffect, useState } from "react";
-import { reservasiType } from "@/app/components/types/API";
+import { reservasiType } from "@/app/types/API";
 import DescriptionPartical from "@/app/components/component/particial/Description";
 import FasilitasParticial from "@/app/components/component/particial/Fasilitas";
 import DataKostUser from "@/app/components/component/card/user/DataKosComponents";
 import ProfileParticial from "@/app/components/component/particial/Profile";
 import PopUp from "@/app/components/component/modal/PopUp";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps } from "@/app/components/types/API";
+import { ModalProps } from "@/app/types/API";
 import { useRouter } from "next/navigation";
 import Container from "@/app/components/component/ui/Container";
 import Button from "@/app/components/component/ui/Button";
 import ButtonPopUp from "@/app/components/component/ui/ButtonPopup";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import RatingPrimary from "@/app/components/component/ui/RatingPrimary";
-import { formAddReview } from "@/app/components/types/form";
+import { formAddReview } from "@/app/types/form";
 import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
 
 const DataKostChildren: React.FC = () => {
@@ -63,10 +63,9 @@ const DataKostChildren: React.FC = () => {
         }
       );
       console.log("Respon Api Reservase", res.data);
-      
+
       setDataReservase(res.data.data);
       setIdReservase(res.data.data[0]);
-      
     } catch (error) {
       console.log("Gagal Melakukan Fetch Reservase Data", error);
     } finally {

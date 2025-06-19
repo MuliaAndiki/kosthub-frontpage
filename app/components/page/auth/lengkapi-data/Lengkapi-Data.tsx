@@ -1,10 +1,10 @@
 "use client";
 import Container from "@/app/components/component/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import API from "@/app/components/core/util/API";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import API from "@/app/core/util/API";
 import { useRouter } from "next/navigation";
-import { formLengkapiData } from "@/app/components/types/form";
+import { formLengkapiData } from "@/app/types/form";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Image from "next/image";
 import Icon from "@/public/asset/IconHitam.png";
@@ -12,9 +12,9 @@ import Profile from "@/public/asset/prfilhd.png";
 import ButtonUploads from "@/app/components/component/ui/ButtonUploads";
 import CustomSelect from "@/app/components/component/ui/Select";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
-import { Provensi } from "@/app/components/core/data/constants/Provensi";
+import { Provensi } from "@/app/core/data/constants/Provensi";
 import Button from "@/app/components/component/ui/Button";
-import { ModalProps } from "@/app/components/types/API";
+import { ModalProps } from "@/app/types/API";
 import Modal from "@/app/components/component/modal/Modal";
 
 const LengkapiDataChildren: React.FC = () => {

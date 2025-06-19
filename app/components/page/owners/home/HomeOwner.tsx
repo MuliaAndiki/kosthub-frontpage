@@ -1,7 +1,7 @@
 "use client";
 import Container from "@/app/components/component/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
 import ProfileCardOwners from "@/app/components/component/card/owner/ProfileOwnerCard";
 import SideHomeOwners from "@/app/components/component/card/owner/SideHome";
 

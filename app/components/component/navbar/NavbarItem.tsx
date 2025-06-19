@@ -3,7 +3,7 @@ import icon from "@/public/asset/icon.png";
 import profile from "@/public/asset/prfilhd.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
 import Container from "../ui/Container";
 
 const NabvarItem: React.FC = () => {

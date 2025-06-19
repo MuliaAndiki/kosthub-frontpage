@@ -2,19 +2,19 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Icon from "@/public/asset/icon.png";
-import { RouteStatiData } from "@/app/components/core/data/appConfig";
+import { RouteStatiData } from "@/app/core/data/appConfig";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps, userType } from "@/app/components/types/API/index";
-import API from "@/app/components/core/util/API";
-import { useAppDispatch } from "@/app/components/core/hooks/dispatch/dispatch";
-import { formLogin } from "@/app/components/types/form";
+import { ModalProps, userType } from "@/app/types/API/index";
+import API from "@/app/core/util/API";
+import { useAppDispatch } from "@/app/core/hooks/dispatch/dispatch";
+import { formLogin } from "@/app/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Button from "@/app/components/component/ui/Button";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
-import { setCurrentUser } from "@/app/components/store/reduser/authSlice";
+import { setCurrentUser } from "@/app/store/reduser/authSlice";
 import {
   CredentialResponse,
   GoogleLogin,

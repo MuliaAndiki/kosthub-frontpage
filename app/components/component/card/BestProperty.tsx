@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Container from "@/app/components/component/ui/Container";
-import { bestPropertyTypeProps } from "../../types/props";
+import { bestPropertyTypeProps } from "../../../types/props";
 
 const BestProperty: React.FC<bestPropertyTypeProps> = ({ data }) => {
   return (

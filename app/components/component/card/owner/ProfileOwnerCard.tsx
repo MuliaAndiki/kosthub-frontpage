@@ -2,12 +2,12 @@
 import Container from "../../ui/Container";
 import Image from "next/image";
 import profileDummy from "@/public/asset/prfilhd.png";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
-import { useOwnerProfileConfigData } from "@/app/components/core/data/card/owners";
+import { useOwnerProfileConfigData } from "@/app/core/data/card/owners";
 import { useEffect, useState } from "react";
-import API from "@/app/components/core/util/API";
-import { ProfileType } from "@/app/components/types/API";
+import API from "@/app/core/util/API";
+import { ProfileType } from "@/app/types/API";
 import Link from "next/link";
 
 const ProfileCardOwners: React.FC = () => {

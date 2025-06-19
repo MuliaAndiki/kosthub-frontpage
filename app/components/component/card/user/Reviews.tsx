@@ -1,7 +1,7 @@
 import profile from "@/public/asset/profile1.svg";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { reviewTypeProps } from "@/app/components/types/props";
+import { reviewTypeProps } from "@/app/types/props";
 import { useState } from "react";
 import Container from "../../ui/Container";
 

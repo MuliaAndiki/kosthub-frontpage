@@ -2,8 +2,8 @@
 import Container from "../../ui/Container";
 import Button from "../../ui/Button";
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import { MedsosData } from "@/app/components/core/data/appConfig";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { MedsosData } from "@/app/core/data/appConfig";
 import Image from "next/image";
 import Link from "next/link";
 

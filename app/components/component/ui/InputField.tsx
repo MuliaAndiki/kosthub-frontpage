@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { TextFieldType } from "@/app/components/types/ui";
+import { TextFieldType } from "@/app/types/ui";
 
 export default function TextFieldInput({
   name,

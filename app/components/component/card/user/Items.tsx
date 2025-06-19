@@ -1,9 +1,9 @@
 "use client";
 import { Star, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
-import { itemsTypeProps } from "@/app/components/types/props";
+import { itemsTypeProps } from "@/app/types/props";
 import Image from "next/image";
-import { getFasilitas } from "@/app/components/core/helper/faslitasHelper";
+import { getFasilitas } from "@/app/core/helper/faslitasHelper";
 import Container from "../../ui/Container";
 
 const Items: React.FC<itemsTypeProps> = ({ data }) => {

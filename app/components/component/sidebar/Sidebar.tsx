@@ -3,14 +3,14 @@ import Link from "next/link";
 import { DoorClosed } from "lucide-react";
 import PopUp from "../modal/PopUp";
 import Modal from "../modal/Modal";
-import { ModalProps } from "../../types/API";
+import { ModalProps } from "../../../types/API";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Container from "../ui/Container";
 import ButtonPopUp from "../ui/ButtonPopup";
 import Button from "../ui/Button";
-import { RouteStaticProfileData } from "../../core/data/appConfig";
-import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
+import { RouteStaticProfileData } from "../../../core/data/appConfig";
+import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
 
 const Sidebar: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);

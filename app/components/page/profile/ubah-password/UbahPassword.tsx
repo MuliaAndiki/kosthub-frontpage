@@ -2,13 +2,13 @@
 import Image from "next/image";
 import profile from "@/public/asset/prfilhd.png";
 import { useState, useEffect } from "react";
-import API from "@/app/components/core/util/API";
-import { ModalProps } from "@/app/components/types/API";
+import API from "@/app/core/util/API";
+import { ModalProps } from "@/app/types/API";
 import Modal from "@/app/components/component/modal/Modal";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
-import { formUbahPassword } from "@/app/components/types/form";
+import { formUbahPassword } from "@/app/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import Button from "@/app/components/component/ui/Button";

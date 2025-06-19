@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import Profile from "@/public/asset/prfilhd.png";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import { getGenderString } from "@/app/components/core/helper/helper";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { getGenderString } from "@/app/core/helper/helper";
 import Image from "next/image";
 import Container from "../../component/ui/Container";
 import ButtonPrimary from "../../component/ui/ButtonPrimary";
 import { useState, useEffect } from "react";
-import API from "../../core/util/API";
-import { ProfileType } from "../../types/API";
+import API from "../../../core/util/API";
+import { ProfileType } from "../../../types/API";
 
 const ProfilChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);

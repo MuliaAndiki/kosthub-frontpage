@@ -1,5 +1,5 @@
-import { reservasiTypeProps } from "../../types/props";
-import { getFasilitas } from "../../core/helper/faslitasHelper";
+import { reservasiTypeProps } from "../../../types/props";
+import { getFasilitas } from "../../../core/helper/faslitasHelper";
 import Container from "../ui/Container";
 const FasilitasParticial: React.FC<reservasiTypeProps> = ({ data }) => {
   return (

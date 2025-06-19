@@ -8,14 +8,14 @@ import { usePathname } from "next/navigation";
 import Reviews from "@/app/components/component/card/user/Reviews";
 import { useState, useEffect } from "react";
 import { Hotel, Star, Phone, Mail, Forward, Bookmark } from "lucide-react";
-import API from "@/app/components/core/util/API";
-import { itemsType } from "@/app/components/types/API";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import { getFasilitas } from "@/app/components/core/helper/faslitasHelper";
+import API from "@/app/core/util/API";
+import { itemsType } from "@/app/types/API";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { getFasilitas } from "@/app/core/helper/faslitasHelper";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Modal from "@/app/components/component/modal/Modal";
-import { ModalProps } from "@/app/components/types/API";
+import { ModalProps } from "@/app/types/API";
 import Container from "@/app/components/component/ui/Container";
 
 const SelectItemsChildren: React.FC = () => {

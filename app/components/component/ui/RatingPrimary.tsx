@@ -1,11 +1,11 @@
 "use client";
-import { RatingPrimaryType } from "../../types/ui";
+import { RatingPrimaryType } from "../../../types/ui";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import { useState } from "react";
-import { getLabelText } from "../../core/helper/helper";
-import { labels } from "../../core/data/constants/rating";
+import { getLabelText } from "../../../core/helper/helper";
+import { labels } from "../../../core/data/constants/rating";
 
 export default function RatingPrimary({
   name,

@@ -3,11 +3,11 @@ import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
 import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
-import { useAppSelector } from "../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
 import Container from "../ui/Container";
-import API from "../../core/util/API";
+import API from "../../../core/util/API";
 import { useState, useEffect } from "react";
-import { ProfileType } from "../../types/API";
+import { ProfileType } from "../../../types/API";
 
 const NavbarProfil: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -42,7 +42,7 @@ const NavbarProfil: React.FC = () => {
   const baseUrlHome = "/home";
   const handleRedirect = () => {
     let redirectPath = "";
-    if (currentUser?.user.role === "users") {
+    if (currentUser?.user.role === "user") {
       redirectPath = `/users${baseUrlHome}`;
     } else if (currentUser?.user.role === "owner") {
       redirectPath = `/owners${baseUrlHome}`;

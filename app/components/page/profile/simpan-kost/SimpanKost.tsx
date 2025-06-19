@@ -1,8 +1,8 @@
 "use client";
-import { useAppSelector } from "@/app/components/core/hooks/dispatch/dispatch";
-import { itemsType } from "@/app/components/types/API";
+import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { itemsType } from "@/app/types/API";
 import Items from "@/app/components/component/card/user/Items";
-import API from "@/app/components/core/util/API";
+import API from "@/app/core/util/API";
 import { useEffect, useState } from "react";
 import Container from "@/app/components/component/ui/Container";
 

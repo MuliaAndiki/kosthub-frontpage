@@ -6,7 +6,7 @@ import {
   ourServicesData,
   bestReviewData,
   bestProperyData,
-} from "@/app/components/core/data/card/users";
+} from "@/app/core/data/card/users";
 import FooterLanding from "@/app/components/component/footer/FooterLanding";
 import BestProperty from "@/app/components/component/card/BestProperty";
 import BestRewiew from "@/app/components/component/card/BestReview";

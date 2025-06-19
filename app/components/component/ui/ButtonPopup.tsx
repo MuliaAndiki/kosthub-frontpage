@@ -1,4 +1,4 @@
-import { ButtonPopUpType } from "../../types/ui";
+import { ButtonPopUpType } from "../../../types/ui";
 import Box from "@mui/material/Box";
 import MuiButton from "@mui/material/Button";
 

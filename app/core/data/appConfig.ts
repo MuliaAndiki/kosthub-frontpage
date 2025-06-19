@@ -1,10 +1,10 @@
-import { appFooterType } from "@/app/components/types/components/index";
+import { appFooterType } from "@/app/types/components/index";
 import icon from "@/public/asset/icon.png";
 import GogleIcon from "@/public/asset/GogleIcon.png";
 import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
-import { MedsosConfig } from "@/app/components/types/components/index";
+import { MedsosConfig } from "@/app/types/components/index";
 import {
   RouteStatic,
   RouteStaticProfile,
