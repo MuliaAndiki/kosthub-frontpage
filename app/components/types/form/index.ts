@@ -55,3 +55,24 @@ export interface formLengkapiData {
   fotoProfil: File | null;
   bio: string;
 }
+
+export interface formCreateKos {
+  id_kos: number;
+  nama_kos: string;
+  alamat: string;
+  fasilitas: [
+    {
+      nama: string;
+      jumlah: string;
+    }
+  ];
+  harga_perbulan: number;
+  harga_pertahun: number;
+  tipe_kos: string;
+  thumbnail: File | null;
+  gallery: File | null;
+  kontak: {
+    email: string;
+    nomor: string;
+  };
+}

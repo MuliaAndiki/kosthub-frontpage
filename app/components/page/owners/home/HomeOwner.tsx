@@ -20,9 +20,7 @@ const HomeOwnerChildren: React.FC = () => {
       {isLoading ? (
         <Container className="flex-col ">
           <Container className="flex justify-center items-center h-screen w-full gap-2">
-            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
-              -
-            </Container>
+            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></div>
             <p className="text-[2rem] font-light">Loading...</p>
           </Container>
         </Container>

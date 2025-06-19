@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Icon from "@/public/asset/icon.png";
 import { RouteStatiData } from "@/app/components/core/data/appConfig";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { ModalProps, userType } from "@/app/components/types/API/index";
@@ -20,8 +20,6 @@ import {
   GoogleLogin,
   GoogleOAuthProvider,
 } from "@react-oauth/google";
-import { formLengkapiData } from "@/app/components/types/form";
-import { Provensi } from "@/app/components/core/data/constants/Provensi";
 
 const LoginChildren: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,8 +32,6 @@ const LoginChildren: React.FC = () => {
   const router = useRouter();
   const [showpassword, setShowpassword] = useState<boolean>();
   const [isLoading, setIsloading] = useState<boolean>(true);
-  const [stateValidation, setStateValidation] =
-    useState<formLengkapiData | null>(null);
 
   const handleLogin = async () => {
     try {
@@ -140,121 +136,137 @@ const LoginChildren: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setIsloading(false);
+    }, 2000);
+    return () => clearTimeout(time);
+  }, []);
+
   return (
     <Container className="w-screen h-screen flex justify-center items-center rounded-tl-lg">
-      <Container className="grid grid-cols-[2fr_1fr] grid-rows-1 gap-4">
-        <Container className="flex justify-center items-center">
-          <Container className="w-full max-w-lg mx-auto p-6">
-            <Container className="flex justify-center py-4">
-              <h1 className="text-4xl font-bold text-[4rem]">Masuk</h1>
-            </Container>
-
-            <Container className="w-full max-w-md ">
-              <GoogleOAuthProvider
-                clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-              >
-                <GoogleLogin
-                  onSuccess={(e) => handleLoginGoogle(e)}
-                  onError={() =>
-                    console.log("Gagal Melakukan Login Menggunakan Google")
-                  }
-                />
-              </GoogleOAuthProvider>
-            </Container>
-
-            <Container className="text-center py-2">
-              <p className="text-gray-600">
-                Masukkan Username dan Password Untuk Masuk
-              </p>
-            </Container>
-
-            <Container className="w-full max-w-md space-y-4">
-              <Container>
-                <TextFieldInput
-                  label="Username"
-                  name={formLogin.username}
-                  type="text"
-                  className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                  value={formLogin.username}
-                  onChange={(e) =>
-                    setFormLogin((prev) => {
-                      const newObj = { ...prev, username: e.target.value };
-                      return newObj;
-                    })
-                  }
-                  required
-                  aria-required="true"
-                />
+      {isLoading ? (
+        <Container className="flex-col ">
+          <Container className="flex justify-center items-center h-screen w-full gap-2">
+            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></div>
+            <p className="text-[2rem] font-light">Loading...</p>
+          </Container>
+        </Container>
+      ) : (
+        <Container className="grid grid-cols-[2fr_1fr] grid-rows-1 gap-4">
+          <Container className="flex justify-center items-center">
+            <Container className="w-full max-w-lg mx-auto p-6">
+              <Container className="flex justify-center py-4">
+                <h1 className="text-4xl font-bold text-[4rem]">Masuk</h1>
               </Container>
-              <Container>
-                <Container className="relative">
+
+              <Container className="w-full max-w-md ">
+                <GoogleOAuthProvider
+                  clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+                >
+                  <GoogleLogin
+                    onSuccess={(e) => handleLoginGoogle(e)}
+                    onError={() =>
+                      console.log("Gagal Melakukan Login Menggunakan Google")
+                    }
+                  />
+                </GoogleOAuthProvider>
+              </Container>
+
+              <Container className="text-center py-2">
+                <p className="text-gray-600">
+                  Masukkan Username dan Password Untuk Masuk
+                </p>
+              </Container>
+
+              <Container className="w-full max-w-md space-y-4">
+                <Container>
                   <TextFieldInput
-                    label="Password"
-                    name={formLogin.password}
-                    type={showpassword ? "text" : "password"}
+                    label="Username"
+                    name={formLogin.username}
+                    type="text"
                     className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
-                    value={formLogin.password}
+                    value={formLogin.username}
                     onChange={(e) =>
                       setFormLogin((prev) => {
-                        const newObj = { ...prev, password: e.target.value };
+                        const newObj = { ...prev, username: e.target.value };
                         return newObj;
                       })
                     }
+                    required
+                    aria-required="true"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowpassword((prev) => !prev)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
-                    aria-label={
-                      showpassword ? "Hide password" : "Show password"
-                    }
-                  >
-                    {showpassword ? "Hide" : "Show"}
-                  </button>
                 </Container>
+                <Container>
+                  <Container className="relative">
+                    <TextFieldInput
+                      label="Password"
+                      name={formLogin.password}
+                      type={showpassword ? "text" : "password"}
+                      className="w-full border-2 border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-600"
+                      value={formLogin.password}
+                      onChange={(e) =>
+                        setFormLogin((prev) => {
+                          const newObj = { ...prev, password: e.target.value };
+                          return newObj;
+                        })
+                      }
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowpassword((prev) => !prev)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
+                      aria-label={
+                        showpassword ? "Hide password" : "Show password"
+                      }
+                    >
+                      {showpassword ? "Hide" : "Show"}
+                    </button>
+                  </Container>
+                </Container>
+                <Container className="text-center">
+                  <h1 className="">Lupa Password?</h1>
+                </Container>
+                <Button onClick={() => handleLogin()}>Masuk</Button>
               </Container>
-              <Container className="text-center">
-                <h1 className="">Lupa Password?</h1>
+            </Container>
+          </Container>
+          <Container className="bg-[#3572EF] flex justify-center items-center rounded-l-[10rem] h-[100vh] p-2">
+            <Container className="">
+              <Container className="flex justify-center">
+                <Image
+                  className="h-[15vh] w-[8vw]"
+                  src={Icon}
+                  alt="Logo"
+                  height="10"
+                  width="100"
+                />
               </Container>
-              <Button onClick={() => handleLogin()}>Masuk</Button>
+
+              <Container className="flex justify-center pt-[2rem]">
+                <h1 className="text-[3rem] font-extrabold text-white">
+                  Halo, Teman!
+                </h1>
+              </Container>
+
+              <Container className="flex justify-center py-[2rem]">
+                <p className="text-[2rem] font-light text-white text-center">
+                  Daftarkan Dirimu Untuk Menikmati Layanan Kami
+                </p>
+              </Container>
+
+              <Container className="flex justify-center">
+                {RouteStatiData.map((items, key) => (
+                  <Link href={items.register.href} key={key}>
+                    <ButtonPrimary>{items.register.title}</ButtonPrimary>
+                  </Link>
+                ))}
+              </Container>
+              {modalData && <Modal {...modalData} />}
             </Container>
           </Container>
         </Container>
-        <Container className="bg-[#3572EF] flex justify-center items-center rounded-l-[10rem] h-[100vh] p-2">
-          <Container className="">
-            <Container className="flex justify-center">
-              <Image
-                className="h-[15vh] w-[8vw]"
-                src={Icon}
-                alt="Logo"
-                height="10"
-                width="100"
-              />
-            </Container>
-
-            <Container className="flex justify-center pt-[2rem]">
-              <h1 className="text-[3rem] font-extrabold text-white">
-                Halo, Teman!
-              </h1>
-            </Container>
-
-            <Container className="flex justify-center py-[2rem]">
-              <p className="text-[2rem] font-light text-white text-center">
-                Daftarkan Dirimu Untuk Menikmati Layanan Kami
-              </p>
-            </Container>
-
-            <Container className="flex justify-center">
-              {RouteStatiData.map((items, key) => (
-                <Link href={items.register.href} key={key}>
-                  <ButtonPrimary>{items.register.title}</ButtonPrimary>
-                </Link>
-              ))}
-            </Container>
-            {modalData && <Modal {...modalData} />}
-          </Container>
-        </Container>
-      </Container>
+      )}
     </Container>
   );
 };
