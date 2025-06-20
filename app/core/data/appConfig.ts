@@ -73,22 +73,22 @@ export const MedsosData: MedsosConfig[] = [
   {
     image: FacebookIcon,
     href: "/",
-    label: "Facebook",
+    label: "KOSTHUB",
   },
   {
     image: Github,
     href: "/",
-    label: "Github",
+    label: "KOSTHUB",
   },
   {
     image: GogleIcon,
     href: "/",
-    label: "Google",
+    label: "KOSTHUB",
   },
   {
     image: LinkIn,
     href: "/",
-    label: "LinkIn",
+    label: "KOSTHUB",
   },
 ];
 

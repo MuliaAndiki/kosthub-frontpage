@@ -26,10 +26,7 @@ export const useOwnerProfileConfigData = (): ownerProfileConfig[] => {
   };
 
   useEffect(() => {
-    const time = setTimeout(() => {
-      handleGetProfile();
-    }, 1000);
-    return () => clearTimeout(time);
+    handleGetProfile();
   }, []);
 
   return [
