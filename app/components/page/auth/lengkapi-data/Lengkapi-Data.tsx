@@ -1,8 +1,8 @@
 "use client";
 import Container from "@/app/components/component/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
-import API from "@/app/core/util/API";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
+import API from "@/app/util/API";
 import { useRouter } from "next/navigation";
 import { formLengkapiData } from "@/app/types/form";
 import TextFieldInput from "@/app/components/component/ui/InputField";

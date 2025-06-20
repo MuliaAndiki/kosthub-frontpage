@@ -2,10 +2,10 @@
 import Image from "next/image";
 import profile from "@/public/asset/prfilhd.png";
 import { useState, useEffect } from "react";
-import API from "@/app/core/util/API";
+import API from "@/app/util/API";
 import { ModalProps } from "@/app/types/API";
 import Modal from "@/app/components/component/modal/Modal";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/component/modal/PopUp";
 import { formUbahPassword } from "@/app/types/form";

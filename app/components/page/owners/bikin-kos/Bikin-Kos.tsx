@@ -1,10 +1,10 @@
 "use client";
 import Container from "@/app/components/component/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import TextFieldInput from "@/app/components/component/ui/InputField";
 import { formCreateKos } from "@/app/types/form";
-import API from "@/app/core/util/API";
+import API from "@/app/util/API";
 import Button from "@/app/components/component/ui/Button";
 
 const BikinKosChildren: React.FC = () => {

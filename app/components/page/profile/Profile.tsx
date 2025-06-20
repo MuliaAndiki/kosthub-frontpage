@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import Profile from "@/public/asset/prfilhd.png";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import { getGenderString } from "@/app/core/helper/helper";
 import Image from "next/image";
 import Container from "../../component/ui/Container";
 import ButtonPrimary from "../../component/ui/ButtonPrimary";
 import { useState, useEffect } from "react";
-import API from "../../../core/util/API";
+import API from "../../../util/API";
 import { ProfileType } from "../../../types/API";
 
 const ProfilChildren: React.FC = () => {

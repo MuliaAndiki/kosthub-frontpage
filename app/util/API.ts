@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
-import { store } from "../../store/stores";
+import { store } from "../store/stores";
 
 const API = axios.create({
   baseURL: "https://kosthub-backend.vercel.app",

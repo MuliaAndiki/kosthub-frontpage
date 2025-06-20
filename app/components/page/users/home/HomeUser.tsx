@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import Items from "@/app/components/component/card/user/Items";
 import { Funnel } from "lucide-react";
-import API from "@/app/core/util/API";
+import API from "@/app/util/API";
 import { itemsType } from "@/app/types/API/index";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import Container from "../../../component/ui/Container";
 import { useRouter } from "next/navigation";
 

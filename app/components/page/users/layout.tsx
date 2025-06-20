@@ -1,5 +1,5 @@
 import Container from "../../component/ui/Container";
-import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../hooks/dispatch/dispatch";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 export default function UserChildrenLayout({

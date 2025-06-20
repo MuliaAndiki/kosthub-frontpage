@@ -1,6 +1,6 @@
 "use client";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
-import API from "@/app/core/util/API";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
+import API from "@/app/util/API";
 import { useEffect, useState } from "react";
 import { reservasiType } from "@/app/types/API";
 import DescriptionPartical from "@/app/components/component/particial/Description";

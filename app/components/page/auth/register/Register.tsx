@@ -6,7 +6,7 @@ import Image from "next/image";
 import Modal from "@/app/components/component/modal/Modal";
 import { useRouter } from "next/navigation";
 import { ModalProps } from "@/app/types/API";
-import API from "@/app/core/util/API";
+import API from "@/app/util/API";
 import { formRegister } from "@/app/types/form";
 import Container from "@/app/components/component/ui/Container";
 import TextFieldInput from "@/app/components/component/ui/InputField";
@@ -23,7 +23,7 @@ import {
   CredentialResponse,
   GoogleOAuthProvider,
 } from "@react-oauth/google";
-import { useAppDispatch } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppDispatch } from "@/app/hooks/dispatch/dispatch";
 import { setCurrentUser } from "@/app/store/reduser/authSlice";
 
 const RegisterChildren: React.FC = () => {

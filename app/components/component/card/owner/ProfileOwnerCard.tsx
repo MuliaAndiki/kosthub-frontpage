@@ -2,11 +2,11 @@
 import Container from "../../ui/Container";
 import Image from "next/image";
 import profileDummy from "@/public/asset/prfilhd.png";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import ButtonPrimary from "@/app/components/component/ui/ButtonPrimary";
 import { useOwnerProfileConfigData } from "@/app/core/data/card/owners";
 import { useEffect, useState } from "react";
-import API from "@/app/core/util/API";
+import API from "@/app/util/API";
 import { ProfileType } from "@/app/types/API";
 import Link from "next/link";
 

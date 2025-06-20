@@ -10,7 +10,7 @@ import Container from "../ui/Container";
 import ButtonPopUp from "../ui/ButtonPopup";
 import Button from "../ui/Button";
 import { RouteStaticProfileData } from "../../../core/data/appConfig";
-import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../hooks/dispatch/dispatch";
 
 const Sidebar: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);

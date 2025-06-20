@@ -3,9 +3,9 @@ import iconHItam from "@/public/asset/IconHitam.png";
 import Image from "next/image";
 import profil from "@/public/asset/porfil.png";
 import Link from "next/link";
-import { useAppSelector } from "../../../core/hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../hooks/dispatch/dispatch";
 import Container from "../ui/Container";
-import API from "../../../core/util/API";
+import API from "../../../util/API";
 import { useState, useEffect } from "react";
 import { ProfileType } from "../../../types/API";
 

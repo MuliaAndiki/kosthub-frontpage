@@ -2,8 +2,8 @@
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { reservasiType } from "@/app/types/API";
-import API from "@/app/core/util/API";
-import { useAppSelector } from "@/app/core/hooks/dispatch/dispatch";
+import API from "@/app/util/API";
+import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import Container from "@/app/components/component/ui/Container";
 
 const PenyewaanChildren: React.FC = () => {

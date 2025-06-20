@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { MobileType } from "../../../types/hook";
+import { MobileType } from "../../types/hook";
 
 const MOBILE_BREAKPOINT = 768;
 
