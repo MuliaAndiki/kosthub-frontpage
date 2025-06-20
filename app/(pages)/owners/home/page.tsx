@@ -1,4 +1,4 @@
-import HomeOwnerChildren from "@/app/components/page/owners/home/HomeOwner";
+import HomeOwnerChildren from "@/app/(pages)/owners/home/_container/HomeOwner";
 export default function HomeOwner() {
   return <HomeOwnerChildren />;
 }

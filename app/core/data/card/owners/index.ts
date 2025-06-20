@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../../hooks/dispatch/dispatch";
+import { useAppSelector } from "../../../../hooks/dispatch/dispatch";
 import { ownerProfileConfig } from "@/app/types/components";
-import API from "../../../util/API";
+import API from "../../../../util/API";
 import { useState, useEffect } from "react";
 import { ProfileType } from "@/app/types/API";
 

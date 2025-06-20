@@ -1,9 +1,16 @@
-import HomeUserLayoutChildren from "@/app/components/page/users/home/layout";
-
+import NavbarHome from "@/app/components/navbar/NavbarHome";
+import Container from "@/app/components/ui/Container";
+import FooterLanding from "@/app/components/footer/FooterLanding";
 export default function HomeUserLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <HomeUserLayoutChildren>{children}</HomeUserLayoutChildren>;
+  return (
+    <Container>
+      <NavbarHome />
+      {children}
+      <FooterLanding />
+    </Container>
+  );
 }

@@ -1,4 +1,4 @@
-import LandingPageChildren from "@/app/components/page/landing-page/LandingPage";
+import LandingPageChildren from "./_container/LandingPage";
 
 export default function LandingPage() {
   return <LandingPageChildren />;

@@ -1,9 +1,16 @@
-import HomeOwnerLayoutChildren from "@/app/components/page/owners/home/layout";
-
+import NavbarHome from "@/app/components/navbar/NavbarHome";
+import Container from "@/app/components/ui/Container";
+import FooterLanding from "@/app/components/footer/FooterLanding";
 export default function HomeOwnerLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <HomeOwnerLayoutChildren>{children}</HomeOwnerLayoutChildren>;
+  return (
+    <Container>
+      <NavbarHome />
+      {children}
+      <FooterLanding />
+    </Container>
+  );
 }

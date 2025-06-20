@@ -1,4 +1,4 @@
-import LengkapiDataChildren from "@/app/components/page/auth/lengkapi-data/Lengkapi-Data";
+import LengkapiDataChildren from "@/app/(pages)/auth/lengkapi-data/_container/Lengkapi-Data";
 export default function LengkapiData() {
   return <LengkapiDataChildren />;
 }

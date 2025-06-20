@@ -1,8 +1,18 @@
-import BikinKosLayoutChildren from "@/app/components/page/owners/bikin-kos/layout";
-export default function BikinKosLayout({
+import Container from "@/app/components/ui/Container";
+import NabvarItem from "@/app/components/navbar/NavbarItem";
+
+export default function BikinKosLayoutChildren({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <BikinKosLayoutChildren>{children}</BikinKosLayoutChildren>;
+  return (
+    <Container className="flex min-h-screen w-full relative">
+      <Container className="absolute top-0 w-full">
+        <NabvarItem />
+      </Container>
+
+      {children}
+    </Container>
+  );
 }
