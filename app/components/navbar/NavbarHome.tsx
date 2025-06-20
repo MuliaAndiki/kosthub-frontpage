@@ -9,10 +9,10 @@ import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 import API from "../../util/API";
 import Container from "../ui/Container";
+import { Bell } from "lucide-react";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
-
   const [profileData, setProfileData] = useState<ProfileType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -37,38 +37,62 @@ const NavbarHome: React.FC = () => {
   useEffect(() => {
     const time = setTimeout(() => {
       handleGetProfile();
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(time);
   }, []);
   return (
-    <Container className="flex justify-around pt-[1rem] pb-[1rem] border-b-1">
-      <Link href="/users/home">
-        <Container className="flex gap-2 justify-center items-center ">
-          <Image src={iconHItam} alt="iconHitam" className="w-[3vw] h-[5vh]" />
-          <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
-        </Container>
-      </Link>
-      <Container className="flex border-2 border-gray-300 rounded-full items-center w-[25vw] justify-between p-5">
-        <input
-          type="text"
-          placeholder="Search"
-          className="outline-none w-full "
-        />
-
-        <Search />
-      </Container>
-      <Link href="/profile">
-        <Container className="flex gap-2 items-center">
-          <Image
-            src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
-            alt="profil"
-            className="rounded-full"
-            width={40}
-            height={35}
+    <Container className="flex justify-around items-center pt-[1rem] pb-[1rem] border-b-1">
+      {isLoading ? (
+        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+      ) : (
+        <Link href="/users/home">
+          <Container className="flex gap-2 justify-center items-center ">
+            <Image
+              src={iconHItam}
+              alt="iconHitam"
+              className="w-[3vw] h-[5vh]"
+            />
+            <h1 className="font-bold text-black text-[2rem]">Kosthub</h1>
+          </Container>
+        </Link>
+      )}
+      {isLoading ? (
+        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+      ) : (
+        <Container className="flex border-2 border-gray-300 rounded-full items-center w-[25vw] justify-between p-5">
+          <input
+            type="text"
+            placeholder="Search"
+            className="outline-none w-full "
           />
-          <h1 className="font-bold">{currentUser?.user.username}</h1>
+
+          <Search />
         </Container>
-      </Link>
+      )}
+      {isLoading ? (
+        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+      ) : (
+        <Container className="flex gap-6 justify-center items-center">
+          <Link href="/">
+            <Bell />
+          </Link>
+
+          <Link href="/profile">
+            <Container className="flex gap-2 items-center">
+              <Image
+                src={
+                  profileData?.fotoProfil ? profileData?.fotoProfil : Profile
+                }
+                alt="profil"
+                className="rounded-full"
+                width={40}
+                height={35}
+              />
+              <h1 className="font-bold">{currentUser?.user.username}</h1>
+            </Container>
+          </Link>
+        </Container>
+      )}
     </Container>
   );
 };

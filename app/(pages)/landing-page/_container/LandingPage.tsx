@@ -24,7 +24,7 @@ const LandingPageChildren: React.FC = () => {
         data-aos="fade-up"
         className="h-screen w-full flex justify-center items-center"
       >
-        <Container className="flex w-full justify-around gap-6">
+        <Container className="flex w-full justify-around p-4">
           <Container className="flex justify-center flex-col">
             <h1 className="font-bold text-[4rem]">Mari Temukan Rumah </h1>
             <h1 className="font-bold text-[4rem]">Terbaik & Ternyaman Anda</h1>

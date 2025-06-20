@@ -1,12 +1,10 @@
 "use client";
 import Container from "@/app/components/ui/Container";
 import { useState, useEffect } from "react";
-import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import ProfileCardOwners from "@/app/components/card/owner/ProfileOwnerCard";
 import SideHomeOwners from "@/app/components/card/owner/SideHome";
 
 const HomeOwnerChildren: React.FC = () => {
-  const { currentUser } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -25,7 +23,7 @@ const HomeOwnerChildren: React.FC = () => {
           </Container>
         </Container>
       ) : (
-        <Container className="w-full h-full">
+        <Container className="w-full h-full relative">
           <Container className="flex w-full">
             <Container className="flex-[1] flex justify-center items-center m-2 w-full">
               <Container className="flex w-full">

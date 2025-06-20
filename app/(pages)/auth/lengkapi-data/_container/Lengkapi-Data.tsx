@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { formLengkapiData } from "@/app/types/form";
 import TextFieldInput from "@/app/components/ui/InputField";
 import Image from "next/image";
-import Icon from "@/public/asset/IconHitam.png";
 import Profile from "@/public/asset/prfilhd.png";
 import ButtonUploads from "@/app/components/ui/ButtonUploads";
 import CustomSelect from "@/app/components/ui/Select";
@@ -16,6 +15,8 @@ import { Provensi } from "@/app/core/data/constants/Provensi";
 import Button from "@/app/components/ui/Button";
 import { ModalProps } from "@/app/types/API";
 import Modal from "@/app/components/modal/Modal";
+import { MedsosData } from "@/app/core/data/appConfig";
+import Link from "next/link";
 
 const LengkapiDataChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -43,8 +44,25 @@ const LengkapiDataChildren: React.FC = () => {
     return redirect;
   };
 
+  const validForm = () => {
+    if (formLengkapiData.role === "-") {
+      return { isValid: true };
+    }
+  };
+
   const handleLengkapiData = async () => {
     const formData = new FormData();
+    const validation = validForm();
+
+    if (!validation?.isValid) {
+      setModalData({
+        icon: "warning",
+        title: "Mohon Isi Role Anda!",
+        deskripsi: "Pilih Role Anda Untuk Melanjutkan",
+        onClose: () => setModalData(null),
+      });
+      return;
+    }
 
     formData.append("username", currentUser?.user.username || "");
 
@@ -101,6 +119,7 @@ const LengkapiDataChildren: React.FC = () => {
   };
 
   const handleRoleChange = (e: SelectChangeEvent) => {
+    console.log("Role:", e.target.value);
     setFormLengkapiData((Prev) => ({
       ...Prev,
       role: e.target.value,
@@ -134,24 +153,9 @@ const LengkapiDataChildren: React.FC = () => {
       ) : (
         <Container as="main" className="w-full h-full">
           {modalData && <Modal {...modalData} />}
-          <Container className="flex justify-center items-center w-full h-full flex-col">
-            <Container className="bg-sky-700 w-full h-full flex justify-center items-center flex-col">
-              <h1 className="font-bold text-[2rem] text-white">
-                Lengkap Data Diri Anda Terlebih Dahulu
-              </h1>
-              <Container className="flex justify-center items-center p-2 gap-2">
-                <Image
-                  src={Icon}
-                  alt="Icon"
-                  width={100}
-                  height={100}
-                  className=" text-white "
-                />
-                <p className="font-bold text-[2rem]">KOSTHUB</p>
-              </Container>
-            </Container>
-            <Container className="flex flex-col p-4 justify-center items-center w-full">
-              <Container className=" flex justify-center items-center flex-col gap-4">
+          <Container className="flex justify-center items-center w-full h-screen flex-col">
+            <Container className="flex flex-col p-4 justify-center items-center w-max">
+              <Container className=" flex justify-center items-center flex-col gap-4 mb-4">
                 <Image
                   alt="Profile"
                   src={Profile}
@@ -201,10 +205,11 @@ const LengkapiDataChildren: React.FC = () => {
                 </Container>
                 <Container className="flex justify-center items-center">
                   <CustomSelect
-                    name="Role"
+                    name="Role *"
                     value={formLengkapiData.role}
                     onChange={(e) => handleRoleChange(e)}
                   >
+                    <MenuItem value="-">-</MenuItem>
                     <MenuItem value="user">Pengguna</MenuItem>
                     <MenuItem value="owner">Pemilik Kos</MenuItem>
                   </CustomSelect>
@@ -228,8 +233,23 @@ const LengkapiDataChildren: React.FC = () => {
               </Container>
             </Container>
             <Container className="flex justify-start items-start w-full p-4">
-              <p className="text-[#fffff]/40">Note:</p>
+              <p className="text-sm italic">
+                Note: Kamu Tidak Wajib Melengkapi Ini Yang Hanya Di Wajibkan:
+                <td />
+                <span className="text-red-400">*Mengisi Role</span>
+              </p>
             </Container>
+
+            {MedsosData.map((item, key) => (
+              <Link
+                key={key}
+                href={item.href}
+                className="gap-4 justify-start w-full flex items-center p-2"
+              >
+                <Image alt="medsos" src={item.image} width={36} height={36} />
+                <p className="text-sm italic">{item.label}</p>
+              </Link>
+            ))}
           </Container>
         </Container>
       )}

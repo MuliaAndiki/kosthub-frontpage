@@ -9,7 +9,7 @@ export type TextFieldType = TextFieldProps & {
 };
 
 export interface ContainerType extends React.HTMLAttributes<HTMLElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
 }
@@ -53,4 +53,8 @@ export interface RatingPrimaryType {
   name: string;
   onChange: (event: React.SyntheticEvent, value: number | null) => void;
   onChangeActive: (event: React.SyntheticEvent, value: number) => void;
+}
+
+export interface PulseType {
+  className: string;
 }
