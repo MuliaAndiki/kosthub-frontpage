@@ -1,4 +1,4 @@
-import EditProfileChildren from "@/app/components/page/profile/edit-profile/EditProfile";
+import EditProfileChildren from "@/app/(pages)/profile/edit-profile/_container/EditProfile";
 export default function EditProfile() {
   return <EditProfileChildren />;
 }

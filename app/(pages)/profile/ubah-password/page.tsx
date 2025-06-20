@@ -1,4 +1,4 @@
-import UbahPasswordChildren from "@/app/components/page/profile/ubah-password/UbahPassword";
+import UbahPasswordChildren from "@/app/(pages)/profile/ubah-password/_container/UbahPassword";
 
 export default function UbahPassword() {
   return <UbahPasswordChildren />;

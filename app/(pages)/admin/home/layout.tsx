@@ -1,8 +1,15 @@
-import HomeAdminLayoutChildren from "@/app/components/page/admin/home/layout";
+import Container from "@/app/components/ui/Container";
+import NavbarHome from "@/app/components/navbar/NavbarHome";
+
 export default function HomeAdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <HomeAdminLayoutChildren>{children}</HomeAdminLayoutChildren>;
+  return (
+    <Container>
+      <NavbarHome />
+      {children}
+    </Container>
+  );
 }

@@ -1,4 +1,4 @@
-import HomeChildren from "@/app/components/page/users/home/HomeUser";
+import HomeChildren from "@/app/(pages)/users/home/_container/HomeUser";
 
 export default function Home() {
   return <HomeChildren />;
