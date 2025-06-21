@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 export type TextFieldType = TextFieldProps & {
   name: string;
-  value: string;
+  value: any;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

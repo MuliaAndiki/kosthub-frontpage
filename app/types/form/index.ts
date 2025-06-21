@@ -56,16 +56,14 @@ export interface formLengkapiData {
   bio: string;
 }
 
+interface fasilitas {
+  nama: string;
+  jumlah: string;
+}
 export interface formCreateKos {
-  id_kos: number;
   nama_kos: string;
   alamat: string;
-  fasilitas: [
-    {
-      nama: string;
-      jumlah: string;
-    }
-  ];
+  fasilitas: fasilitas[];
   harga_perbulan: number;
   harga_pertahun: number;
   tipe_kos: string;

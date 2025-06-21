@@ -25,7 +25,7 @@ const NabvarItem: React.FC = () => {
 
   return (
     <Container className="flex justify-center mt-2">
-      <Container className="w-[90vw] bg-[#0C106B] rounded-md h-[7vh] flex justify-around items-center">
+      <Container className="w-[90%] bg-[#0C106B] rounded-md h-18 flex justify-around items-center p-2">
         <Container className="flex gap-2 items-center justify-center">
           <Image
             src={icon}
