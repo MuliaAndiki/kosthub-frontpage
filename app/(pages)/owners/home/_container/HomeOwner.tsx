@@ -24,6 +24,11 @@ const HomeOwnerChildren: React.FC = () => {
         </Container>
       ) : (
         <Container className="w-full h-full relative">
+          <Container className="w-full flex justify-start items-start p-4">
+            <h1 className="text-lg font-bold text-[clamp(1rem,4vw,2rem)]">
+              Dasboard
+            </h1>
+          </Container>
           <Container className="flex w-full">
             <Container className="flex-[1] flex justify-center items-center m-2 w-full">
               <Container className="flex w-full">

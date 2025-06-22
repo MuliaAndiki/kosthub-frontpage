@@ -7,7 +7,7 @@ export default function BikinKosLayoutChildren({
   children: React.ReactNode;
 }) {
   return (
-    <Container className="flex min-h-screen w-full relative">
+    <Container className="flex min-h-full w-full relative">
       <Container className="absolute top-0 w-full">
         <NabvarItem />
       </Container>

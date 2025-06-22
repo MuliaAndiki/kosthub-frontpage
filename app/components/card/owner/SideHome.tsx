@@ -54,7 +54,7 @@ const SideHomeOwners = () => {
         ) : (
           <Container className="gap-2 w-full h-full ">
             {MedsosData.map((items, key) => (
-              <Container className="flex">
+              <Container className="flex" key={key}>
                 <Link
                   href={items.href}
                   className="gap-4 items-center justify-center flex py-3"

@@ -10,7 +10,7 @@ import {
   RouteStaticProfile,
   RouteStaticLanding,
 } from "../../types/appConfig";
-import { User, File, HandCoins, Bookmark, KeyRound } from "lucide-react";
+import { User, File, HandCoins, Bookmark, KeyRound, Bell } from "lucide-react";
 
 export const appFooterDatas: appFooterType[] = [
   {
@@ -130,6 +130,11 @@ export const RouteStaticProfileData: RouteStaticProfile[] = [
     href: "/profile/ubah-password",
     icon: KeyRound,
     label: "Ubah Password",
+  },
+  {
+    href: "/profile/notifikasi",
+    icon: Bell,
+    label: "Notifikasi",
   },
 ];
 
