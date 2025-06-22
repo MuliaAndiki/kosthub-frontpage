@@ -64,11 +64,14 @@ export interface formCreateKos {
   nama_kos: string;
   alamat: string;
   fasilitas: fasilitas[];
-  harga_perbulan: number;
-  harga_pertahun: number;
+  harga_perbulan: number | null;
+  harga_pertahun: number | null;
+  image: {
+    thumbnail: File | null;
+    gallery: File[] | null;
+  };
   tipe_kos: string;
-  thumbnail: File | null;
-  gallery: File | null;
+
   kontak: {
     email: string;
     nomor: string;

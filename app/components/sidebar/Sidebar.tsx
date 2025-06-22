@@ -11,6 +11,7 @@ import ButtonPopUp from "../ui/ButtonPopup";
 import Button from "../ui/Button";
 import { RouteStaticProfileData } from "../../core/data/appConfig";
 import { useAppSelector } from "../../hooks/dispatch/dispatch";
+import { motion } from "framer-motion";
 
 const Sidebar: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -46,7 +47,17 @@ const Sidebar: React.FC = () => {
         <Container className="">
           {handleFilterMenu.map((items, key) => (
             <Link key={key} href={items.href} className="flex gap-4">
-              <items.icon className="w-5 h-5" />
+              <motion.div
+                whileHover={{
+                  x: [0, -1, 1, -1, 1, 0],
+                  y: [0, -1, 1, -1, 1, 0],
+                }}
+                transition={{ duration: 0.3 }}
+                className="w-5 h-5 cursor-pointer "
+              >
+                <items.icon />
+              </motion.div>
+
               <span className="font-bold text-lg hover:text-blue-400 duration-[0.3s]">
                 {items.label}
               </span>
