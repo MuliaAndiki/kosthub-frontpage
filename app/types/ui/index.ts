@@ -34,6 +34,7 @@ export interface SelectType {
   value: string;
   onChange: (e: SelectChangeEvent) => void;
   children: React.ReactNode;
+  className?: string;
 }
 
 export interface ButtonUploadsType {

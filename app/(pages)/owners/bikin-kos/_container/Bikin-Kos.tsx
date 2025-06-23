@@ -128,7 +128,7 @@ const BikinKosChildren: React.FC = () => {
   const handleAlamatChange = (e: SelectChangeEvent) => {
     setFormCreateKos((prev) => {
       const updated = { ...prev, alamat: e.target.value };
-      console.log("✅ Alamat updated:", updated); // 🔍 Log hasil update
+
       return updated;
     });
   };
@@ -136,7 +136,7 @@ const BikinKosChildren: React.FC = () => {
   const handleTipeKosChange = (e: SelectChangeEvent) => {
     setFormCreateKos((prev) => {
       const updated = { ...prev, tipe_kos: e.target.value };
-      console.log("✅ Tipe Kos updated:", updated); // 🔍 Log hasil update
+
       return updated;
     });
   };
@@ -145,7 +145,7 @@ const BikinKosChildren: React.FC = () => {
     console.log("Triger Thumbnail");
     if (e.target.files && e.target.files.length > 0) {
       const files = e.target.files[0];
-      console.log("Thumnail", files);
+
       setFormCreateKos((prev) => ({
         ...prev,
         image: { ...prev.image, thumbnail: files },
@@ -157,7 +157,6 @@ const BikinKosChildren: React.FC = () => {
     console.log("Trigger Gallery");
     if (e.target.files && e.target.files.length > 0) {
       const files = Array.from(e.target.files);
-      console.log("Gallery Files", files);
 
       setFormCreateKos((prev) => ({
         ...prev,
@@ -170,30 +169,28 @@ const BikinKosChildren: React.FC = () => {
   };
 
   return (
-    <Container className="w-full h-screen" as="main">
+    <Container className="w-full h-full p-2 md:p-10" as="main">
       {modalData && <Modal {...modalData} />}
-      <Container className="flex justify-center items-center w-full h-full flex-col relative">
-        <Container className="absolute top-50 inset-0 left-170">
-          <Image alt="Icon" src={Icon} width={150} height={150} className="" />
-        </Container>
-        <Container className="flex justify-center items-center gap-4">
-          <h1 className="text-[clamp(1rem,4vw,2rem)] font-bold">
+      <Container className="flex justify-center items-center w-full h-full flex-col translate-y-16">
+        <Container className="flex justify-center items-center gap-4 text-center px-4 flex-col">
+          <Image alt="Icon" src={Icon} width={100} height={100} />
+          <h1 className="text-[clamp(1rem,4vw,2.5rem)] font-bold leading-tight">
             Mulai Daftarkan Kost Kamu Di KOSTHUB!
           </h1>
         </Container>
-        <Container className=" w-full">
-          <Container className="grid grid-cols-2 grid-rows-1 gap-20 mt-6 ">
-            <Container className="flex justify-center items-center flex-col gap-4">
+
+        <Container className="w-full max-w-6xl mt-8">
+          <Container className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <Container className="flex flex-col gap-4">
               <TextFieldInput
                 name={formCreateKos.nama_kos}
                 label="Nama Kos"
                 value={formCreateKos.nama_kos}
                 onChange={(e) =>
-                  setFormCreateKos((prev) => {
-                    console.log(e.target.value);
-                    const newObj = { ...prev, nama_kos: e.target.value };
-                    return newObj;
-                  })
+                  setFormCreateKos((prev) => ({
+                    ...prev,
+                    nama_kos: e.target.value,
+                  }))
                 }
               />
 
@@ -203,47 +200,43 @@ const BikinKosChildren: React.FC = () => {
                 label="Harga Perbulan"
                 value={formCreateKos.harga_perbulan ?? ""}
                 onChange={(e) =>
-                  setFormCreateKos((prev) => {
-                    console.log(e.target.value);
-                    const newObj = {
-                      ...prev,
-                      harga_perbulan:
-                        e.target.value === "" ? null : Number(e.target.value),
-                    };
-                    return newObj;
-                  })
+                  setFormCreateKos((prev) => ({
+                    ...prev,
+                    harga_perbulan:
+                      e.target.value === "" ? null : Number(e.target.value),
+                  }))
                 }
               />
-              <Container className="w-[32.5%] flex justify-center items-center">
-                <CustomSelect
-                  name="Tipe Kos"
-                  value={formCreateKos.tipe_kos}
-                  onChange={(e) => handleTipeKosChange(e)}
-                >
-                  <MenuItem value="-"></MenuItem>
-                  {TipeKos.map((items) => (
-                    <MenuItem key={items} value={items}>
-                      {items}
-                    </MenuItem>
-                  ))}
-                </CustomSelect>
-              </Container>
+
+              <CustomSelect
+                name="Tipe Kos"
+                value={formCreateKos.tipe_kos}
+                onChange={handleTipeKosChange}
+                className="w-full"
+              >
+                <MenuItem value="-"></MenuItem>
+                {TipeKos.map((items) => (
+                  <MenuItem key={items} value={items}>
+                    {items}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
             </Container>
-            <Container className="flex justify-center items-center flex-col gap-4">
-              <Container className="w-[32.5%] flex justify-center items-center">
-                <CustomSelect
-                  name="Alamat"
-                  value={formCreateKos.alamat}
-                  onChange={(e) => handleAlamatChange(e)}
-                >
-                  <MenuItem value="-"></MenuItem>
-                  {Provensi.map((items) => (
-                    <MenuItem key={items} value={items}>
-                      {items}
-                    </MenuItem>
-                  ))}
-                </CustomSelect>
-              </Container>
+
+            <Container className="flex flex-col gap-4">
+              <CustomSelect
+                name="Alamat"
+                value={formCreateKos.alamat}
+                onChange={handleAlamatChange}
+                className="w-full"
+              >
+                <MenuItem value="-"></MenuItem>
+                {Provensi.map((items) => (
+                  <MenuItem key={items} value={items}>
+                    {items}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
 
               <TextFieldInput
                 name="Harga Pertahun"
@@ -251,131 +244,107 @@ const BikinKosChildren: React.FC = () => {
                 type="number"
                 value={formCreateKos.harga_pertahun ?? ""}
                 onChange={(e) =>
-                  setFormCreateKos((prev) => {
-                    console.log(e.target.value);
-                    const newObj = {
-                      ...prev,
-                      harga_pertahun:
-                        e.target.value === "" ? null : Number(e.target.value),
-                    };
-                    return newObj;
-                  })
+                  setFormCreateKos((prev) => ({
+                    ...prev,
+                    harga_pertahun:
+                      e.target.value === "" ? null : Number(e.target.value),
+                  }))
                 }
               />
+
               <TextFieldInput
                 name="Kontak"
                 label="Email"
                 type="email"
                 value={formCreateKos.kontak.email}
                 onChange={(e) =>
-                  setFormCreateKos((prev) => {
-                    console.log(e.target.value);
-                    const newObj = {
-                      ...prev,
-                      kontak: { ...prev.kontak, email: e.target.value },
-                    };
-                    return newObj;
-                  })
+                  setFormCreateKos((prev) => ({
+                    ...prev,
+                    kontak: { ...prev.kontak, email: e.target.value },
+                  }))
                 }
               />
             </Container>
           </Container>
         </Container>
 
-        <Container className=" w-full m-2">
-          <Container className="flex justify-center items-center flex-col gap-4">
-            <TextFieldInput
-              type="text"
-              name="NomorHp"
-              className="w-full max-w-lg"
-              label="NomorHp"
-              value={formCreateKos.kontak.nomor}
-              onChange={(e) =>
-                setFormCreateKos((prev) => {
-                  console.log(e.target.value);
-                  const newObj = {
-                    ...prev,
-                    kontak: { ...prev.kontak, nomor: e.target.value },
-                  };
-                  return newObj;
-                })
-              }
-            />
-            <Container className="w-full max-w-lg flex gap-8 justify-center items-center">
-              <ButtonUploads
-                onChange={(e) => handleThumbnailChange(e)}
-                multiple={false}
-                accept="image/*"
-              >
-                Foto Depan Kost
-              </ButtonUploads>
+        <Container className="w-full max-w-6xl mt-8 px-4 flex flex-col items-center gap-6">
+          <TextFieldInput
+            type="text"
+            name="NomorHp"
+            className="w-full"
+            label="Nomor Hp"
+            value={formCreateKos.kontak.nomor}
+            onChange={(e) =>
+              setFormCreateKos((prev) => ({
+                ...prev,
+                kontak: { ...prev.kontak, nomor: e.target.value },
+              }))
+            }
+          />
 
-              <ButtonUploads
-                onChange={(e) => handleGalleryChange(e)}
-                multiple={true}
-                accept="image/*"
-              >
-                Foto Foto Kost
-              </ButtonUploads>
-            </Container>
+          <Container className="flex flex-col md:flex-row justify-center items-center gap-6 w-full">
+            <ButtonUploads
+              onChange={handleThumbnailChange}
+              multiple={false}
+              accept="image/*"
+            >
+              Foto Depan Kost
+            </ButtonUploads>
+
+            <ButtonUploads
+              onChange={handleGalleryChange}
+              multiple={true}
+              accept="image/*"
+            >
+              Foto Foto Kost
+            </ButtonUploads>
           </Container>
         </Container>
-        <Container className=" mt-4 w-full items-center justify-center flex flex-col gap-6 ">
+
+        <Container className="mt-6 w-full max-w-6xl flex flex-col gap-6 px-4">
           {formCreateKos.fasilitas.map((item, key) => (
             <Container
-              className=" flex justify-center items-center w-full flex-col "
               key={key}
+              className="flex flex-col md:flex-row gap-4 items-center"
             >
-              <Container className="flex w-full gap-6 flex-col translate-x-15">
-                <Container className="flex justify-center items-center w-full gap-6 ">
-                  <TextFieldInput
-                    name={`fasilitas-${key}-nama`}
-                    value={item.nama}
-                    label="Nama Fasilitas"
-                    className="w-full max-w-lg"
-                    type="text"
-                    onChange={(e) => {
-                      const newObj = [...formCreateKos.fasilitas];
-                      newObj[key].nama = e.target.value;
-                      console.log(e.target.value);
-                      setFormCreateKos((prev) => ({
-                        ...prev,
-                        fasilitas: newObj,
-                      }));
-                    }}
-                  />
+              <TextFieldInput
+                name={`fasilitas-${key}-nama`}
+                value={item.nama}
+                label="Nama Fasilitas"
+                className="w-full"
+                type="text"
+                onChange={(e) => {
+                  const newObj = [...formCreateKos.fasilitas];
+                  newObj[key].nama = e.target.value;
+                  setFormCreateKos((prev) => ({ ...prev, fasilitas: newObj }));
+                }}
+              />
 
-                  <TextFieldInput
-                    name={`fasilitas-${key}-jumlah`}
-                    value={item.jumlah}
-                    label="Jumlah Fasilitas"
-                    className="w-full max-w-lg"
-                    type="text"
-                    onChange={(e) => {
-                      const newObj = [...formCreateKos.fasilitas];
-                      newObj[key].jumlah = e.target.value;
-                      console.log(e.target.value);
-                      setFormCreateKos((prev) => ({
-                        ...prev,
-                        fasilitas: newObj,
-                      }));
-                    }}
-                  />
+              <TextFieldInput
+                name={`fasilitas-${key}-jumlah`}
+                value={item.jumlah}
+                label="Jumlah Fasilitas"
+                className="w-full"
+                type="text"
+                onChange={(e) => {
+                  const newObj = [...formCreateKos.fasilitas];
+                  newObj[key].jumlah = e.target.value;
+                  setFormCreateKos((prev) => ({ ...prev, fasilitas: newObj }));
+                }}
+              />
 
-                  <Button onClick={() => handleHapusColumFasilitas(key)}>
-                    <Trash2 />
-                  </Button>
-                </Container>
-              </Container>
+              <Button onClick={() => handleHapusColumFasilitas(key)}>
+                <Trash2 />
+              </Button>
             </Container>
           ))}
         </Container>
-        <Container className="flex gap-6">
-          <Button onClick={() => handleCreateColumFalitas()}>
+
+        <Container className="flex gap-4 mt-6">
+          <Button onClick={handleCreateColumFalitas}>
             <Plus />
           </Button>
-        </Container>
-        <Container>
           <Button onClick={() => handleCreateKos()}>Buat Kost</Button>
         </Container>
       </Container>
