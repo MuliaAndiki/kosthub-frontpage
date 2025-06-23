@@ -8,7 +8,7 @@ export default function LengkapiData({
 }) {
   return (
     <Container>
-      <Container className="absolute inset-0">
+      <Container className="">
         <NabvarItem />
       </Container>
       {children}

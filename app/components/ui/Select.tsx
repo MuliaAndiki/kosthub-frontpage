@@ -8,7 +8,7 @@ export default function CustomSelect({
   onChange,
   value,
   children,
-
+  className,
   ...props
 }: SelectType) {
   return (
@@ -18,6 +18,7 @@ export default function CustomSelect({
       </InputLabel>
       <Select
         labelId={`${name}-label`}
+        className={className}
         id={`${name}-select`}
         value={value}
         onChange={onChange}
