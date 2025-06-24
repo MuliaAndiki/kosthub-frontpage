@@ -9,12 +9,26 @@ import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 import API from "../../util/API";
 import Container from "../ui/Container";
-import { Bell } from "lucide-react";
+import { Info } from "lucide-react";
+import Pulse from "../ui/pulse";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
   const [profileData, setProfileData] = useState<ProfileType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const handleRoleRedirect = () => {
+    const baseUrl = "/information";
+    let redirect = "/";
+    if (currentUser?.user.role === "user") {
+      redirect = `/users${baseUrl}`;
+    } else if (currentUser?.user.role === "owner") {
+      redirect = `/owners${baseUrl}`;
+    } else if (currentUser?.user.role === "admin") {
+      redirect = `/admin${baseUrl}`;
+    }
+    return redirect;
+  };
 
   const handleGetProfile = async () => {
     try {
@@ -43,7 +57,7 @@ const NavbarHome: React.FC = () => {
   return (
     <Container className="flex justify-around items-center pt-[1rem] pb-[1rem] border-b-1">
       {isLoading ? (
-        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+        <Pulse className="w-32 h-6  rounded mt-4 " />
       ) : (
         <Link href="/users/home">
           <Container className="flex gap-2 justify-center items-center ">
@@ -57,7 +71,7 @@ const NavbarHome: React.FC = () => {
         </Link>
       )}
       {isLoading ? (
-        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+        <Pulse className="w-32 h-6  rounded mt-4 " />
       ) : (
         <Container className="flex border-2 border-gray-300 rounded-full items-center w-[25vw] justify-between p-5">
           <input
@@ -70,11 +84,11 @@ const NavbarHome: React.FC = () => {
         </Container>
       )}
       {isLoading ? (
-        <Container className="w-32 h-6 bg-gray-300 rounded mt-4 animate-pulse" />
+        <Pulse className="w-32 h-6  rounded mt-4 " />
       ) : (
         <Container className="flex gap-6 justify-center items-center">
-          <Link href="/">
-            <Bell />
+          <Link href={handleRoleRedirect()}>
+            <Info />
           </Link>
 
           <Link href="/profile">

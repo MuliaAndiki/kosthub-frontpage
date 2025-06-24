@@ -1,3 +1,5 @@
+import { itemsType } from "../API";
+
 export interface ourServicesType {
   image: string;
   title: string;
@@ -56,4 +58,10 @@ export interface ownerProfileConfig {
     label?: string;
     datas?: string;
   }[];
+}
+
+export interface NotifikasiConfig {
+  field: string;
+  label: string;
+  value?: (item: itemsType) => React.ReactNode;
 }

@@ -4,13 +4,53 @@ import GogleIcon from "@/public/asset/GogleIcon.png";
 import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
-import { MedsosConfig } from "@/app/types/components/index";
+import { MedsosConfig, NotifikasiConfig } from "@/app/types/components/index";
 import {
   RouteStatic,
   RouteStaticProfile,
   RouteStaticLanding,
 } from "../../types/appConfig";
 import { User, File, HandCoins, Bookmark, KeyRound, Bell } from "lucide-react";
+
+export const NotifikasiConfigDatas: NotifikasiConfig[] = [
+  {
+    field: "id",
+    label: "No :",
+  },
+  {
+    field: "nama_kos",
+    label: "Nama Kos :",
+  },
+  {
+    field: "kontak",
+    label: "Kontak :",
+    value: (item) => item?.kontak.nomor,
+  },
+  {
+    field: "alamat",
+    label: "Alamat :",
+  },
+  {
+    field: "harga_perbulan",
+    label: "Harga Perbulan :",
+  },
+  {
+    field: "harga_pertahun",
+    label: "Harga Pertahun :",
+  },
+  {
+    field: "tipe_kos",
+    label: "Tipe Kos :",
+  },
+  {
+    field: "status",
+    label: "Status :",
+  },
+  {
+    field: "all",
+    label: "Selanjutnya :",
+  },
+];
 
 export const appFooterDatas: appFooterType[] = [
   {

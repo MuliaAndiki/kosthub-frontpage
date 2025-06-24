@@ -8,7 +8,7 @@ export default function LengkapiData({
 }) {
   return (
     <Container>
-      <Container className="">
+      <Container>
         <NabvarItem />
       </Container>
       {children}
