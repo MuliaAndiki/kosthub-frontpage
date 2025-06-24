@@ -17,6 +17,7 @@ export interface userType {
 }
 
 export interface itemsType {
+  _id: string;
   nama_kos: string;
   slug: string;
   alamat: string;
@@ -33,6 +34,7 @@ export interface itemsType {
     nomor: string;
   };
   avgBintang: any;
+  status: string;
   ulasan: {
     nama: string;
     bintang: number;
@@ -45,6 +47,7 @@ export interface itemsType {
     gallery: any[];
   };
   deskripsi: string;
+  tipe_kos: string;
 }
 
 export interface reservasiType {

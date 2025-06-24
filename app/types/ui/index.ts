@@ -59,3 +59,9 @@ export interface RatingPrimaryType {
 export interface PulseType {
   className: string;
 }
+
+export interface CostumTableProps {
+  columns: any[];
+  fetchRows: (params: any) => Promise<any>;
+  height?: number;
+}
