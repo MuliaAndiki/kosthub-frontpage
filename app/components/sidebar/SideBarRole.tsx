@@ -15,6 +15,7 @@ import ButtonPopUp from "../ui/ButtonPopup";
 import { useRouter } from "next/navigation";
 import icon from "@/public/asset/IconHitam.png";
 import Modal from "../modal/Modal";
+import Pulse from "../ui/pulse";
 
 const SideBarRole: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -79,42 +80,63 @@ const SideBarRole: React.FC = () => {
 
   return (
     <Container as="main" className="w-full h-full">
-      <Container className="flex justify-center items-center w-full  bg-[#0C106B]">
+      <Container className="flex justify-center items-center w-full  bg-[#0C106B] rounded-r-sm">
         <Container className="w-full flex justify-center items-center p-2 flex-col">
-          <h1 className="text-lg font-bold text-[clamp(1rem,4vw,2rem)] text-white">
-            Dasboard
-          </h1>
+          {isLoading ? (
+            <Pulse className="w-32 h-10.5 rounded-md mt-2" />
+          ) : (
+            <h1 className="text-lg font-bold text-[clamp(1rem,4vw,2rem)] text-white">
+              Dasboard
+            </h1>
+          )}
+          {isLoading ? (
+            <Pulse className="w-32 h-10.5 rounded-md mt-2 " />
+          ) : (
+            <Image
+              src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
+              alt="Profile"
+              width={100}
+              height={100}
+              className="rounded-full"
+            />
+          )}
+          {isLoading ? (
+            <Pulse className="w-32 h-10.5 rounded-md mt-2" />
+          ) : (
+            <p className="text-lg text-white font-semibold">
+              {profileData?.username}
+            </p>
+          )}
 
-          <Image
-            src={profileData?.fotoProfil ? profileData?.fotoProfil : Profile}
-            alt="Profile"
-            width={100}
-            height={100}
-            className="rounded-full"
-          />
-          <p className="text-lg text-white font-semibold">
-            {profileData?.username}
-          </p>
           <Container className="h-full flex flex-col justify-start w-full">
             {modalData && <Modal {...modalData} />}
+
             <Container className="flex flex-col justify-between h-full items-start w-full ">
               {handleFilter.map((items, key) => (
                 <Link href={items.href} key={key} className="w-full">
-                  <Container className="cursor-pointer  text-white w-full gap-4 flex my-2">
-                    <Container className="scale-105">
-                      <items.icon />
-                    </Container>
+                  {isLoading ? (
+                    <Pulse className="w-48 h-10.5 rounded-md mt-2 " />
+                  ) : (
+                    <Container className="cursor-pointer  text-white w-full gap-4 flex my-2">
+                      <Container className="scale-105">
+                        <items.icon />
+                      </Container>
 
-                    <span className="text-1xl">{items.label}</span>
-                  </Container>
+                      <span className="text-1xl">{items.label}</span>
+                    </Container>
+                  )}
                 </Link>
               ))}
             </Container>
             <Container className="w-full flex justify-center items-center">
-              <Button onClick={() => setOpenPopUp("Keluar")}>
-                <DoorClosed size={24} />
-                <span className="font-bold text-2xl">Keluar</span>
-              </Button>
+              {isLoading ? (
+                <Pulse className="w-48 h-10.5 rounded-md mt-2 " />
+              ) : (
+                <Button onClick={() => setOpenPopUp("Keluar")}>
+                  <DoorClosed size={24} />
+                  <span className="font-bold text-2xl">Keluar</span>
+                </Button>
+              )}
 
               <PopUp
                 isOpen={openPopUp === "Keluar"}

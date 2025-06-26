@@ -1,4 +1,4 @@
-import { itemsType } from "../API";
+import { itemsType, reservasiType } from "../API";
 
 export interface ourServicesType {
   image: string;
@@ -64,4 +64,10 @@ export interface NotifikasiConfig {
   field: string;
   label: string;
   value?: (item: itemsType) => React.ReactNode;
+}
+
+export interface PenyewaanConfig {
+  field: string;
+  label: string;
+  value?: (item: reservasiType) => React.ReactNode;
 }
