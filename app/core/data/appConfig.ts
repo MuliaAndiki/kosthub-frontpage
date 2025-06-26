@@ -5,7 +5,11 @@ import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
 
-import { MedsosConfig, NotifikasiConfig } from "@/app/types/components/index";
+import {
+  MedsosConfig,
+  NotifikasiConfig,
+  PenyewaanConfig,
+} from "@/app/types/components/index";
 import {
   RouteStatic,
   RouteStaticProfile,
@@ -59,6 +63,25 @@ export const NotifikasiConfigDatas: NotifikasiConfig[] = [
   {
     field: "all",
     label: "Selanjutnya :",
+  },
+];
+
+export const PenyewaanConfigDatas: PenyewaanConfig[] = [
+  {
+    field: "nama_kos",
+    label: "Nama Kost",
+  },
+  {
+    field: "createdAt",
+    label: "Tanggal",
+  },
+  {
+    field: "metode_pembayaran",
+    label: "Metode Pembayaran",
+  },
+  {
+    field: "status",
+    label: "Status",
   },
 ];
 

@@ -60,6 +60,7 @@ export interface reservasiType {
   tanggal_lahir: string;
   email: string;
   kontrak: string;
+  status: string;
   bukti_pembayaran: string;
   createdAt: string;
   updatedAt: string;

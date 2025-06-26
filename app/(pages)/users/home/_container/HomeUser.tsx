@@ -82,30 +82,7 @@ const HomeUserChildren: React.FC = () => {
         </Container>
       ) : (
         <Container className="w-screen h-full my-4">
-          <Container className="flex justify-around">
-            <Container className="flex w-full justify-around gap-[60rem]">
-              <Container className="flex space-x-4 ">
-                <ButtonPrimary>All</ButtonPrimary>
-                <ButtonPrimary>Top Kost</ButtonPrimary>
-              </Container>
-              <Container className="flex space-x-4">
-                <Container className=" border-gray-300 rounded-sm flex items-center space-x-2 p-1">
-                  <Funnel />
-                  <h1 className="">Filter</h1>
-                  {/* <CustomSelect name="" onChange={} >
-                    <MenuItem value="" className="text-black font-bold">
-                      Pilih Filter
-                    </MenuItem>
-                    {Filter.map((e) => (
-                      <MenuItem key={e} value={e}>
-                        {e}
-                      </MenuItem>
-                    ))}
-                  </CustomSelect> */}
-                </Container>
-              </Container>
-            </Container>
-          </Container>
+          <Container className="flex justify-around"></Container>
           <Container className="w-full h-full ">
             <Container className=" flex justify-center items-center my-8">
               <h1 className="font-bold text-[3rem]">
