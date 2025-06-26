@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import { store } from "../store/stores";
 
 const API = axios.create({
-  baseURL: "https://kosthub-backend.vercel.app",
+  baseURL: process.env.NEXT_PUBLIC_API_PUBLIC_ID,
 });
 
 API.interceptors.request.use(

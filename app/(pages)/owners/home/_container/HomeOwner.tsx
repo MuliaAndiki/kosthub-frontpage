@@ -3,6 +3,7 @@ import Container from "@/app/components/ui/Container";
 import { useState, useEffect } from "react";
 import ProfileCardOwners from "@/app/components/card/owner/ProfileOwnerCard";
 import SideHomeOwners from "@/app/components/card/owner/SideHome";
+import ChartOwners from "@/app/components/card/owner/Chart";
 
 const HomeOwnerChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,7 +15,7 @@ const HomeOwnerChildren: React.FC = () => {
     return () => clearTimeout(time);
   }, []);
   return (
-    <Container as="main" className="w-full h-screen">
+    <Container as="main" className="w-full min-h-full">
       {isLoading ? (
         <Container className="flex-col ">
           <Container className="flex justify-center items-center h-screen w-full gap-2">
@@ -24,11 +25,6 @@ const HomeOwnerChildren: React.FC = () => {
         </Container>
       ) : (
         <Container className="w-full h-full relative">
-          <Container className="w-full flex justify-start items-start p-4">
-            <h1 className="text-lg font-bold text-[clamp(1rem,4vw,2rem)]">
-              Dasboard
-            </h1>
-          </Container>
           <Container className="flex w-full">
             <Container className="flex-[1] flex justify-center items-center m-2 w-full">
               <Container className="flex w-full">
@@ -38,6 +34,9 @@ const HomeOwnerChildren: React.FC = () => {
             <Container className="flex-[2] items-center justify-center flex m-2">
               <SideHomeOwners />
             </Container>
+          </Container>
+          <Container className="w-full border h-full">
+            <ChartOwners />
           </Container>
         </Container>
       )}

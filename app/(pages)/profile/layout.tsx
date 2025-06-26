@@ -2,7 +2,7 @@
 
 import NavbarProfil from "@/app/components/navbar/NavbarProfil";
 import Container from "@/app/components/ui/Container";
-import Sidebar from "@/app/components/sidebar/Sidebar";
+import Sidebar from "@/app/components/sidebar/SidebarProfile";
 
 export default function ProfileLayout({
   children,
@@ -16,7 +16,7 @@ export default function ProfileLayout({
       </Container>
 
       <Container className="flex flex-1 pt-[6rem] w-full">
-        <Container className="hidden md:block w-64  border-r rounded-r-lg min-h-[90%]">
+        <Container className="hidden md:block w-64  border-r min-h-[90%]">
           <Sidebar />
         </Container>
 

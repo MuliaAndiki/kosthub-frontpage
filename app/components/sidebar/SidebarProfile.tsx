@@ -23,6 +23,8 @@ const Sidebar: React.FC = () => {
     "/profile/data-kost",
     "/profile/simpan-kost",
     "/profile/penyewaan",
+    "/information",
+    "/profile/ubah-password",
   ];
 
   const handleFilterMenu = RouteStaticProfileData.filter((item) => {
