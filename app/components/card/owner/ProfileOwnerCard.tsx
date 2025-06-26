@@ -23,7 +23,7 @@ const ProfileCardOwners: React.FC = () => {
   return (
     <Container className="rounded-lg flex w-full gap-4 shadow-xl/30 p-4">
       <Container className="flex-[1.2] p-2 flex">
-        <Container className="flex flex-col w-full justify-center items-center">
+        <Container className="flex flex-col w-full justify-center items-center gap-4">
           {ownerProfileConfigData.map((items, key) => (
             <Container
               key={key}
@@ -39,14 +39,6 @@ const ProfileCardOwners: React.FC = () => {
                   height={155}
                   className="rounded-full object-cover"
                 />
-              )}
-
-              {isLoading ? (
-                <Pulse className="w-32 h-6 rounded mt-4 " />
-              ) : (
-                <p className=" text-sm font-semibold italic text-[clamp(1rem,4vw,2rem)] mt-4">
-                  {items.foto.username}
-                </p>
               )}
             </Container>
           ))}
@@ -68,7 +60,7 @@ const ProfileCardOwners: React.FC = () => {
                 {isLoading ? (
                   <Container className="w-3/4 h-5 bg-gray-300 rounded animate-pulse mb-2" />
                 ) : (
-                  <h1 className="text-sm italic font-semibold text-[clamp(1rem,4vw,1.3rem)]">
+                  <h1 className="italic font-semibold text-2xl">
                     {items.label} {items.datas}
                   </h1>
                 )}

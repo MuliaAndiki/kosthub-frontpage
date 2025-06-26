@@ -74,58 +74,15 @@ const ProfilChildren: React.FC = () => {
             )}
 
             <Container className=" flex justify-center items-center">
-              <Container className="">
-                <Container className="grid grid-cols-1 grid-rows-2 gap-2">
-                  <Container className="flex items-center">
-                    {isLoading ? (
-                      <Pulse className="w-32 h-6 rounded mt-4" />
-                    ) : (
-                      <Container className="mx-2">
-                        <label htmlFor="Username">Nama :</label> <br />
-                        <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
-                          {profileData?.fullname}
-                        </h1>
-                      </Container>
-                    )}
-
-                    {isLoading ? (
-                      <Pulse className="w-32 h-6 rounded mt-4" />
-                    ) : (
-                      <Container className="mx-2">
-                        <label htmlFor="Tanggal Lahir"> Tanggal Lahir :</label>
-                        <br />
-                        <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
-                          {profileData?.tanggal_lahir}
-                        </h1>
-                      </Container>
-                    )}
-                  </Container>
-                  {isLoading ? (
-                    <Pulse className="w-32 h-6 rounded mt-4" />
-                  ) : (
-                    <Container className="flex items-center">
-                      <Container className="mx-2">
-                        <label htmlFor="Username">Nomor HP:</label> <br />
-                        <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
-                          {profileData?.nomor}
-                        </h1>
-                      </Container>
-                      <Container className="mx-2">
-                        <label htmlFor="Gender"> Gender :</label> <br />
-                        <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
-                          {getGenderString(profileData?.gender)}
-                        </h1>
-                      </Container>
-                    </Container>
-                  )}
-
+              <Container className="grid grid-cols-1 grid-rows-2 gap-2">
+                <Container className="flex items-center">
                   {isLoading ? (
                     <Pulse className="w-32 h-6 rounded mt-4" />
                   ) : (
                     <Container className="mx-2">
-                      <label htmlFor="Email">Email :</label> <br />
-                      <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
-                        {profileData?.email}
+                      <label htmlFor="Username">Nama :</label> <br />
+                      <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
+                        {profileData?.fullname}
                       </h1>
                     </Container>
                   )}
@@ -134,41 +91,82 @@ const ProfilChildren: React.FC = () => {
                     <Pulse className="w-32 h-6 rounded mt-4" />
                   ) : (
                     <Container className="mx-2">
-                      <label htmlFor="Alamat">Alamat :</label> <br />
-                      <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
-                        {profileData?.alamat}
-                      </h1>
-                    </Container>
-                  )}
-
-                  {isLoading ? (
-                    <Pulse className="w-32 h-6 rounded mt-4" />
-                  ) : (
-                    <Container className="mx-2">
-                      <label htmlFor="Alamat">Role :</label> <br />
-                      <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
-                        {profileData?.role}
-                      </h1>
-                    </Container>
-                  )}
-
-                  {isLoading ? (
-                    <Pulse className="w-32 h-6 rounded mt-4" />
-                  ) : (
-                    <Container className="mx-2">
-                      <label htmlFor="">Bio :</label>
+                      <label htmlFor="Tanggal Lahir"> Tanggal Lahir :</label>
                       <br />
-                      <h1 className="border-2 rounded-md py-2 w-[31vw] h-[10vh] px-2">
-                        {profileData?.bio ?? "Ayo Isi Biodata Kamu Disini!"}
+                      <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
+                        {profileData?.tanggal_lahir}
                       </h1>
                     </Container>
                   )}
-
-                  <Container className="mx-2">
-                    <Link href="/profile/edit-profile">
-                      <ButtonPrimary>Edit Porfile</ButtonPrimary>
-                    </Link>
+                </Container>
+                {isLoading ? (
+                  <Pulse className="w-32 h-6 rounded mt-4" />
+                ) : (
+                  <Container className="flex items-center">
+                    <Container className="mx-2">
+                      <label htmlFor="Username">Nomor HP:</label> <br />
+                      <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
+                        {profileData?.nomor}
+                      </h1>
+                    </Container>
+                    <Container className="mx-2">
+                      <label htmlFor="Gender"> Gender :</label> <br />
+                      <h1 className="border-2 rounded-md py-2 w-[15vw] px-2">
+                        {getGenderString(profileData?.gender)}
+                      </h1>
+                    </Container>
                   </Container>
+                )}
+
+                {isLoading ? (
+                  <Pulse className="w-32 h-6 rounded mt-4" />
+                ) : (
+                  <Container className="mx-2">
+                    <label htmlFor="Email">Email :</label> <br />
+                    <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
+                      {profileData?.email}
+                    </h1>
+                  </Container>
+                )}
+
+                {isLoading ? (
+                  <Pulse className="w-32 h-6 rounded mt-4" />
+                ) : (
+                  <Container className="mx-2">
+                    <label htmlFor="Alamat">Alamat :</label> <br />
+                    <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
+                      {profileData?.alamat}
+                    </h1>
+                  </Container>
+                )}
+
+                {isLoading ? (
+                  <Pulse className="w-32 h-6 rounded mt-4" />
+                ) : (
+                  <Container className="mx-2">
+                    <label htmlFor="Alamat">Role :</label> <br />
+                    <h1 className="border-2 rounded-md py-2 w-[31vw] px-2">
+                      {profileData?.role}
+                    </h1>
+                  </Container>
+                )}
+
+                {isLoading ? (
+                  <Pulse className="w-32 h-6 rounded mt-4" />
+                ) : (
+                  <Container className="mx-2">
+                    <label htmlFor="">Bio :</label>
+                    <br />
+                    <h1 className="border-2 rounded-md py-2 w-[31vw] h-[10vh] px-2">
+                      {profileData?.bio ?? "Ayo Isi Biodata Kamu Disini!"}
+                    </h1>
+                  </Container>
+                )}
+
+                <Container className="mx-2">
+                  <Link href="/profile/edit-profile">
+                    <ButtonPrimary>Edit Porfile</ButtonPrimary>
+                  </Link>
                 </Container>
               </Container>
             </Container>

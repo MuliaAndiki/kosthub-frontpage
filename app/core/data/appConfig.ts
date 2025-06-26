@@ -4,13 +4,23 @@ import GogleIcon from "@/public/asset/GogleIcon.png";
 import FacebookIcon from "@/public/asset/Facebook.png";
 import LinkIn from "@/public/asset/Linkin.png";
 import Github from "@/public/asset/GitHub.png";
+
 import { MedsosConfig, NotifikasiConfig } from "@/app/types/components/index";
 import {
   RouteStatic,
   RouteStaticProfile,
   RouteStaticLanding,
+  RouteStaticInformation,
 } from "../../types/appConfig";
-import { User, File, HandCoins, Bookmark, KeyRound, Bell } from "lucide-react";
+import {
+  User,
+  File,
+  HandCoins,
+  Bookmark,
+  KeyRound,
+  Bell,
+  Info,
+} from "lucide-react";
 
 export const NotifikasiConfigDatas: NotifikasiConfig[] = [
   {
@@ -176,6 +186,11 @@ export const RouteStaticProfileData: RouteStaticProfile[] = [
     icon: Bell,
     label: "Notifikasi",
   },
+  {
+    label: "Infomation",
+    href: "/information",
+    icon: Info,
+  },
 ];
 
 export const RouteStaticLandingData: RouteStaticLanding[] = [
@@ -198,5 +213,13 @@ export const RouteStaticLandingData: RouteStaticLanding[] = [
   {
     label: "Masuk",
     href: "/auth/login",
+  },
+];
+
+export const RouteStaticInformationData: RouteStaticInformation[] = [
+  {
+    label: "Infomation",
+    href: "/information",
+    icon: Info,
   },
 ];

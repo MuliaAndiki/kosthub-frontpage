@@ -15,14 +15,40 @@ const NotafikasiChildren: React.FC = () => {
     "pending"
   );
 
-  const columns = NotifikasiConfigDatas.map((item) => ({
-    field: item.field,
-    headerName: item.label,
-    width: 150,
-    ...(item.value && {
-      valueGetter: (params: any) => item.value!(params.row),
-    }),
-  }));
+  const columns = NotifikasiConfigDatas.map((item) => {
+    if (item.field === "status") {
+      return {
+        field: item.field,
+        headers: item.label,
+        width: 150,
+        renderCell: (params: any) => {
+          const status = params.value;
+          const colors: Record<string, string> = {
+            pending: "bg-orange-500",
+            approved: "bg-green-600",
+            rejected: "bg-red-600",
+          };
+          return (
+            <span
+              className={`text-white px-2 py-1 rounded text-xs font-bold ${
+                colors[status] ?? "bg-gray-600"
+              }`}
+            >
+              {status}
+            </span>
+          );
+        },
+      };
+    }
+    return {
+      field: item.field,
+      headerName: item.label,
+      width: 150,
+      ...(item.value && {
+        valueGetter: (params: any) => item.value!(params.row),
+      }),
+    };
+  });
 
   const handleGetStatusPending = async (queryOption: any) => {
     try {

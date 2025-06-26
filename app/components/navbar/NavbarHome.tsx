@@ -9,8 +9,8 @@ import { useState, useEffect } from "react";
 import { ProfileType } from "../../types/API";
 import API from "../../util/API";
 import Container from "../ui/Container";
-import { Info } from "lucide-react";
 import Pulse from "../ui/pulse";
+import { Info } from "lucide-react";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);

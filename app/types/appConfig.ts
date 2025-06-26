@@ -21,3 +21,9 @@ export interface RouteStaticLanding {
   label: string;
   href: string;
 }
+
+export interface RouteStaticInformation {
+  label?: string;
+  icon: any;
+  href: string;
+}
