@@ -40,6 +40,22 @@ const NotafikasiChildren: React.FC = () => {
         },
       };
     }
+
+    if (item.field === "kontak") {
+      return {
+        field: item.field,
+        headerName: item.label,
+        width: 200,
+        renderCell: (params: any) => {
+          const kontak = params.row.kontak;
+          return (
+            <Container className="flex">
+              <span>{kontak?.nomor ?? "-"}</span>
+            </Container>
+          );
+        },
+      };
+    }
     return {
       field: item.field,
       headerName: item.label,
