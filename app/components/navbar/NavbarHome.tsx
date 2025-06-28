@@ -10,25 +10,11 @@ import { ProfileType } from "../../types/API";
 import API from "../../util/API";
 import Container from "../ui/Container";
 import Pulse from "../ui/pulse";
-import { Info } from "lucide-react";
 
 const NavbarHome: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
   const [profileData, setProfileData] = useState<ProfileType>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const handleRoleRedirect = () => {
-    const baseUrl = "/information";
-    let redirect = "/";
-    if (currentUser?.user.role === "user") {
-      redirect = `/users${baseUrl}`;
-    } else if (currentUser?.user.role === "owner") {
-      redirect = `/owners${baseUrl}`;
-    } else if (currentUser?.user.role === "admin") {
-      redirect = `/admin${baseUrl}`;
-    }
-    return redirect;
-  };
 
   const handleGetProfile = async () => {
     try {
@@ -87,10 +73,6 @@ const NavbarHome: React.FC = () => {
         <Pulse className="w-32 h-6  rounded mt-4 " />
       ) : (
         <Container className="flex gap-6 justify-center items-center">
-          <Link href={handleRoleRedirect()}>
-            <Info />
-          </Link>
-
           <Link href="/profile">
             <Container className="flex gap-2 items-center">
               <Image

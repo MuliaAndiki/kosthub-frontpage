@@ -15,6 +15,7 @@ import {
   RouteStaticProfile,
   RouteStaticLanding,
   RouteStaticInformation,
+  ListConfig,
 } from "../../types/appConfig";
 import {
   User,
@@ -38,7 +39,11 @@ export const NotifikasiConfigDatas: NotifikasiConfig[] = [
   {
     field: "kontak",
     label: "Kontak :",
-    value: (item) => item?.kontak.nomor,
+    value: (item) => {
+      const email = item?.kontak.email;
+      const nomor = item?.kontak.nomor;
+      return `${email}/${nomor}`;
+    },
   },
   {
     field: "alamat",
@@ -210,8 +215,8 @@ export const RouteStaticProfileData: RouteStaticProfile[] = [
     label: "Notifikasi",
   },
   {
-    label: "Infomation",
-    href: "/information",
+    label: "Approve",
+    href: "/profile/information",
     icon: Info,
   },
 ];
@@ -242,7 +247,49 @@ export const RouteStaticLandingData: RouteStaticLanding[] = [
 export const RouteStaticInformationData: RouteStaticInformation[] = [
   {
     label: "Infomation",
-    href: "/information",
+    href: "/profile/information",
     icon: Info,
+  },
+];
+
+export const ListConfigKos: ListConfig[] = [
+  {
+    label: "Nama",
+  },
+  {
+    label: "Nama-Kos",
+  },
+  {
+    label: "Kontak",
+  },
+  {
+    label: "Status",
+  },
+  {
+    label: "Dokument",
+  },
+  {
+    label: "Tool",
+  },
+];
+
+export const ListConfigReservase: ListConfig[] = [
+  {
+    label: "Nama",
+  },
+  {
+    label: "Nama-Reservase",
+  },
+  {
+    label: "Kontak",
+  },
+  {
+    label: "Status",
+  },
+  {
+    label: "Dokument",
+  },
+  {
+    label: "Tool",
   },
 ];

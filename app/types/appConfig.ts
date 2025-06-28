@@ -27,3 +27,7 @@ export interface RouteStaticInformation {
   icon: any;
   href: string;
 }
+
+export interface ListConfig {
+  label: string;
+}
