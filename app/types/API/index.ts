@@ -48,6 +48,7 @@ export interface itemsType {
   };
   deskripsi: string;
   tipe_kos: string;
+  id_owner: userType;
 }
 
 export interface reservasiType {
