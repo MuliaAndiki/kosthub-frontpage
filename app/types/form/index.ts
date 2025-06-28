@@ -77,3 +77,8 @@ export interface formCreateKos {
     nomor: string;
   };
 }
+
+export interface formApprove {
+  status: string;
+  alasan: string;
+}
