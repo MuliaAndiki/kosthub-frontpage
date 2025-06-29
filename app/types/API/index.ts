@@ -40,7 +40,7 @@ export interface itemsType {
     bintang: number;
     komentar: string;
     tanggal: string;
-    imageUlasan: string;
+    imageUlasan: string[];
   }[];
   image: {
     thumbnail: any;
@@ -81,7 +81,7 @@ export interface ReviewType {
   komentar: string;
   bintang: number;
   tanggal: string;
-  imageUlasan: string;
+  imageUlasan: string[];
 }
 
 export interface ProfileType {

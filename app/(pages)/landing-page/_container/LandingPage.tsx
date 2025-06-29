@@ -5,13 +5,13 @@ import OurServices from "@/app/components/card/OurServices";
 import {
   ourServicesData,
   bestReviewData,
-  bestProperyData,
+  ProductDatas,
 } from "@/app/core/data/card/users";
 import FooterLanding from "@/app/components/footer/FooterLanding";
-import BestProperty from "@/app/components/card/BestProperty";
 import BestRewiew from "@/app/components/card/BestReview";
 import Marquee from "react-fast-marquee";
 import Container from "@/app/components/ui/Container";
+import Image from "next/image";
 
 const LandingPageChildren: React.FC = () => {
   return (
@@ -90,15 +90,24 @@ const LandingPageChildren: React.FC = () => {
               lokasi strategis sesuai dengan kebutuhan dan gaya hidup anda.
             </p>
           </Container>
-          <Marquee
-            direction="right"
-            data-aos="zoom-out-up"
-            className="grid grid-cols-4 grid-rows-1 pl-[2rem] pt-[6rem] pb-[3rem]"
-          >
-            {bestProperyData.map((item, key) => (
-              <BestProperty key={key} data={item} />
-            ))}
-          </Marquee>
+          <Container className="w-full flex justify-between items-center">
+            <Marquee
+              direction="right"
+              data-aos="zoom-out-up"
+              className="my-2 flex w-full justify-between items-center"
+            >
+              {ProductDatas.map((items, key) => (
+                <Image
+                  alt="Product"
+                  src={items.image}
+                  key={key}
+                  width={200}
+                  height={200}
+                  className="w-full py-2 h-48 object-cover rounded-lg"
+                />
+              ))}
+            </Marquee>
+          </Container>
         </Container>
 
         <Container className="h-screen w-screen flex flex-col justify-center items-center">

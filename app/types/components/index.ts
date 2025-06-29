@@ -10,7 +10,7 @@ export interface bestReviewType {
   image: string;
   title: string;
   date: string;
-  gambar: string;
+  gambar: any;
   deskripsi: string;
   avgBintang: number;
 }
@@ -28,10 +28,9 @@ export interface appFooterType {
   }[];
 }
 
-export interface bestPropertyType {
-  image: string;
+export interface Product {
+  image: any;
 }
-
 export interface popUP {
   isOpen: boolean;
   onClose: () => void;

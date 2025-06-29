@@ -1,15 +1,15 @@
 "use client";
-import Container from "../../ui/Container";
+import Container from "../ui/Container";
 import { useEffect, useState } from "react";
-import Button from "../../ui/Button";
+import Button from "../ui/Button";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import { MedsosData } from "@/app/core/data/appConfig";
 import Image from "next/image";
 import Link from "next/link";
-import Pulse from "../../ui/pulse";
+import Pulse from "../ui/pulse";
 
-const SideHomeOwners = () => {
+const SideHome = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -77,4 +77,4 @@ const SideHomeOwners = () => {
   );
 };
 
-export default SideHomeOwners;
+export default SideHome;

@@ -29,13 +29,14 @@ const BestRewiew: React.FC<bestReviewTypeProps> = ({ data }) => {
         ))}
       </Container>
       <Container className="mt-2 flex gap-4 ">
-        {/* <Image
-          src={`http://localhost:5000/${data.gambar}`}
-          alt=""
-          width={200}
+        <Image
+          alt="Review"
+          src={data.gambar}
+          width={100}
           height={100}
-          className=" h-28 object-center rounded-md"
-        /> */}
+          className=""
+        />
+
         <Container>
           <p className="font-medium text-left">{data.deskripsi}</p>
         </Container>
