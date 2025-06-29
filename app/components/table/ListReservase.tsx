@@ -78,98 +78,114 @@ const ListReservaseChildren: React.FC = () => {
   }, []);
   return (
     <Container className="w-full">
-      <Container className="w-full flex flex-col ">
-        {reservaseDatas?.map((items, key) => (
-          <Container key={key} className="grid grid-cols-6 grid-rows-1 px-4 ">
-            {isLoading ? (
-              <Pulse className="w-26 rounded-md my-2 " />
-            ) : (
-              <span className="">{items.nama}</span>
-            )}
-            {isLoading ? (
-              <Pulse className="w-26 rounded-md my-2 " />
-            ) : (
-              <span>{items.email}</span>
-            )}
-            {isLoading ? (
-              <Pulse className="w-26 rounded-md my-2" />
-            ) : (
-              <span>{items.metode_pembayaran}</span>
-            )}
-            {isLoading ? (
-              <Pulse className="w-26 rounded-md my-2" />
-            ) : (
-              <span>{items.status}</span>
-            )}
-            {isLoading ? (
-              <Pulse className="w-26 rounded-md my-2" />
-            ) : (
-              <Container className="w-full  ">
-                <Button onClick={() => handleRedirect()}>Selanjutnya</Button>
-              </Container>
-            )}
-
-            <Container className="flex  justify-center items-center">
-              {isLoading ? (
-                <Pulse className="w-26 rounded-md my-2" />
-              ) : (
-                <ButtonPopUp
-                  onClick={() => setIsActive("PopUp")}
-                  message="secondary"
-                >
-                  Ambil Tindakan
-                </ButtonPopUp>
-              )}
+      <Container className="flex justify-center w-full items-center flex-col">
+        {isLoading ? (
+          <Container className="flex-col ">
+            <Container className="flex justify-center items-center h-full w-full gap-2">
+              <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></Container>
+              <p className="text-[2rem] font-light">Loading...</p>
             </Container>
-            <PopUp
-              isOpen={isActive === "PopUp"}
-              onClose={() => setIsActive(null)}
-            >
-              <Container className="w-full flex justify-center flex-col gap-4">
-                <h1 className="text-center md:text-2xl font-bold">
-                  Mohon Lengkapi
-                </h1>
-
-                <CustomSelect
-                  name="Status"
-                  value={formApprove.status}
-                  onChange={(e) => handleStatusChange(e)}
-                >
-                  {approve.map((key) => (
-                    <MenuItem key={key} value={key}>
-                      {key}
-                    </MenuItem>
-                  ))}
-                </CustomSelect>
-                <TextFieldInput
-                  name={formApprove.alasan}
-                  value={formApprove.alasan}
-                  label="Alasan"
-                  onChange={(e) =>
-                    setFormApprove((prev) => {
-                      const newObj = { ...prev, alasan: e.target.value };
-                      return newObj;
-                    })
-                  }
-                />
-                <Container className="flex justify-center items-center gap-4">
-                  <ButtonPopUp
-                    message="success"
-                    onClick={() => handleApprove()}
-                  >
-                    Yakin
-                  </ButtonPopUp>
-                  <ButtonPopUp
-                    message="error"
-                    onClick={() => setIsActive(null)}
-                  >
-                    Tidak
-                  </ButtonPopUp>
-                </Container>
-              </Container>
-            </PopUp>
           </Container>
-        ))}
+        ) : (
+          <Container className="w-full flex flex-col ">
+            {reservaseDatas?.map((items, key) => (
+              <Container
+                key={key}
+                className="grid grid-cols-6 grid-rows-1 px-4  "
+              >
+                {isLoading ? (
+                  <Pulse className="w-26 rounded-md my-2 " />
+                ) : (
+                  <span className="">{items.nama}</span>
+                )}
+                {isLoading ? (
+                  <Pulse className="w-26 rounded-md my-2 " />
+                ) : (
+                  <span>{items.email}</span>
+                )}
+                {isLoading ? (
+                  <Pulse className="w-26 rounded-md my-2" />
+                ) : (
+                  <span>{items.metode_pembayaran}</span>
+                )}
+                {isLoading ? (
+                  <Pulse className="w-26 rounded-md my-2" />
+                ) : (
+                  <span>{items.status}</span>
+                )}
+                {isLoading ? (
+                  <Pulse className="w-26 rounded-md my-2" />
+                ) : (
+                  <Container className="w-full  ">
+                    <Button onClick={() => handleRedirect()}>
+                      Selanjutnya
+                    </Button>
+                  </Container>
+                )}
+
+                <Container className="flex  justify-center items-center">
+                  {isLoading ? (
+                    <Pulse className="w-26 rounded-md my-2" />
+                  ) : (
+                    <ButtonPopUp
+                      onClick={() => setIsActive("PopUp")}
+                      message="secondary"
+                    >
+                      Ambil Tindakan
+                    </ButtonPopUp>
+                  )}
+                </Container>
+                <PopUp
+                  isOpen={isActive === "PopUp"}
+                  onClose={() => setIsActive(null)}
+                >
+                  <Container className="w-full flex justify-center flex-col gap-4">
+                    <h1 className="text-center md:text-2xl font-bold">
+                      Mohon Lengkapi
+                    </h1>
+
+                    <CustomSelect
+                      name="Status"
+                      value={formApprove.status}
+                      onChange={(e) => handleStatusChange(e)}
+                    >
+                      {approve.map((key) => (
+                        <MenuItem key={key} value={key}>
+                          {key}
+                        </MenuItem>
+                      ))}
+                    </CustomSelect>
+                    <TextFieldInput
+                      name={formApprove.alasan}
+                      value={formApprove.alasan}
+                      label="Alasan"
+                      onChange={(e) =>
+                        setFormApprove((prev) => {
+                          const newObj = { ...prev, alasan: e.target.value };
+                          return newObj;
+                        })
+                      }
+                    />
+                    <Container className="flex justify-center items-center gap-4">
+                      <ButtonPopUp
+                        message="success"
+                        onClick={() => handleApprove()}
+                      >
+                        Yakin
+                      </ButtonPopUp>
+                      <ButtonPopUp
+                        message="error"
+                        onClick={() => setIsActive(null)}
+                      >
+                        Tidak
+                      </ButtonPopUp>
+                    </Container>
+                  </Container>
+                </PopUp>
+              </Container>
+            ))}
+          </Container>
+        )}
       </Container>
     </Container>
   );
