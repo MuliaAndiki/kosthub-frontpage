@@ -116,9 +116,7 @@ const DataKostChildren: React.FC = () => {
       {isLoading ? (
         <Container className="flex-col">
           <Container className="flex justify-center items-center h-screen w-screen gap-2">
-            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105">
-              -
-            </Container>
+            <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></Container>
 
             <p className="text-[2rem] font-light">Loading...</p>
           </Container>
