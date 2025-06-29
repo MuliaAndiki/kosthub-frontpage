@@ -27,9 +27,9 @@ const DataKostChildren: React.FC = () => {
   const [openPopUp, setOpenPopUp] = useState<
     "Pengaduan" | "Review" | "Submit" | "Hapus" | null
   >(null);
-  const [ratingStar, setRatingStar] = useState<number | null>(null);
 
   const [formAddReview, setFormAddRevie] = useState<formAddReview>({
+    bintang: null,
     image: null,
     komentar: "",
   });
@@ -74,15 +74,32 @@ const DataKostChildren: React.FC = () => {
   };
 
   const handleAddReview = async () => {
-    if (!ratingStar || !formAddReview.komentar || !formAddReview.image) {
+    if (
+      !formAddReview.bintang ||
+      !formAddReview.komentar ||
+      !formAddReview.image
+    ) {
       console.log("Harap lengkapi semua field!");
       return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("komentar", formAddReview.komentar);
+    formData.append(
+      "bintang",
+      String(formAddReview.bintang !== null ? formAddReview.bintang : 0)
+    );
+    if (formAddReview.image) {
+      formAddReview.image.forEach((file) => {
+        formData.append("fotoReview", file);
+      });
     }
 
     try {
       const res = await API.post(
         `/api/reservase/review/${currentUser?.user._id}/${idReservase?._id}`,
-        formAddReview,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${currentUser?.token}`,
@@ -98,11 +115,15 @@ const DataKostChildren: React.FC = () => {
   const handleFotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("Triger");
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      console.log("file:", file);
+      const files = Array.from(e.target.files);
       setFormAddRevie((prev) => ({
         ...prev,
-        image: file,
+        image: files,
+      }));
+    } else {
+      setFormAddRevie((prev) => ({
+        ...prev,
+        image: null,
       }));
     }
   };
@@ -117,7 +138,6 @@ const DataKostChildren: React.FC = () => {
         <Container className="flex-col">
           <Container className="flex justify-center items-center h-screen w-screen gap-2">
             <Container className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-sky-500 size-105"></Container>
-
             <p className="text-[2rem] font-light">Loading...</p>
           </Container>
         </Container>
@@ -195,7 +215,10 @@ const DataKostChildren: React.FC = () => {
                                   name="Rating"
                                   onChange={(event, value) => {
                                     console.log("Rating dipilih:", value);
-                                    setRatingStar(value);
+                                    setFormAddRevie((prev) => ({
+                                      ...prev,
+                                      bintang: value,
+                                    }));
                                   }}
                                   onChangeActive={(event, value) => {
                                     console.log("Hover rating:", value);

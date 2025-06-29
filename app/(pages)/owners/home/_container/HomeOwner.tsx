@@ -1,9 +1,9 @@
 "use client";
 import Container from "@/app/components/ui/Container";
 import { useState, useEffect } from "react";
-import ProfileCardOwners from "@/app/components/card/owner/ProfileOwnerCard";
-import SideHomeOwners from "@/app/components/card/owner/SideHome";
-import ChartOwners from "@/app/components/card/owner/Chart";
+import ProfileCardOwners from "@/app/components/card/ProfileOwnerCard";
+import SideHomeOwners from "@/app/components/card/SideHome";
+import ChartOwners from "@/app/components/card/Chart";
 
 const HomeOwnerChildren: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

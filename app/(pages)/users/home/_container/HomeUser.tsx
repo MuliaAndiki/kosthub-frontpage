@@ -7,28 +7,12 @@ import { itemsType } from "@/app/types/API/index";
 import { useAppSelector } from "@/app/hooks/dispatch/dispatch";
 import Container from "../../../../components/ui/Container";
 import { useRouter } from "next/navigation";
-import ButtonPrimary from "@/app/components/ui/ButtonPrimary";
-import CustomSelect from "@/app/components/ui/Select";
-import { MenuItem, SelectChangeEvent } from "@mui/material";
-import { Filter } from "@/app/core/data/constants/filter";
 
 const HomeUserChildren: React.FC = () => {
   const router = useRouter();
   const [items, setItems] = useState<itemsType[]>([]);
   const { currentUser } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const [formFilter, setFormFilter] = useState<FilterType>({
-  //   fasilitas: [""],
-  //   harga: "",
-  //   maxHarga: "",
-  //   minHarga: "",
-  //   rating: "",
-  //   tipeHarga: "",
-  // });
-
-  // const handleFilter = (e: SelectChangeEvent) => {
-  //   setFormFilter((prev) => )
-  // };
 
   const handleFetch = async () => {
     try {
@@ -46,22 +30,6 @@ const HomeUserChildren: React.FC = () => {
       setIsLoading(false);
     }
   };
-
-  // const handleFilterChange = async () => {
-  //   try {
-  //     const res = await API.post(`/api/kos/filter`, formFilter, {
-  //       headers: {
-  //         Authorization: `Bearer ${currentUser?.token}`,
-  //       },
-  //     });
-
-  //     console.log("Berhail NgeFilter", res);
-  //   } catch (error) {
-  //     console.log("Gagal Melakukan Filtering", error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   useEffect(() => {
     handleFetch();

@@ -44,7 +44,8 @@ export interface formReservase {
 
 export interface formAddReview {
   komentar: string;
-  image: File | null;
+  bintang: number | null;
+  image: File[] | null;
 }
 
 export interface formLengkapiData {

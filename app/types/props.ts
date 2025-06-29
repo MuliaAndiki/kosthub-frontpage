@@ -4,19 +4,19 @@ import {
   bestReviewType,
   appFooterType,
   ourServicesType,
-  bestPropertyType,
+  Product,
 } from "@/app/types/components";
 
 export interface ourServicesTypeProps {
   data: ourServicesType;
 }
-export interface bestPropertyTypeProps {
-  data: bestPropertyType;
-}
 export interface bestReviewTypeProps {
   data: bestReviewType;
 }
 
+export interface productProps {
+  data: Product;
+}
 export interface reviewTypeProps {
   data: ReviewType;
 }

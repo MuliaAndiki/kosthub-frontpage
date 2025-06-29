@@ -1,15 +1,15 @@
 "use client";
 
-import Container from "../../ui/Container";
+import Container from "../ui/Container";
 import Image from "next/image";
 import profileDummy from "@/public/asset/prfilhd.png";
 import ButtonPrimary from "@/app/components/ui/ButtonPrimary";
 import { useOwnerProfileConfigData } from "@/app/core/data/card/owners";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Pulse from "../../ui/pulse";
+import Pulse from "../ui/pulse";
 
-const ProfileCardOwners: React.FC = () => {
+const ProfileCard: React.FC = () => {
   const ownerProfileConfigData = useOwnerProfileConfigData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -73,4 +73,4 @@ const ProfileCardOwners: React.FC = () => {
   );
 };
 
-export default ProfileCardOwners;
+export default ProfileCard;
