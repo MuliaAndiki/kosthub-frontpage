@@ -43,6 +43,8 @@ const BikinKosChildren: React.FC = () => {
     nama_kos: "",
   });
 
+  const fasilitas = ["Wifi", "Kasur", "Kamar", "Lemari", "Kamar Mandi"];
+
   const handleCreateKos = async () => {
     try {
       setIsLoading(true);
@@ -308,18 +310,22 @@ const BikinKosChildren: React.FC = () => {
               key={key}
               className="flex flex-col md:flex-row gap-4 items-center"
             >
-              <TextFieldInput
-                name={`fasilitas-${key}-nama`}
+              <CustomSelect
+                name="Fasilitas"
                 value={item.nama}
-                label="Nama Fasilitas"
-                className="w-full"
-                type="text"
                 onChange={(e) => {
                   const newObj = [...formCreateKos.fasilitas];
                   newObj[key].nama = e.target.value;
                   setFormCreateKos((prev) => ({ ...prev, fasilitas: newObj }));
                 }}
-              />
+              >
+                <MenuItem value="-"></MenuItem>
+                {fasilitas.map((key) => (
+                  <MenuItem key={key} value={key}>
+                    {key}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
 
               <TextFieldInput
                 name={`fasilitas-${key}-jumlah`}
