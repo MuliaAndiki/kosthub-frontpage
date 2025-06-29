@@ -19,7 +19,6 @@ const ListReservaseChildren: React.FC = () => {
   const [reservaseDatas, setReservaseDatas] = useState<reservasiType[]>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isActive, setIsActive] = useState<"PopUp" | null>(null);
-  const [idReservase, setIdReservase] = useState<reservasiType>();
   const [formApprove, setFormApprove] = useState<formApprove>({
     alasan: "",
     status: "",
@@ -45,7 +44,6 @@ const ListReservaseChildren: React.FC = () => {
         },
       });
       setReservaseDatas(res.data.datas);
-      setIdReservase(res.data.datas);
     } catch (error) {
       console.log(`Gagal Melakuakan Fetch ${error}`);
     } finally {
@@ -53,10 +51,10 @@ const ListReservaseChildren: React.FC = () => {
     }
   };
 
-  const handleApprove = async () => {
+  const handleApprove = async (reservaseId: string) => {
     try {
       const res = await API.patch(
-        `/api/kos/${idReservase?._id}/approve`,
+        `/api/reservase/${reservaseId}/approve`,
         formApprove,
         {
           headers: {
@@ -76,6 +74,7 @@ const ListReservaseChildren: React.FC = () => {
     }, 2000);
     return () => clearTimeout(time);
   }, []);
+
   return (
     <Container className="w-full">
       <Container className="flex justify-center w-full items-center flex-col">
@@ -169,7 +168,7 @@ const ListReservaseChildren: React.FC = () => {
                     <Container className="flex justify-center items-center gap-4">
                       <ButtonPopUp
                         message="success"
-                        onClick={() => handleApprove()}
+                        onClick={() => handleApprove(items._id)}
                       >
                         Yakin
                       </ButtonPopUp>

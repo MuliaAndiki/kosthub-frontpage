@@ -20,7 +20,6 @@ import Container from "@/app/components/ui/Container";
 
 const SelectItemsChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
-  const [kostId, setKostId] = useState<string>("");
   const [kostData, setKostData] = useState<itemsType | null>(null);
   const [ratingStar] = useState<number>(0);
   const pathname = usePathname();
@@ -67,8 +66,7 @@ const SelectItemsChildren: React.FC = () => {
 
   useEffect(() => {
     handleGetData();
-    console.log("Id Kost", kostData?.slug);
-  }, [pathname, kostId]);
+  }, [pathname]);
 
   return (
     <Container className="min-h-screen w-full bg-gray-100">

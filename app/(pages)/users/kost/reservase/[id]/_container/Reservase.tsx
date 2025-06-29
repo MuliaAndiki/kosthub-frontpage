@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import NavbarItem from "@/app/components/navbar/NavbarItem";
-import Reviews from "@/app/components/card/user/Reviews";
 import { useState, useEffect } from "react";
 import { Star, Phone, Mail } from "lucide-react";
 import API from "@/app/util/API";
@@ -65,9 +64,28 @@ const ReservaseChildren: React.FC = () => {
 
   const handleReservase = async () => {
     try {
+      const formData = new FormData();
+      formData.append("nama", formReservase.nama);
+      formData.append("email", formReservase.email);
+      formData.append("metode_pembayaran", formReservase.metode_pembayaran);
+      formData.append("nomor_hp", formReservase.nomor_hp);
+      formData.append("tanggal_lahir", formReservase.tanggal_lahir);
+      formData.append(
+        "gender",
+        formReservase.gender !== null ? String(formReservase.gender) : ""
+      );
+
+      if (formReservase.kontrak) {
+        formData.append("kontrak", formReservase.kontrak);
+      }
+
+      if (formReservase.bukti_pembayaran) {
+        formData.append("bukti_pembayaran", formReservase.bukti_pembayaran);
+      }
+
       const res = await API.post(
         `/api/reservase/${currentUser?.user._id}/${kostData?.slug}`,
-        formReservase,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${currentUser?.token}`,
@@ -81,6 +99,7 @@ const ReservaseChildren: React.FC = () => {
   };
 
   const handleGenderChange = (e: SelectChangeEvent) => {
+    console.log(`Debug`, e.target.value);
     const value = e.target.value;
     const booleanValue =
       value === "true" ? true : value === "false" ? false : null;
@@ -104,6 +123,7 @@ const ReservaseChildren: React.FC = () => {
   };
 
   const handleMetodePembayaranChange = (e: SelectChangeEvent) => {
+    console.log(`Debug`, e.target.value);
     setFormReservase((prev) => ({
       ...prev,
       metode_pembayaran: e.target.value,
@@ -142,28 +162,28 @@ const ReservaseChildren: React.FC = () => {
             <Container className="lg:col-span-2 space-y-6">
               {modal && <Modal {...modal} />}
               <Container className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative w-full h-[50vh] md:h-[60vh]">
-                  {/* {kostData?.image.gallery.slice(0, 1).map((item, key) => (
+                <Container className="relative w-full h-[50vh] md:h-[60vh]">
+                  {kostData?.image.gallery.slice(0, 1).map((item, key) => (
                     <Image
                       key={key}
-                      src={`http://localhost:5000/${item}`}
+                      src={`${item}`}
                       alt="Main gallery image"
                       fill
                       className="object-cover rounded-lg"
                       priority
                     />
-                  ))} */}
-                </div>
+                  ))}
+                </Container>
                 <Container className="grid grid-cols-2 gap-2 h-[50vh] md:h-[60vh]">
                   {kostData?.image.gallery.slice(1, 5).map((item, key) => (
-                    <div key={key} className="relative w-full h-full">
-                      {/* <Image
-                        src={`http://localhost:5000/${item}`}
+                    <Container key={key} className="relative w-full h-full">
+                      <Image
+                        src={`${item}`}
                         alt="Gallery image"
                         fill
                         className="object-cover rounded-lg"
-                      /> */}
-                    </div>
+                      />
+                    </Container>
                   ))}
                 </Container>
               </Container>
@@ -234,6 +254,7 @@ const ReservaseChildren: React.FC = () => {
                       value={formReservase.nama}
                       onChange={(e) =>
                         setFormReservase((prev) => {
+                          console.log(`Debug`, e.target.value);
                           const newObj = { ...prev, nama: e.target.value };
                           return newObj;
                         })
@@ -248,6 +269,7 @@ const ReservaseChildren: React.FC = () => {
                       value={formReservase.tanggal_lahir}
                       onChange={(e) =>
                         setFormReservase((prev) => {
+                          console.log(`Debug`, e.target.value);
                           const newObj = {
                             ...prev,
                             tanggal_lahir: e.target.value,
@@ -269,6 +291,7 @@ const ReservaseChildren: React.FC = () => {
                       value={formReservase.nomor_hp}
                       onChange={(e) =>
                         setFormReservase((prev) => {
+                          console.log(`Debug`, e.target.value);
                           const newObj = { ...prev, nomor_hp: e.target.value };
                           return newObj;
                         })
@@ -303,6 +326,7 @@ const ReservaseChildren: React.FC = () => {
                     value={formReservase.email}
                     onChange={(e) =>
                       setFormReservase((prev) => {
+                        console.log(`Debug`, e.target.value);
                         const newObj = { ...prev, email: e.target.value };
                         return newObj;
                       })
@@ -388,7 +412,7 @@ const ReservaseChildren: React.FC = () => {
                                 confirmButtonColor: "#58CC41",
                                 onClose: () => {
                                   setModal(null);
-                                  router.push("/home");
+                                  router.push("/users/home");
                                   setOpenPopUp(null);
                                 },
                               });

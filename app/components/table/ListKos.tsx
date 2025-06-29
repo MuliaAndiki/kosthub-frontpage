@@ -17,7 +17,6 @@ import CustomSelect from "../ui/Select";
 const ListKosChildren: React.FC = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [idKos, setIdKos] = useState<itemsType>();
   const [kostDatas, setKostDatas] = useState<itemsType[]>();
   const [formApprove, setFormApprove] = useState<formApprove>({
     alasan: "",
@@ -29,17 +28,31 @@ const ListKosChildren: React.FC = () => {
 
   const handleRejected = () => {};
 
-  const handleApprove = async () => {
+  const handelPending = async () => {
     try {
-      const res = await API.patch(
-        `/api/kos/${idKos?._id}/approve`,
-        formApprove,
-        {
-          headers: {
-            Authorization: `Bearer ${currentUser?.token}`,
-          },
-        }
-      );
+      setIsLoading(true);
+      const res = await API.get(`/api/kos/pending`, {
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+      });
+      setKostDatas(res.data);
+
+      console.log("Data", res.data.data);
+    } catch (error) {
+      console.log("Gagal Melakukan Fetch", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleApprove = async (kosId: string) => {
+    try {
+      const res = await API.patch(`/api/kos/${kosId}/approve`, formApprove, {
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+      });
       console.log(`Berhasil Approve ${res}`);
     } catch (error) {
       console.log(`Gagal Melakukan Approve ${error}`);
@@ -54,23 +67,6 @@ const ListKosChildren: React.FC = () => {
   };
 
   const handleRedirect = () => {};
-
-  const handelPending = async () => {
-    try {
-      setIsLoading(true);
-      const res = await API.get(`/api/kos/pending`, {
-        headers: {
-          Authorization: `Bearer ${currentUser?.token}`,
-        },
-      });
-      setKostDatas(res.data);
-      setIdKos(res.data);
-    } catch (error) {
-      console.log("Gagal Melakukan Fetch", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -172,7 +168,7 @@ const ListKosChildren: React.FC = () => {
                     <Container className="flex justify-center items-center gap-4">
                       <ButtonPopUp
                         message="success"
-                        onClick={() => handleApprove()}
+                        onClick={() => handleApprove(items._id)}
                       >
                         Yakin
                       </ButtonPopUp>

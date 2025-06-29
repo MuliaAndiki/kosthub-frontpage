@@ -1,11 +1,6 @@
 import {
-  BedDouble,
   ShowerHead,
-  Map,
   Wifi,
-  Star,
-  Phone,
-  MapPin,
   Home,
   Bed,
   HelpCircle,
